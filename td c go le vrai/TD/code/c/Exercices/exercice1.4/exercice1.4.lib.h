@@ -1,0 +1,1 @@
+int carreEntier(float n);
