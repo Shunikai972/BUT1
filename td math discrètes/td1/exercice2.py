@@ -8,5 +8,5 @@ def g(x):
         a = math.sqrt(x)
         print("cas positif", a)
 print("début")
-x = int(input("quelle est valeure"))
+x = int(input("quelle est valeure"))    
 g(x)
