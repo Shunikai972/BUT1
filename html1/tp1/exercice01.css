@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p {
+    order: 3;
+}
+table {
+    text-align: center;
+}
+
+table td, table th {
+    border: 1px black solid;
+}
+
+table tr:first-child th {
+    background-color: grey;
+}
+table figure img {
+    width: 10%;
+}
+
+table figure img:hover {
+    transform: scaleX(-1);
+    transition-duration: 500ms;
+}
+
