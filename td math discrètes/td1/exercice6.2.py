@@ -15,6 +15,8 @@ def union(A, B):
             result.append(x)
     return result
 
+
+
 def intersection(A, B):
     """insterctions des ensembles a et bbbbbbbbbbbbbbbbbbbb"""
     return [x for x in A if x in B]
@@ -34,4 +36,5 @@ if __name__ == "__main__":
     print("union(A,B):", union(A, B))              
     print("intersection(A,B):", intersection(A, B)) 
     print("retire(2, A):", retire(2, A))          
-    print("diff(A,B):", diff(A, B))                #
+    print("diff(A,B):", diff(A, B))               
+    
