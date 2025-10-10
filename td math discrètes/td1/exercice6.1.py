@@ -13,7 +13,7 @@ def disjoint(A, B):
     """renvoie true si a et b sont disjoint."""
     for x in A:
         if x in B:
-            return False
+              return False
     return True
 
 
