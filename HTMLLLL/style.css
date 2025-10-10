@@ -14,6 +14,11 @@ body {
 	font-family: 'Montserrat', sans-serif;
 	height: 100vh;
 	margin: -20px 0 50px;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0.5)),
+        url("échec.png");
+        background-size: cover;
+        /*backdrop-filter: blur(1px);*/
 }
 
 h1 {
@@ -250,3 +255,85 @@ footer a {
     color: #3c97bf;
     text-decoration: none;
 }
+
+
+
+
+
+
+/* Cacher les radios */
+#signIn,
+#signUp {
+  display: none;
+}
+
+/* Quand signUp est coché, on applique l’état "right-panel-active" */
+#signUp:checked ~ .sign-in-container {
+  transform: translateX(100%);
+}
+
+#signUp:checked ~ .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: show 0.6s;
+}
+
+#signUp:checked ~ .overlay-container {
+  transform: translateX(-100%);
+}
+
+#signUp:checked ~ .overlay-container .overlay {
+  transform: translateX(50%);
+}
+
+#signUp:checked ~ .overlay-container .overlay-left {
+  transform: translateX(0);
+}
+
+#signUp:checked ~ .overlay-container .overlay-right {
+  transform: translateX(20%);
+}
+
+/* Style pour labels (boutons) */
+label.ghost {
+  border-radius: 20px;
+  border: 1px solid #FF4B2B;
+  background-color: transparent;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 80ms ease-in;
+  display: inline-block;
+  user-select: none;
+}
+
+label.ghost:active {
+  transform: scale(0.95);
+}
+
+label.ghost:focus {
+  outline: none;
+}
+
+/* Optionnel: style label actif */
+#signUp:checked ~ .overlay-container .overlay-right label#signUpLabel,
+#signIn:checked ~ .overlay-container .overlay-left label#signInLabel {
+  background-color: #fff;
+  color: #FF4B2B;
+  cursor: default;
+  pointer-events: none;
+}
+
+
+
+
+
+
+
+
+
