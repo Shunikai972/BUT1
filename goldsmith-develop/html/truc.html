@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nos valeurs — Slide</title>
+
+  <!-- Google Fonts: Ovo + Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Ovo&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root{ --teal: #187B78; }
+
+    body{
+      background: var(--teal);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .title-ovo{
+      font-family: "Ovo", serif;
+      font-weight: 400;
+      font-size: 70px;
+      line-height: 1;
+      text-transform: uppercase;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .subtitle-inter{
+      font-family: "Inter", sans-serif;
+      font-weight: 300;
+      font-size: 20px;
+      text-align: center;
+      color: rgba(255,255,255,0.95);
+    }
+
+    .body-inter{
+      font-family: "Inter", sans-serif;
+      font-weight: 300;
+      font-size: 18px;
+      color: rgba(255,255,255,0.95);
+    }
+
+    /* Pas de bord, pas de rayon, pas d'ombre */
+    .art-card{
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      overflow: visible;
+      box-shadow: none;
+      display: block;
+    }
+
+    /* Laisser les images à leur taille originelle tout en évitant le débordement */
+    .art-card img{
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 320px; /* facultatif : limite la hauteur visuelle si nécessaire */
+    }
+
+    @media (max-width: 900px){
+      .title-ovo{ font-size: 40px; }
+      .subtitle-inter{ font-size: 16px; }
+      .body-inter{ font-size: 16px; }
+      .layout-grid{ gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="min-h-screen flex items-center justify-center p-8">
+    <section class="w-full max-w-7xl">
+
+      <header class="mb-12 text-center">
+        <h1 class="title-ovo">Nos valeurs</h1>
+        <p class="mt-4 subtitle-inter">
+          L’équipe rebound est composée de personne partageant une culture et des valeurs communes :
+        </p>
+      </header>
+
+      <div class="grid layout-grid grid-cols-1 gap-12">
+
+        <!-- Block 1 -->
+        <div class="flex items-center gap-8 md:gap-12 flex-col md:flex-row">
+          <div class="w-full md:w-1/2 max-w-[520px] art-card order-1 md:order-1">
+            <img src="images/valeurs1.svg" alt="Illustration 1">
+          </div>
+
+          <div class="w-full md:w-1/2 order-2 md:order-2">
+            <p class="body-inter">
+              1 - Nous avons tous été confronté personnellement ou de façon très proche à l’entreprise en difficultés et l’avons même pour certains, vécu de l’intérieur
+            </p>
+          </div>
+        </div>
+
+        <!-- Block 2 -->
+        <div class="flex items-center gap-8 md:gap-12 flex-col md:flex-row">
+          <div class="w-full md:w-1/2">
+            <p class="body-inter">
+              2 - Nous sommes alignés avec nos convictions d’un équilibre juste des choses ce qui se retrouve dans nos recommandations
+            </p>
+          </div>
+
+          <div class="w-full md:w-1/2 max-w-[520px] art-card">
+            <img src="images/valeurs2.svg" alt="Illustration 2">
+          </div>
+        </div>
+
+        <!-- Block 3 -->
+        <div class="flex items-center gap-8 md:gap-12 flex-col md:flex-row">
+          <div class="w-full md:w-1/2 max-w-[520px] art-card">
+            <img src="images/valeurs3.svg" alt="Illustration 3">
+          </div>
+
+          <div class="w-full md:w-1/2">
+            <p class="body-inter">
+              3 - Nous pensons qu’il existe toujours une solution et que seul le travail en équipe continu permet de la faire émerger.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+  </main>
+
+</body>
+</html>
