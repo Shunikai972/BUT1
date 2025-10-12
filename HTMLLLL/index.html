@@ -4,78 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign In/Up Form</title>
-    <!-- Lien vers le CSS -->
+    <!-- LIEN VERS CSS NOAM -->
     <link rel="stylesheet" href="style.css" />
-    <!-- FontAwesome pour les icônes sociales -->
+    <!-- FontAwesome icone horrible la -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
-<body>
-<h2>"NOM DU SITEUH" page de connexion</h2>
-<div class="container" id="container">
+<body class="corps noam">
+<h2>BiShop page de connexion</h2>
+<div class="conteneur noam" id="container">
 
-  <!-- Radios cachés pour toggle -->
-  <input type="radio" name="toggle" id="signIn" checked>
+  <!-- Truc de toggle -->
+  <input type="radio" name="toggle" id="signIn">
   <input type="radio" name="toggle" id="signUp">
 
-  <div class="form-container sign-up-container">
+  <div class="formulaire-conteneur inscription noam"> 
     <form action="#">
-      <h1>Create Account</h1>
-      <div class="social-container">
-        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+      <h1>Créer un compte !</h1>
+      <div class="reseau-conteneur noam">
+        <a href="#" class="reseau noam"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="reseau noam"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#" class="reseau noam"><i class="fab fa-linkedin-in"></i></a>
       </div>
-      <span>or use your email for registration</span>
-      <input type="text" placeholder="Name" />
+      <span>Ou utilisez votre email pour vous identifiez</span>
+      <input type="text" placeholder="Nom" />
       <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Password" />
-      <button>Sign Up</button>
+      <input type="password" placeholder="Mot de passe" />
+      <button>Inscription</button>
     </form>
   </div>
 
-  <div class="form-container sign-in-container">
+  <div class="formulaire-conteneur connexion noam">
     <form action="#">
-      <h1>Sign in</h1>
-      <div class="social-container">
-        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+      <h1>Connexion</h1>
+      <div class="reseau-conteneur noam">
+        <a href="#" class="reseau noam"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="reseau noam"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#" class="reseau noam"><i class="fab fa-linkedin-in"></i></a>
       </div>
       <span>Ou utilisez votre compte</span>
       <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Password" />
+      <input type="password" placeholder="Mot de passe" />
       <a href="#">Mot de passe oublié?</a>
-      <button>Sign In</button>
+      <button>Connexion</button>
     </form>
   </div>
 
-  <div class="overlay-container">
-    <div class="overlay">
-      <div class="overlay-panel overlay-left">
-        <h1>Welcome Back!</h1>
-        <p>To keep connected with us please login with your personal info</p>
-        <!-- Label remplace le bouton -->
-        <label for="signIn" class="ghost" id="signInLabel">Sign In</label>
+  <div class="superposition-conteneur noam">
+    <div class="superposition noam">
+      <div class="superposition-panneau gauche noam">
+        <h1>Bon retour!</h1>
+        <p>Pour rester connecter n'oubliez pas de mettre les bonnes infos</p>
+       
+        <label for="signIn" class="fantome noam" id="signInLabel">Connexion</label>
       </div>
-      <div class="overlay-panel overlay-right">
-        <h1>Bonjour, FRIANde!</h1>
-        <p>Renseignez vos informations, et rejoignez nous !</p>
-        <!-- Label remplace le bouton -->
-        <label for="signUp" class="ghost" id="signUpLabel">Sign Up</label>
+      <div class="superposition-panneau droite noam">
+        <h1>Bonjour, chers clients!</h1>
+        <p>Renseigner vos information, et rejoigner nous !</p>
+
+        <label for="signUp" class="fantome noam" id="signUpLabel">Inscription</label>
       </div>
     </div>
   </div>
 
 </div>
-
-
-<footer>
-	<p>
-		Created with <i class="fa fa-heart"></i> by ASTROOO
-		<a target="_blank" href="https://gitlab.univ-nantes.fr/pub/but/but1/r1.02/">here</a>.
-	</p>
-</footer>
 </body>
-
-
-<!-- https://codepen.io/FlorinPop17/pen/vPKWjd -->
