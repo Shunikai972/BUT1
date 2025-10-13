@@ -100,17 +100,29 @@ test("essai cas 7 evaluer_clause : ",evaluer_clause(clause7,list_var7),True)
 '''
 
 def evaluer_cnf(formule,list_var):
+    valeur_clause = False
+    for clause in formule:
+        res = evaluer_clause(clause, list_var)
+        if evaluer_clause(formule,list_var) == False:
+            valeur_clause = False
+            list_var.append(valeur_clause)
+        else :
+            valeur_clause = True
+            list_var.append(valeur_clause)
+            return False
+        
+
     '''Arguments : une liste de listes d'entiers non nuls traduisant une formule,une liste de booléens informant de valeurs logiques connues (ou None dans le cas contraire) pour un ensemble de variables
     Renvoie : None ou booléen
 '''
     
-'''for1=[[1,2],[2,-3,4],[-1,-2],[-1,-2,-3],[1]]
+for1=[[1,2],[2,-3,4],[-1,-2],[-1,-2,-3],[1]]
 list_var_for1_test1=[True,False,False,None]
 test('test1 evaluer_cnf : ',evaluer_cnf(for1,list_var_for1_test1),True)
 list_var_for1_test2=[None,False,False,None]
 test('test2 evaluer_cnf : ',evaluer_cnf(for1,list_var_for1_test2),None)
 list_var_for1_test3=[True,False,True,False]
-test('test3 evaluer_cnf : ',evaluer_cnf(for1,list_var_for1_test3),False)'''
+test('test3 evaluer_cnf : ',evaluer_cnf(for1,list_var_for1_test3),False)
 
 def determine_valuations(list_var):
     '''Arguments : une liste de booléens informant de valeurs logiques connues (ou None dans le cas contraire) pour un ensemble de variables
