@@ -1,70 +1,71 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign In/Up Form</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
     <!-- LIEN VERS CSS NOAM -->
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
     <!-- FontAwesome icone horrible la -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body class="corps noam">
-<h2>BiShop page de connexion</h2>
-<div class="conteneur noam" id="container">
+<div class="noam-wrapper">
+  <h2 class="noam-h2">BiShop page de connexion</h2>
+  <div class="conteneur noam" id="container">
 
-  <!-- Truc de toggle -->
-  <input type="radio" name="toggle" id="signIn">
-  <input type="radio" name="toggle" id="signUp">
+    <!-- Truc de toggle -->
+    <input type="radio" name="toggle" id="signIn">
+    <input type="radio" name="toggle" id="signUp">
 
-  <div class="formulaire-conteneur inscription noam"> 
-    <form action="#">
-      <h1>Créer un compte !</h1>
-      <div class="reseau-conteneur noam">
-        <a href="#" class="reseau noam"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="reseau noam"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="reseau noam"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-      <span>Ou utilisez votre email pour vous identifiez</span>
-      <input type="text" placeholder="Nom" />
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Mot de passe" />
-      <button>Inscription</button>
-    </form>
-  </div>
+    <div class="formulaire-conteneur inscription noam"> 
+      <form action="#" class="noam-form">
+        <h1 class="noam-h1">Créer un compte !</h1>
+        <div class="reseau-conteneur noam">
+          <a href="#" class="reseau noam"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="reseau noam"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#" class="reseau noam"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <span class="noam-span">Ou utilisez votre email pour vous identifiez</span>
+        <input type="text" placeholder="Nom" class="noam-input">
+        <input type="email" placeholder="Email" class="noam-input">
+        <input type="password" placeholder="Mot de passe" class="noam-input">
+        <button class="noam-button">Inscription</button>
+      </form>
+    </div>
 
-  <div class="formulaire-conteneur connexion noam">
-    <form action="#">
-      <h1>Connexion</h1>
-      <div class="reseau-conteneur noam">
-        <a href="#" class="reseau noam"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="reseau noam"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="reseau noam"><i class="fab fa-linkedin-in"></i></a>
-      </div>
-      <span>Ou utilisez votre compte</span>
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Mot de passe" />
-      <a href="#">Mot de passe oublié?</a>
-      <button>Connexion</button>
-    </form>
-  </div>
+    <div class="formulaire-conteneur connexion noam">
+      <form action="#" class="noam-form">
+        <h1 class="noam-h1">Connexion</h1>
+        <div class="reseau-conteneur noam">
+          <a href="#" class="reseau noam"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="reseau noam"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#" class="reseau noam"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <span class="noam-span">Ou utilisez votre compte</span>
+        <input type="email" placeholder="Email" class="noam-input">
+        <input type="password" placeholder="Mot de passe" class="noam-input">
+        <a href="#" class="noam-a">Mot de passe oublié?</a>
+        <button class="noam-button">Connexion</button>
+      </form>
+    </div>
 
-  <div class="superposition-conteneur noam">
-    <div class="superposition noam">
-      <div class="superposition-panneau gauche noam">
-        <h1>Bon retour!</h1>
-        <p>Pour rester connecter n'oubliez pas de mettre les bonnes infos</p>
-       
-        <label for="signIn" class="fantome noam" id="signInLabel">Connexion</label>
-      </div>
-      <div class="superposition-panneau droite noam">
-        <h1>Bonjour, chers clients!</h1>
-        <p>Renseigner vos information, et rejoigner nous !</p>
-
-        <label for="signUp" class="fantome noam" id="signUpLabel">Inscription</label>
+    <div class="superposition-conteneur noam">
+      <div class="superposition noam">
+        <div class="superposition-panneau gauche noam">
+          <h1 class="noam-h1">Bon retour!</h1>
+          <p class="noam-p">Pour rester connecter n'oubliez pas de mettre les bonnes infos</p>
+          <label for="signIn" class="fantome noam" id="signInLabel">Connexion</label>
+        </div>
+        <div class="superposition-panneau droite noam">
+          <h1 class="noam-h1">Bonjour, chers clients!</h1>
+          <p class="noam-p">Renseigner vos information, et rejoigner nous !</p>
+          <label for="signUp" class="fantome noam" id="signUpLabel">Inscription</label>
+        </div>
       </div>
     </div>
-  </div>
 
+  </div>
 </div>
 </body>
+</html>
