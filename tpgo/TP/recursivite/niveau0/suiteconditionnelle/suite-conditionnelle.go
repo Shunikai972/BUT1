@@ -21,11 +21,14 @@ Pour cet exercice, les boucles for sont interdites
 */
 
 func terme(n uint) (un int) {
-	if terme-1 > 100 {
-		if n == 0 {
-			return 1
-		}
-		return 5*terme(n-1) - 2
+
+	if n == 0 {
+		return 2
+	}
+	if terme(n-1) < 100 {
+		return 2*terme(n-1) + 1
+	} else {
+		return terme(n-1) - 100
 	}
 
 }
