@@ -51,20 +51,20 @@ def test_for(mess,formu,res_for):
     print(mess+'Ok')
     
 #A VOUS DE JOUER#
-def evaluer_clause(clause,list_var):
-    if len(clause) == 0 or len(clause) != len(list_var):
-        return False
+def evaluer_clause(clause, list_var):
     clause_satisfaite = False
-    clause_inconnue = True
+    clause_inconnue = False  # aucune clause inconnue au départ
+    
     for litteral in clause:
-            var_index = abs(litteral) -1 
-            val = list_var[var_index]
-            if val is None:
-                clause_inconnue = True
-            else:
-                if (litteral > 0 and val == True) or (litteral < 0 and val == False):
-                    clause_satisfaite = True
-                    break  
+        var_index = abs(litteral) - 1
+        val = list_var[var_index]
+        if val is None:
+            clause_inconnue = True
+        else:
+            if (litteral > 0 and val == True) or (litteral < 0 and val == False):
+                clause_satisfaite = True
+                break
+    
     if clause_satisfaite:
         return True
     elif clause_inconnue:
@@ -99,18 +99,23 @@ list_var7=[None,True,False,True]
 test("essai cas 7 evaluer_clause : ",evaluer_clause(clause7,list_var7),True)
 '''
 
-def evaluer_cnf(formule,list_var):
-    valeur_clause = False
+def evaluer_cnf(formule, list_var):
+    indeterminee = False  # pour savoir si au moins une clause est indéterminée
+    
     for clause in formule:
         res = evaluer_clause(clause, list_var)
-        if evaluer_clause(formule,list_var) == False:
-            valeur_clause = False
-            list_var.append(valeur_clause)
-        else :
-            valeur_clause = True
-            list_var.append(valeur_clause)
-            return False
         
+        if res == False:  # une clause fausse => formule fausse
+            return False
+        elif res is None:  # au moins une clause indéterminée
+            indeterminee = True
+
+    # Si on arrive ici, aucune clause fausse
+    if indeterminee:
+        return None
+    else:
+        return True
+
 
     '''Arguments : une liste de listes d'entiers non nuls traduisant une formule,une liste de booléens informant de valeurs logiques connues (ou None dans le cas contraire) pour un ensemble de variables
     Renvoie : None ou booléen
@@ -125,10 +130,26 @@ list_var_for1_test3=[True,False,True,False]
 test('test3 evaluer_cnf : ',evaluer_cnf(for1,list_var_for1_test3),False)
 
 def determine_valuations(list_var):
-    '''Arguments : une liste de booléens informant de valeurs logiques connues (ou None dans le cas contraire) pour un ensemble de variables
-    Renvoie : La liste de toutes les valuations (sans doublon) envisageables pour les variables de list_var
-'''
-    
+    # Chercher la première variable non assignée (None)
+    try:
+        idx = list_var.index(None)
+    except ValueError:
+        # Aucun None → une valuation complète
+        return [list_var]
+
+    # Deux cas : remplacer le None par True ou par False
+    vals_true = list(list_var)
+    vals_false = list(list_var)
+    vals_true[idx] = True
+    vals_false[idx] = False
+
+    # Appels récursifs sur chaque version
+    res_true = determine_valuations(vals_true)
+    res_false = determine_valuations(vals_false)
+
+    # Concaténer les résultats
+    return res_true + res_false
+
 '''
 list_var1=[True,None,False,None]
 print(test_determine_valuations('res_test_determine_valuations cas 1 : ',list_var1,[[True, True, False, True], [True, False, False, True], [True, True, False, False], [True, False, False, False]]))
@@ -140,13 +161,11 @@ list_var4=[None,None,None]
 print(test_determine_valuations('res_test_determine_valuations cas 4 : ',list_var4,[[True, True, True], [False, True, True], [True, False, True], [False, False, True], [True, True, False], [False, True, False], [True, False, False], [False, False, False]]))
 '''
 
-def resol_sat_force_brute(formule,list_var):
-    '''Arguments : une liste de listes d'entiers non nuls traduisant une formule,une liste de booléens informant de valeurs logiques connues (ou None dans le cas contraire) pour un ensemble de variables
-    Renvoie : SAT,l1
-    avec SAT : booléen indiquant la satisfiabilité de la formule
-          l1 : une liste de valuations rendant la formule vraie ou une liste vide
-'''
-'''
+def resol_sat_force_brute(formule, list_var):
+    l1 = [v for v in determine_valuations(list_var) if evaluer_cnf(formule, v) is True]
+    return bool(l1), l1[0] if l1 else []
+
+
 for1=[[1,2],[2,-3,4],[-1,-2],[-1,-2,-3],[1],[-1,2,3]]
 list_var_for1=[None,None,None,None]
 test('test1 resol_sat_force_brute : ',resol_sat_force_brute(for1,list_var_for1),(True,[True, False, True, True]))
@@ -164,7 +183,6 @@ list_var_for4=[None,None,None,True]
 test('test4 resol_sat_force_brute : ',resol_sat_force_brute(for4,list_var_for4),(False,[]))
 
 
-'''
 
 
 
