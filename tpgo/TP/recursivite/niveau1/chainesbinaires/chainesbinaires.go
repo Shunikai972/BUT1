@@ -16,5 +16,28 @@ La fonction calculeChaines utilisera ce procédé (appliqué à chaque chaîne d
 calculeChaines(3) = [000 001 010 100 101] (l'ordre n'a pas d'importance)
 */
 func calculeChaines(n int) (chaines []string) {
+	var generate func(prefix string, lastChar byte, remaining int)
+	
+	generate = func(prefix string, lastChar byte, remaining int) {
+		if remaining == 0 {
+			chaines = append(chaines, prefix)
+			return
+		}
+		
+		// Si la chaîne se termine par 0 ou si c'est la première étape
+		if lastChar != '1' {
+			// Ajouter un 0
+			generate(prefix + "0", '0', remaining-1)
+			// Ajouter un 1
+			generate(prefix + "1", '1', remaining-1)
+		} else {
+			// Si la dernière char est 1, on ne peut ajouter qu'un 0
+			generate(prefix + "0", '0', remaining-1)
+		}
+	}
+	
+	// Démarrer la génération avec une chaîne vide
+	generate("", '0', n)
+	
 	return chaines
 }

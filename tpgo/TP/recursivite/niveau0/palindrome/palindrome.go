@@ -14,6 +14,20 @@ estPalindrome("bonjour") = false
 estPalindrome("kayak") = true
 */
 
-func estPalindrome(s string) (b bool) {
-	return b
+func estPalindrome(s string) bool {
+    // Fonction récursive interne
+    var helper func(str string) bool
+    helper = func(str string) bool {
+        // Si la chaîne est vide ou a un seul caractère, c'est un palindrome
+        if len(str) <= 1 {
+            return true
+        }
+        // Comparer le premier et le dernier caractère
+        if str[0] != str[len(str)-1] {
+            return false
+        }
+        // Appel récursif sur la sous-chaîne sans le premier et le dernier caractère
+        return helper(str[1 : len(str)-1])
+    }
+    return helper(s)
 }
