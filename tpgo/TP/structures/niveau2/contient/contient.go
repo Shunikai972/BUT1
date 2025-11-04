@@ -29,14 +29,12 @@ type element struct {
 }
 
 func (l liste) contient(v int) (existe bool) {
-	var contient_aux()
-	if e == nil{
+	
+	if l.debut == nil{
 		return false
 	}
-	if 	e.valeur == v { 
+	if 	l.debut.valeur == v { 
 		return true
-	} else{
-		return contient(e.next, v)
-	}
-	return
+	} 
+	return liste{debut : l.debut.suivant}.contient(v)
 }
