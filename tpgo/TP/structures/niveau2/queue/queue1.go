@@ -31,4 +31,11 @@ type personne struct {
 	age         uint
 }
 
-func (q *queue) ajout(p personne) {}
+func (q *queue) ajout(p personne) {
+	nouvelleplace := &place{
+		occupant : p,
+		precedant : q.fin, 
+	}
+	q.fin = nouvelleplace
+	q.taille++
+}

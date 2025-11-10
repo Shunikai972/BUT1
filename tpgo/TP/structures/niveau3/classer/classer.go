@@ -25,5 +25,12 @@ type etudiant struct {
 }
 
 func classer(promo []etudiant) (classement []etudiant) {
+	current := promo[0]
+	for _, i := range promo{
+		if i.moyenne > current{
+			
+
+		}
+	}
 	return classement
 }
