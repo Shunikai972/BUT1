@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>Nos Clients - Rebound Advisory</title>
+
+  <style>
+  :root {
+    --header-bg: #167D7A;
+  }
+
+  /* === HEADER BASE === */
+  .site-header {
+    background: var(--header-bg);
+    position: relative;
+    width: 100%;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    height: clamp(56px, 4.86vw, 70px);
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 3.26vw, 47px);
+    box-sizing: border-box;
+  }
+
+  /* === LOGO === */
+  .logo-box {
+    flex: 0 0 auto;
+    width: clamp(90px, 9.09vw, 131px);
+    height: clamp(34px, 3.47vw, 50px);
+  }
+
+  .logo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* === NAVIGATION DESKTOP === */
+  .nav-list-desktop {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin-left: clamp(50px, 9.38vw, 135px);
+    gap: clamp(40px, 7.22vw, 104px);
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-link {
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: clamp(12px, 0.97vw, 14px);
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: #b2f0ec;
+  }
+
+  /* ✅ CACHER LE MOBILE PAR DÉFAUT */
+  .nav-mobile-toggle,
+  .nav-list-mobile {
+    display: none !important;
+  }
+
+  /* === MOBILE === */
+  @media (max-width: 767px) {
+    .nav-list-desktop {
+      display: none !important;
+    }
+
+    .logo-box {
+      width: 110px;
+      height: 42px;
+    }
+
+    .header-inner {
+      justify-content: space-between;
+      padding: 0 16px;
+    }
+
+    .nav-mobile-toggle {
+      display: block !important;
+    }
+
+    .nav-list-mobile {
+      display: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 70px;
+      background: var(--header-bg);
+      padding: 12px 16px;
+      z-index: 40;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nav-list-mobile.open {
+      display: flex !important;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      padding: 8px 0;
+    }
+  }
+</style>
+
+
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo-box" aria-hidden="true">
+        <img src="images/logofinal.svg" alt="Rebound Advisory" />
+      </div>
+
+      <nav class="nav-list-desktop" role="navigation" aria-label="Navigation principale">
+        <div class="nav-item">
+          <a class="nav-link" href="#note-representation">NOTE REPRESENTATION</a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="#pitch-memorization">PITCH MEMORIZATION</a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="#miscellanies">MISCELLANIES</a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="#note-value">NOTE VALUE</a>
+        </div>
+      </nav>
+
+      <div class="ml-auto md:hidden nav-mobile-toggle">
+        <button id="menuToggle" aria-expanded="false" aria-controls="mobileNav" class="p-2">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 6h18M3 12h18M3 18h18"
+                  stroke="#ffffff" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileNav" class="nav-list-mobile" aria-hidden="true">
+      <a class="nav-link" href="#note-representation">NOTE REPRESENTATION</a>
+      <a class="nav-link" href="#pitch-memorization">PITCH MEMORIZATION</a>
+      <a class="nav-link" href="#miscellanies">MISCELLANIES</a>
+      <a class="nav-link" href="#note-value">NOTE VALUE</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative text-center py-16 bg-white">
+    <img src="images/polygon.png" alt="Polygon Background"
+         class="absolute inset-0 w-full h-full object-contain opacity-10 pointer-events-none">
+    <h1 class="relative text-4xl md:text-5xl font-bold text-teal-900 mb-6">NOS CLIENTS</h1>
+    <p class="relative max-w-3xl mx-auto text-gray-700 px-4">
+      Les professionnels au sein de Rebound disposent d'une expérience de 20 ans leur ayant permis de développer au sein de cette pratique du restructuring de solides expertises sectorielles. Les équipes ont accompagnées à la reprise/restructuration des différents clients suivants·es.
+    </p>
+  </section>
+
+  <!-- Clients Section -->
+  <main class="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
+    <div class="flex flex-col items-center space-y-6">
+      <img src="images/neubauer.svg" alt="Neubauer" class="rounded-full w-32 h-32 object-cover">
+      <img src="images/chalair.svg" alt="Chalair" class="rounded-full w-32 h-32 object-cover">
+      <img src="images/airantille.svg" alt="Air Antilles" class="rounded-full w-32 h-32 object-cover">
+      <img src="images/airantille.svg" alt="Air Antilles" class="rounded-full w-32 h-32 object-cover">
+      <img src="images/airantille.svg" alt="Air Antilles" class="rounded-full w-32 h-32 object-cover">
+      <img src="images/airantille.svg" alt="Air Antilles" class="rounded-full w-32 h-32 object-cover">
+      <img src="images/airantille.svg" alt="Air Antilles" class="rounded-full w-32 h-32 object-cover">
+    </div>
+
+    <div class="md:col-span-2 space-y-10">
+      <div>
+        <h2 class="text-xl font-bold text-teal-900 mb-2">NEUBAUER GROUPE</h2>
+        <p class="text-gray-700">Dans une situation où les actionnaires ont des visions stratégiques opposées, le groupe doit faire face à une baisse de son activité. Nous avons assisté le groupe dans le maintien des lignes de financements en place et l'obtention de nouveaux prêts MT devant permettre le financement et le redéploiement de certaines plaques.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-teal-900 mb-2">CHALAIR AVIATION</h2>
+        <p class="text-gray-700">La compagnie assure l'exploitation de ligne entre des grandes villes françaises. Les DSP signées et les montants facturés ne permettent pas de faire face au service de la dette. Nous avons assisté la compagnie dans ses discussions avec l'état, les créanciers afin d'obtenir des conditions de rémunérations des DSP en ligne avec les réels coûts de la société.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-teal-900 mb-2">AIR ANTILLES</h2>
+        <p class="text-gray-700">Conseil de la communauté de Saint Martin, nous avons conseillé cette dernière dans le cadre de la reprise à la barre de la compagnie. Au-delà, de l'établissement des éléments financiers nécessaires pour que la communauté se forge son opinion, nos travaux ont permis de convaincre des partenaires financiers de se joindre au projet.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-teal-900 mb-2">ALTÉO</h2>
+        <p class="text-gray-700">Conseil du repreneur lors de son acquisition de ce site industriel notable, nous avons participé suite à l'acquisition à l'établissement du suivi financier/budgétaire et du pilotage.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-teal-900 mb-2">KELLER WILLIAMS INC (TEAM FRANCE)</h2>
+        <p class="text-gray-700">Conseil dans le cadre de l'établissement d'un plan de sauvegarde du groupe. La combinaison entre le conseil juridique et notre expérience a permis de convaincre le tribunal ainsi que les créanciers conduisant à un abandon de plus de 70% des dettes.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-teal-900 mb-2">BURTON/HABITAT/SAN MARINA</h2>
+        <p class="text-gray-700">Conseil dans le cadre de reprise avec prix de vente négatif sur ces différents magasins de retail. Nous avons travaillé sur l'analyse stratégique et financière visant à démontrer la capacité à retourner les différentes cibles.</p>
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-teal-900 mb-2">JJW HOTEL & RESORT</h2>
+        <p class="text-gray-700">Conseil dans le cadre des procédures de redressement de l'ensemble du groupe. Notre action et nos conseils juridiques ont permis la réduction significative de la dette.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-teal-900 text-white px-8 py-14">
+    <div class="max-w-7xl mx-auto">
+      <div class="mb-10">
+        <img src="images/logofooter.svg" alt="Rebound Logo" class="h-20 md:h-24">
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="text-left">
+          <h3 class="text-sm font-light mb-3">NAVIGATION</h3>
+          <nav class="space-y-2 text-sm font-light">
+            <a href="#" class="block hover:underline">Notre proposition</a>
+            <a href="#" class="block hover:underline">Conseil & Restructuration financière</a>
+            <a href="#" class="block hover:underline">Distressed M&A / financement</a>
+            <a href="#" class="block hover:underline">Pourquoi rebound?</a>
+            <a href="#" class="block hover:underline">Nos clients</a>
+            <a href="#" class="block hover:underline">Notre équipe</a>
+          </nav>
+        </div>
+
+        <div class="text-left md:text-right">
+          <h3 class="text-sm font-light mb-3">CONTACT</h3>
+          <p class="text-sm font-light mb-1">fgodts@time2reboundcapital.fr</p>
+          <p class="text-sm font-light">+33 6 78 79 30 23</p>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 mt-10 pt-4 text-center text-sm font-light text-gray-300">
+        Site créé et développé par Un+Quatre – Rebound Advisory ©2025 Tous droits réservés.
+        <a href="#" class="hover:underline">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+
+    btn && btn.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      mobileNav.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) {
+        mobileNav.classList.remove('open');
+        btn && btn.setAttribute('aria-expanded', 'false');
+        mobileNav.setAttribute('aria-hidden', 'true');
+      }
+    });
+  </script>
+</body>
+</html>
