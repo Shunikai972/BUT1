@@ -162,10 +162,11 @@ print(test_determine_valuations('res_test_determine_valuations cas 4 : ',list_va
 '''
 
 def resol_sat_force_brute(formule, list_var):
-    l1 = [v for v in determine_valuations(list_var) if evaluer_cnf(formule, v) is True]
-    return bool(l1), l1[0] if l1 else []
-
-
+    for val in determine_valuations(list_var):
+        if evaluer_cnf(formule, val) == True:
+            return(True,val)
+    return False, []
+'''
 for1=[[1,2],[2,-3,4],[-1,-2],[-1,-2,-3],[1],[-1,2,3]]
 list_var_for1=[None,None,None,None]
 test('test1 resol_sat_force_brute : ',resol_sat_force_brute(for1,list_var_for1),(True,[True, False, True, True]))
@@ -181,13 +182,21 @@ test('test3 resol_sat_force_brute : ',resol_sat_force_brute(for3,list_var_for3),
 for4=[[-1,-2],[-1,2,-3,4],[2,3,4],[3],[1,-4],[-1,2],[1,2]]
 list_var_for4=[None,None,None,True]
 test('test4 resol_sat_force_brute : ',resol_sat_force_brute(for4,list_var_for4),(False,[]))
-
+'''
 
 
 
 
 def enlever_litt_for(formule,litteral):
-    '''Arguments :
+    nouvelleformule = []
+    for clause in formule:
+        if litteral in clause : 
+            continue
+        else : 
+            nouvelle_clause = [l for l in clause if l != -litteral]
+            nouvelleformule.append(nouvelle_clause)
+    return nouvelleformule 
+'''Arguments :
 formule : comme précédemment
 litteral : un entier non nul traduisant la valeur logique prise par une variable
     Renvoie : la formule simplifiée
@@ -198,7 +207,8 @@ litt1=4
 test('essai cas 1 enlever_litt_for : ',enlever_litt_for(for1,litt1),[[-1, 2, 3], [-1, -2, -5], []])'''
 
 def init_formule_simpl_for(formule_init,list_var):
-    '''
+    
+   '''
     Renvoie : La formule simplifiée en tenant compte des valeurs logiques renseignées dans list_var
 '''
 
