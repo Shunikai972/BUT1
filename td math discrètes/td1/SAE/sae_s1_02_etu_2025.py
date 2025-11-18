@@ -120,7 +120,7 @@ def evaluer_cnf(formule, list_var):
     '''Arguments : une liste de listes d'entiers non nuls traduisant une formule,une liste de booléens informant de valeurs logiques connues (ou None dans le cas contraire) pour un ensemble de variables
     Renvoie : None ou booléen
 '''
-    
+'''   
 for1=[[1,2],[2,-3,4],[-1,-2],[-1,-2,-3],[1]]
 list_var_for1_test1=[True,False,False,None]
 test('test1 evaluer_cnf : ',evaluer_cnf(for1,list_var_for1_test1),True)
@@ -128,7 +128,7 @@ list_var_for1_test2=[None,False,False,None]
 test('test2 evaluer_cnf : ',evaluer_cnf(for1,list_var_for1_test2),None)
 list_var_for1_test3=[True,False,True,False]
 test('test3 evaluer_cnf : ',evaluer_cnf(for1,list_var_for1_test3),False)
-
+'''
 def determine_valuations(list_var):
     # Chercher la première variable non assignée (None)
     try:
@@ -207,12 +207,17 @@ litt1=4
 test('essai cas 1 enlever_litt_for : ',enlever_litt_for(for1,litt1),[[-1, 2, 3], [-1, -2, -5], []])'''
 
 def init_formule_simpl_for(formule_init,list_var):
-    
-   '''
+    formule = formule_init.copy()
+    for i, val in enumerate(list_var):
+        if val is True : 
+          formule = enlever_litt_for(formule, i+1)
+        elif val is False : 
+            formule = enlever_litt_for(formule, -(i+1))
+    return formule
+'''
     Renvoie : La formule simplifiée en tenant compte des valeurs logiques renseignées dans list_var
 '''
 
-'''
 list_var_for1=[False, None, None, False, None]
 for1=[[-5, -3, 4, -1], [3], [5, -2], [-2, 1, -4], [1, -3]]
 cor_for1=[[3], [5, -2], [-3]]
@@ -227,7 +232,7 @@ list_var_for3= [None, None, None, True, None]
 for3= [[-5, -1], [-1, -3], [4], [-4, 1], [-2, -1, 3]]
 cor_for3=[[-5, -1], [-1, -3], [1], [-2, -1, 3]]
 test_for('test3_init_formule_simpl_for : ',init_formule_simpl_for(for3,list_var_for3),cor_for3)
-'''
+
 
 def retablir_for(formule_init,list_chgmts):
     '''Arguments : une formule initiale et une liste de changements à apporter sur un ensemble de variables (chaque changement étant une liste [i,bool] avec i l'index qu'occupe la variable dans list_var et bool la valeur logique qui doit lui être assignée) 
