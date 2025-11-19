@@ -1,5 +1,10 @@
 package lignevide
+import (
 
+	"bufio"
+	"os"
+	"strings"
+)
 /*
 On souhaite savoir si un fichier contient une ou plusieurs lignes vides. C'est le rôle de la fonction ligneVide.
 
@@ -14,5 +19,18 @@ On souhaite savoir si un fichier contient une ou plusieurs lignes vides. C'est l
 */
 
 func ligneVide(nomFichier string) (existe bool) {
-	return
+	file, err := os.Open(nomFichier)
+	if err != nil {
+		return false
+	}
+	defer file.Close()
+	
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan(){
+		line :=strings.TrimSpace(scanner.Text())
+		if line ==""{
+			return true
+		}
+	}
+	return false
 }
