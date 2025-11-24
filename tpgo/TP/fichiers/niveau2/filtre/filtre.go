@@ -1,6 +1,10 @@
 package filtre
 
-import "errors"
+import (
+	"errors"
+	"bufio"
+	"os"
+)
 
 /*
 Étant donné un nom de fichier, on souhaite obtenir une copie de ce fichier dont les lignes de longueur impaire (sans compter le caractère de fin de ligne \n) ont été retirées.
@@ -19,5 +23,22 @@ import "errors"
 var errImpossible error = errors.New("Le fichier n'existe pas")
 
 func filtrePairs(fName string) (pairs string, err error) {
+	f, e := os.Open(fName)
+	if e != nil {
+		err = errImpossible
+		return
+	}
+	defer f.Close()
+		
+	scanner := bufio.NewScanner(f)
+	for scanner.Scan(){
+		line := scanner.Text()
+		if len(line)%2 == 0{
+			pairs += line + "\n"
+		}
+	}
+	if scannerErr := scanner.Err(); scannerErr != nil{
+	return "", scannerErr
+	}
 	return
 }
