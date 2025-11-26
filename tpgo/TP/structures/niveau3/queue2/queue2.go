@@ -36,5 +36,13 @@ type personne struct {
 }
 
 func (q *queue) premier() (p personne) {
-	return
+	// On parcourt la file depuis la fin jusqu'à la première place
+	current := q.fin
+	for current.precedant != nil {
+		current = current.precedant
+	}
+
+	// current est maintenant la première place
+	return current.occupant
 }
+

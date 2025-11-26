@@ -23,5 +23,21 @@ type noeud struct {
 }
 
 func estCyclique(l liste) (contientCycle bool) {
-	return
+	// Deux pointeurs : lent (tortue) et rapide (lièvre)
+	lent := l.tete
+	rapide := l.tete
+
+	for rapide != nil && rapide.suivant != nil {
+		lent = lent.suivant          // avance de 1
+		rapide = rapide.suivant.suivant // avance de 2
+
+		// S'ils se rencontrent, il y a un cycle
+		if lent == rapide {
+			return true
+		}
+	}
+
+	// Si on atteint nil, pas de cycle
+	return false
 }
+

@@ -23,4 +23,25 @@ type student struct {
 	mark      float64
 }
 
-func sortByMarkThenLastNameThenFirstName(t []student) {}
+func sortByMarkThenLastNameThenFirstName(t []student) {
+
+	for i := 0; i < len(t); i++ {
+
+		index_max := i
+
+		for a := i + 1; a < len(t); a++ {
+
+			// --- Condition de "meilleur" ---
+			if t[a].mark > t[index_max].mark ||
+				(t[a].mark == t[index_max].mark && t[a].lastName < t[index_max].lastName) ||
+				(t[a].mark == t[index_max].mark && t[a].lastName == t[index_max].lastName &&
+					t[a].firstName < t[index_max].firstName) {
+
+				index_max = a
+			}
+		}
+
+		t[i], t[index_max] = t[index_max], t[i]
+	}
+}
+

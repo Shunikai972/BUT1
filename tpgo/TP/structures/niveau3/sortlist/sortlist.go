@@ -21,7 +21,44 @@ type Element struct {
 	V    int
 	Next *Element
 }
+package sortlist
+
+type List struct {
+	Content *Element
+}
+
+type Element struct {
+	V    int
+	Next *Element
+}
 
 func (l List) Sort() (sortedL List) {
+	var values []int
+	for e := l.Content; e != nil; e = e.Next {
+		values = append(values, e.V)
+	}
+
+	for i := 0; i < len(values); i++ {
+		min := i
+		for j := i + 1; j < len(values); j++ {
+			if values[j] < values[min] {
+				min = j
+			}
+		}
+		values[i], values[min] = values[min], values[i]
+	}
+
+	var head, tail *Element
+	for _, v := range values {
+		elem := &Element{V: v}
+		if head == nil {
+			head = elem
+		} else {
+			tail.Next = elem
+		}
+		tail = elem
+	}
+
+	sortedL.Content = head
 	return
 }

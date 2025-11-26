@@ -19,4 +19,14 @@ type student struct {
 	mark      float64
 }
 
-func sortByMark(t []student) {}
+func sortByMark(t [] student){
+	for i:= 0; i < len(t); i++{
+		index_max := i
+		for a := i+1; a < len(t); a++{
+			if t[index_max].mark <t[a].mark{
+				index_max = a
+			}
+		}
+		t [index_max], t[i] = t[i], t[index_max]
+	}
+}

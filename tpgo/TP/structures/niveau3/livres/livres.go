@@ -19,4 +19,40 @@ type livre struct {
 	numPages int
 }
 
-func trier(tab []livre, parPrix bool) {}
+package livres
+
+type livre struct {
+    titre    string
+    prix     float64
+    numPages int
+}
+
+func trier(tab []livre, parPrix bool) {
+    n := len(tab)
+
+    // Tri par sélection
+    for i := 0; i < n; i++ {
+        best := i // index du meilleur élément selon le critère
+
+        for j := i + 1; j < n; j++ {
+
+            if parPrix {
+                // Tri par prix (croissant)
+                if tab[j].prix < tab[best].prix ||
+                    (tab[j].prix == tab[best].prix && tab[j].titre < tab[best].titre) {
+                    best = j
+                }
+
+            } else {
+                // Tri par nombre de pages (décroissant)
+                if tab[j].numPages > tab[best].numPages ||
+                    (tab[j].numPages == tab[best].numPages && tab[j].titre < tab[best].titre) {
+                    best = j
+                }
+            }
+        }
+
+        // Échange
+        tab[i], tab[best] = tab[best], tab[i]
+    }
+}
