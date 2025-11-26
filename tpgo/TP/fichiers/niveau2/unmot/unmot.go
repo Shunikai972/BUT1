@@ -21,5 +21,28 @@ import "errors"
 var errImpossible error = errors.New("Le fichier n'existe pas ou il ne contient aucun mot")
 
 func premiermot(fName string) (mot string, err error) {
-	return
+    // Ouvrir le fichier
+    f, e := os.Open(fName)
+    if e != nil {
+        return "", errImpossible
+    }
+    defer f.Close()
+
+    scanner := bufio.NewScanner(f)
+
+    // Lecture de la première ligne
+    if !scanner.Scan() {
+        return "", errImpossible
+    }
+
+    line := scanner.Text()
+    fields := strings.Fields(line)
+
+    // Vérifier s'il y a un mot
+    if len(fields) == 0 {
+        return "", errImpossible
+    }
+
+    // Le premier mot est fields[0]
+    return fields[0], nil
 }

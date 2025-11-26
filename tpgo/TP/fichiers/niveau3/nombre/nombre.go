@@ -19,5 +19,9 @@ fichier).
 */
 
 func nombre(chemin string) (contient bool) {
-	return contient
+	// Lire tout le contenu du fichier
+	data, _ := os.ReadFile(chemin)
+
+	// Vérifier si le caractère '1' est présent
+	return strings.Contains(string(data), "1")
 }
