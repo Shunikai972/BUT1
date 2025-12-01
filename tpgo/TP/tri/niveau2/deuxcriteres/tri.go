@@ -10,4 +10,12 @@ La fonction tri doit trier un tableau d'entiers de la manière suivante : on tro
 2022-2023, test 4, exercice 8
 */
 
-func tri(t []int) {}
+func tri(t []int) {
+	for i := 0; i < len(t); i++ {
+		for j := i + 1; j < len(t); j++ {
+			if (t[i] < 0 && t[j] < 0 && t[i] < t[j]) || (t[i] >= 0 && t[j] >= 0 && t[i] > t[j]) || (t[i] >= 0 && t[j] < 0) {
+				t[i], t[j] = t[j], t[i]
+			}
+		}
+	}
+}

@@ -14,4 +14,31 @@ C'est le rôle de la fonction tritri. Tous les tris doivent être faits en place
 2024-2025, test 3, exercice 8
 */
 
-func tritri(tab [][]int) {}
+func tritri(tab [][]int) {
+	for i := 0; i < len(tab); i++ {
+		// Tri des sous-tableaux en ordre croissant
+		n := len(tab[i])
+		for a := 0; a < n; a++ {
+			index_min := a
+			for b := a + 1; b < n; b++ {
+				if tab[i][b] < tab[i][index_min] {
+					index_min = b
+				}
+			}
+			tab[i][a], tab[i][index_min] = tab[i][index_min], tab[i][a]
+		}
+	}
+
+	// Tri des tableaux selon les critères donnés
+	for i := 0; i < len(tab); i++ {
+		for j := i + 1; j < len(tab); j++ {
+			k := 0
+			for k < len(tab[i]) && k < len(tab[j]) && tab[i][k] == tab[j][k] {
+				k++
+			}
+			if (k < len(tab[i]) && k < len(tab[j]) && tab[i][k] > tab[j][k]) || (k == len(tab[j]) && len(tab[i]) > len(tab[j])) {
+				tab[i], tab[j] = tab[j], tab[i]
+			}
+		}
+	}
+}

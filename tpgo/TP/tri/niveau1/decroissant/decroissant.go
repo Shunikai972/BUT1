@@ -12,6 +12,16 @@ La fonction decroissant doit trier un tableau d'entiers dans l'ordre décroissan
 */
 
 func decroissant(tab []int) {
+	n := len (tab)
+	for i := 0; i < n; i++ {
+		index_max := i
+		for a := i + 1; a < n; a++ {
+			if tab[a] > tab[index_max] {
+				index_max = a
+			}
+		}
+		tab[i], tab[index_max] = tab[index_max], tab[i]
+	}
 
 }
   

@@ -11,5 +11,12 @@ La fonction tri doit trier un tableau d'entiers de la manière suivante : on tro
 */
 
 func tri(t []int) {
+	for i := 0; i < len(t); i++ {
+		for j := i + 1; j < len(t); j++ {
+			if (t[i]%2 == 0 && t[j]%2 == 0 && t[i] > t[j]) || (t[i]%2 != 0 && t[j]%2 != 0 && t[i] < t[j]) || (t[i]%2 != 0 && t[j]%2 == 0) {
+				t[i], t[j] = t[j], t[i]
+			}
+		}
+	}
 	
 }

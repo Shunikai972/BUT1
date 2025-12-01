@@ -14,5 +14,18 @@ On souhaite trier un ensemble de chaînes de caractères selon leur longueur : l
 */
 
 func classer(t []string) (enOrdre []string) {
-	return
-}
+	n := len(t) 
+	enOrdre = make([]string, n)
+	copy(enOrdre, t)
+
+	for i := 0; i < n; i++ {
+		index_min := i 
+		for a := i + 1; a < n; a++{
+			if len(enOrdre[a]) < len(enOrdre[index_min]) {
+				index_min = a
+			}
+		}
+		enOrdre[i], enOrdre[index_min] = enOrdre[index_min], enOrdre[i]
+	}
+
+	return enOrdre}

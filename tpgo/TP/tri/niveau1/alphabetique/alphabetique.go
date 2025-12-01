@@ -26,6 +26,7 @@ func alphabetique(dico []string) {
         
         dico[i], dico[index_min] = dico[index_min], dico[i]
     }
+}
 /*
 func stortBymark (t []student)  {
 	for i:= 0; i < len(t); i++{

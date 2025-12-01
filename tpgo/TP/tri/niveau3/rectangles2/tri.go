@@ -24,5 +24,21 @@ type rectangle struct {
 }
 
 func ranger(t []rectangle) (enOrdre []rectangle) {
+	n := len(t)
+	enOrdre = make([]rectangle, n)
+	copy(enOrdre, t)
+
+	for i := 0; i < n; i++{
+		index_min := i
+		aire_i := enOrdre[i].largeur * enOrdre[i].longueur
+		for a := i + 1; a < n; a++{	
+			aire_a := enOrdre[a].largeur * enOrdre[a].longueur
+			if aire_a < aire_i || (aire_a == aire_i && (len(enOrdre[a].nom) < len(enOrdre[index_min].nom) || (len(enOrdre[a].nom) == len(enOrdre[index_min].nom) && enOrdre[a].nom < enOrdre[index_min].nom))) {
+				index_min = a
+				aire_i = aire_a
+			}
+		}
+		enOrdre[i], enOrdre[index_min] = enOrdre[index_min], enOrdre[i]
+	}
 	return
 }

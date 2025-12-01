@@ -18,4 +18,24 @@ type chocolat struct {
 	noisette bool
 }
 
-func tri(tab []chocolat) {}
+func tri_aux(c1, c2 chocolat) bool {
+	if c1.praline != c2.praline {
+		return c1.praline // les pralinés avant les non-pralinés
+	}
+	if c1.noisette != c2.noisette {
+		return c1.noisette // les noisettes avant les non-noisettes
+	}
+	return c1.poids > c2.poids // plus lourd avant plus léger
+}
+
+// Tri en place (tri à bulles pour l'exemple)
+func tri(tab []chocolat) {
+	n := len(tab)
+	for i := 0; i < n-1; i++ {
+		for j := 0; j < n-1-i; j++ {
+			if !tri_aux(tab[j], tab[j+1]) {
+				tab[j], tab[j+1] = tab[j+1], tab[j] // échange
+			}
+		}
+	}
+}

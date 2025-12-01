@@ -16,6 +16,27 @@ le tableau donné en entrée.
 2021-2022, test2, exercice 7
 */
 
+func abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
+}
+
 func triabs(tinit []int) (tfin []int) {
+	tfin = make([]int, len(tinit))
+	copy(tfin, tinit)
+
+	for i := 0; i < len(tfin); i++ {
+		index_max := i
+		for j := i + 1; j < len(tfin); j++ {
+			if abs(tfin[j]) > abs(tfin[index_max]) {
+				index_max = j
+			}
+		}
+		tfin[i], tfin[index_max] = tfin[index_max], tfin[i]
+	}
 	return tfin
 }
+
+
