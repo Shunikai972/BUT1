@@ -154,8 +154,29 @@ def progress_simpl_for_dpll(formule,list_var,list_chgmts,list_sans_retour):
                 compte = compte + clause.count(num)
                 compte_inv = compte_inv + clause.count(-num)
 
-def retour(list_var,list_chgtms):
-   if not list_chgtms:
-       return list_var, list_chgtms
-   while list_chgtms and list_chgtms[-1][1] == False:
-       index, val
+def retour(list_var, list_chgmts):
+    if not list_chgmts:
+        return list_var, list_chgmts
+    
+    while list_chgmts and list_chgmts[-1][1] == False:
+        index, val = list_chgmts.pop()
+        list_var[index] = None
+    if list_chgmts:
+        index, val = list_chgmts.pop()
+        list_var[index] = False
+        list_chgmts.append ((index, False))
+    return list_var, list_chgmts
+def retour_simpl_for(formule_init, list_var, list_chgmts):
+    list_var, list_chgmts = retour(list_var,list_chgmts)
+    formule_init = retablir_for (formule_init), list_chgmts
+    return formule_init, list_var, list_chgmts
+
+def resol_parcours_arbre_simpl_for(formule_init, formule, list_var,list_chgmts):
+    if list_chgmts == []:
+        if [] in formule:
+            return False,[]
+        if formule == []:
+            return True, list_var
+        form, list_var_init, list_chgmts_init = progress_simpl_for(formule,list_var,[])
+        return resol_parcours_arbre_simpl_for(formule_init, form, list_var_init, list_chgmts_init)
+    
