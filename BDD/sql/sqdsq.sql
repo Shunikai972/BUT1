@@ -94,3 +94,52 @@ WHERE t.NUEMPL IS NULL;
 SELECT NOMEMPL
 FROM Employe
 WHERE hebdo BETWEEN 20 AND 30;
+-- exercice 1.3 --
+
+-- 1 -- Liste des noms de services avec le(s) employé(s) affecté(s)
+-- Comme il n'y a pas de colonne "resp" dans Service, on prend les employés affectés au service
+SELECT s.nomserv, e.nomempl AS employe
+FROM Service s
+JOIN Employe e ON e.affect = s.nuserv
+ORDER BY s.nomserv, e.nomempl;
+
+-- 2 -- Liste des employés avec les projets sur lesquels ils travaillent
+SELECT e.nomempl, p.nomproj
+FROM Employe e
+JOIN Travail t ON e.NUEMPL = t.NUEMPL
+JOIN Projet p ON t.NUPROJ = p.NUPROJ
+ORDER BY e.nomempl;
+
+-- 3 -- Pour le service "achat", les employés et les projets sur lesquels ils travaillent
+
+SELECT Employe.nomempl AS chef, Projet.nuproj
+FROM Service
+JOIN Employe ON Service.chef = Employe.nuempl
+LEFT JOIN Travail ON Employe.nuempl = Travail.nuempl
+LEFT JOIN Projet ON Travail.nuproj = Projet.nuproj
+WHERE Service.NOMSERV = 'achat';
+
+
+-- 4 -- Liste des projets avec le responsable
+SELECT p.nomproj, e.nomempl AS responsable
+FROM Projet p
+JOIN Employe e ON p.resp = e.NUEMPL
+ORDER BY p.nomproj;
+
+-- 5 -- Pour le projet "zorro", nom du responsable et employés qui y travaillent
+SELECT r.nomempl AS responsable, e.nomempl AS employe
+FROM Projet p
+JOIN Employe r ON p.resp = r.NUEMPL
+JOIN Travail t ON p.NUPROJ = t.NUPROJ
+JOIN Employe e ON t.NUEMPL = e.NUEMPL
+WHERE p.nomproj = 'zorro'
+ORDER BY e.nomempl;
+
+-- 6 -- Tous les employés avec les projets (même s'ils ne sont affectés à aucun projet)
+SELECT e.nomempl, p.nomproj
+FROM Employe e
+LEFT JOIN Travail t ON e.NUEMPL = t.NUEMPL
+LEFT JOIN Projet p ON t.NUPROJ = p.NUPROJ
+ORDER BY e.nomempl;
+--exercice 2--
+--EXERCICE 2.1.1--

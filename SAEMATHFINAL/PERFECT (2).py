@@ -1,3 +1,4 @@
+import numpy as np
 import copy
 import time
 
@@ -53,9 +54,7 @@ def test_for(mess,formu,res_for):
 def evaluer_clause(clause,list_var):
     if len(clause) == 0 :
         return False
-    
     none = False
-
     for i in clause: 
         val = list_var[abs(i) - 1]
 
@@ -153,6 +152,7 @@ def resol_sat_force_brute(formule,list_var):
         if evaluer_cnf(formule,val) == True:
             return (True, val)
     return False, []
+
     '''Arguments : une liste de listes d'entiers non nuls traduisant une formule,une liste de booléens informant de valeurs logiques connues (ou None dans le cas contraire) pour un ensemble de variables
     Renvoie : SAT,l1
     avec SAT : booléen indiquant la satisfiabilité de la formule
@@ -378,17 +378,21 @@ test('essai3_progress_simpl_for_dpll : ',progress_simpl_for_dpll(formule,list_va
 '''  
 
 def retour(list_var,list_chgmts):
-    if not list_chgmts:
+    if not list_chgmts: 
         return list_var, list_chgmts
-    
-    while list_chgmts and list_chgmts[-1][1] == False:
-        index, val = list_chgmts.pop()
-        list_var[index] = None
-    if list_chgmts:
-        index, val = list_chgmts.pop()
-        list_var[index] = False
-        list_chgmts.append((index, False))
+    i = len(list_chgmts) - 1
+    while i >= 0:
+        idx, val = list_chgmts[i]
+        if val:
+            list_chgmts[i] = (idx, False)
+            list_var[idx] = False
+            return list_var, list_chgmts
+        list_chgmts.pop(i)
+        list_var[idx] = None
+        i -= 1
+
     return list_var, list_chgmts
+
 
     '''
     renvoie :l1,l2 avec :
@@ -505,11 +509,22 @@ test('essai3_retour_simpl_for_dpll : ',retour_simpl_for_dpll(formule_init,list_v
 
 
 def resol_parcours_arbre(formule_init,list_var,list_chgmts):
+    bool, val = resol_sat_force_brute(formule_init, list_var)
+    if bool :
+        return True, val
+    nv, nc = progress(list_var, list_chgmts)
+    if nc == list_chgmts:
+        rv, rc = retour(list_var, list_chgmts)
+        if rc == [] :
+            return (False, [])
+        return resol_parcours_arbre(formule_init, rv, rc) 
+    return resol_parcours_arbre(formule_init, nv, nc)
+
     '''Renvoie : SAT,l1
     avec SAT : booléen indiquant la satisfiabilité de la formule
           l1 : une liste de valuations rendant la formule vraie ou une liste vide'''
     
-'''
+
 formule_init= [[1, 4, -5], [-1, -5], [2, -3, 5], [2, -4], [2, 4, 5], [-1, -2], [-1, 2, -3], [-2, 4, -5], [1, -2]] 
 list_var= [True, True, False, True, None] 
 list_chgmts= [(1, True)]
@@ -539,10 +554,20 @@ list_var= [False, True, False, False, None]
 list_chgmts= [(0,False),(1, True)]
 cor_resol=(True, [False, False, False, False, False])
 test('essai5_resol_parcours_arbre : ',resol_parcours_arbre(formule_init,list_var,list_chgmts),cor_resol)
+   
 
-'''   
-
-def resol_parcours_arbre_simpl_for(formule_init,formule,list_var,list_chgmts):#la même distinction peut être faite entre formule et formule_init
+def resol_parcours_arbre_simpl_for(formule_init,formule,list_var,list_chgmts):
+    if list_chgmts == []:
+        if [] in formule: return False, []
+        if formule == []: return True, list_var
+        formule, list_var, list_chgmts = progress_simpl_for(formule, list_var, [])
+    formule, list_var, list_chgmts = progress_simpl_for(formule, list_var, list_chgmts)
+    if [] in formule:
+        f2, v2, c2 = retour_simpl_for(formule_init, list_var, list_chgmts)
+        return (False, []) if c2 == [] else resol_parcours_arbre_simpl_for(formule_init, f2, v2, c2)
+    if formule == []:
+        return True, list_var
+    return resol_parcours_arbre_simpl_for(formule_init, formule, list_var, list_chgmts)
     '''
     Renvoie SAT,l1 avec :
 SAT=True ou False
@@ -557,7 +582,7 @@ l1=une liste de valuations rendant la formule vraie ou une liste vide
         form,list_var_init,list_chgmts_init=progress_simpl_for(formule,list_var,[])
         return resol_parcours_arbre_simpl_for(formule_init,form,list_var_init,list_chgmts_init)
     #Reste du parcours à implémenter :
-'''
+
 formule_init= [[1, 2, 4, -5], [-1, 2, 3, -4], [-1, -2, -5], [-3, 4, 5], [-2, 3, 4, 5], [-4, 5]] 
 formule= [[2, 3, -4], [-2, -5], [-3, 4, 5], [-2, 3, 4, 5], [-4, 5]] 
 list_var= [True, None, None, None, None] 
@@ -576,7 +601,7 @@ list_var= [False, True, False, None, None]
 list_chgmts= [(1, True),(2,False)]
 cor_resol=(True, [False, True, False, True, False])
 test('essai3_resol_parcours_arbre_simpl_for : ',resol_parcours_arbre_simpl_for(formule_init,formule,list_var,list_chgmts),cor_resol)
-'''
+
 
 def resol_parcours_arbre_simpl_for_dpll(formule_init,formule,list_var,list_chgmts,list_sans_retour):
     '''
@@ -647,6 +672,7 @@ cor_grille_final=[9, 3, 2, 6, 1, 5, 4, 7, 8, 5, 8, 6, 2, 4, 7, 1, 9, 3, 1, 7, 4,
 test("essai creer_grille_final : ",creer_grille_final(list_var_fin,3),cor_grille_final)
 '''
 def afficher_grille(grille,n):
+    print(np.array(grille).reshape(n*n, n*n))
     '''
     ça affiche la grille
 '''
