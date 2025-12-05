@@ -1,4 +1,5 @@
 import math
+import numpy as np
 def modulo(a,b): 
     reste = a  
     quotient = 0
@@ -190,13 +191,8 @@ np.add(a, b) (même remarque que a + b, mais conceptuellement oui en algèbre li
 a.shape (simple information de structure) """
 
 def diagonale(A):
-    """
-    Prend en entrée une matrice A (liste de listes) de taille p × n
-    et retourne une matrice B ne conservant que les éléments diagonaux.
-    """
     p = len(A)
     n = len(A[0]) if p > 0 else 0
-
     B = []
     for i in range(p):
         ligne = []
@@ -207,3 +203,151 @@ def diagonale(A):
                 ligne.append(0)
         B.append(ligne)
     return B
+
+
+def transpose(A):
+    p = len(A)
+    n = len(A[0])
+    B = []
+
+    for j in range(n):
+        ligne = []
+        for i in range(p):
+            ligne.append(A[i][j])
+        B.append(ligne)
+    return B
+
+
+def produit(A, B):
+    p = len(A)
+    l = len(A[0])
+    
+    if len(B) != l:
+        return []
+    
+    n = len(B[0])
+    
+    C = [[0 for _ in range(n)] for _ in range(p)]
+    
+    for i in range(p):
+        for j in range(n):
+            for k in range(l):
+                C[i][j] += A[i][k] * B[k][j]
+    
+    return C
+
+
+def vandermonde(v):
+    n = len(v)
+    A = []
+    for i in range(n):
+        ligne = []
+        for j in range(n):
+            ligne.append(v[i] ** j)
+        A.append(ligne)
+    return A
+
+
+def permute_colonnes(A):
+    p = len(A)
+    n = len(A[0])
+    B = []
+    for i in range(p):
+        ligne = []
+        for j in range(n):
+            j_prime = n - 1 - j
+            ligne.append(A[i][j_prime])
+        B.append(ligne)
+    return B
+
+
+def permute_lignes(A):
+    p = len(A)
+    n = len(A[0])
+    B = []
+    for i in range(p):
+        i_prime = p - 1 - i
+        B.append(A[i_prime][:])
+    return B
+
+
+def minimum(A):
+    p = len(A)
+    n = len(A[0])
+    min_val = A[0][0]
+    i_min = 0
+    j_min = 0
+
+    for i in range(p):
+        for j in range(n):
+            if A[i][j] < min_val:
+                min_val = A[i][j]
+                i_min = i
+                j_min = j
+    
+    return min_val, (i_min, j_min)
+
+# ----------------------------
+#  TESTS + PRINTS
+# ----------------------------
+
+print("\n===== TEST modulo =====")
+print(modulo(10, 3))
+print(modulo(25, 5))
+print(modulo(7, 10))
+print(modulo(0, 4))
+
+
+print("\n===== TEST euclide_etendu =====")
+pgcd, u, v = euclide_etendu(120, 23)
+print("PGCD =", pgcd, "| u =", u, "v =", v)
+print("Vérification :", 120*u + 23*v)
+
+pgcd, u, v = euclide_etendu(56, 98)
+print("PGCD =", pgcd, "| u =", u, "v =", v)
+print("Vérification :", 56*u + 98*v)
+
+
+print("\n===== TEST est_premier =====")
+for n in [1,2,3,4,5,97,100]:
+    print(n, ":", est_premier(n))
+
+
+print("\n===== TEST n_eme_premier =====")
+for n in [1,2,5,10]:
+    print("Premier numéro", n, "=", n_eme_premier(n))
+
+
+print("\n===== TEST diagonale =====")
+A = [[1,2,3],[4,5,6],[7,8,9]]
+print(diagonale(A))
+
+
+print("\n===== TEST transpose =====")
+A = [[1,2],[3,4],[5,6]]
+print("transpose :", transpose(A))
+
+
+print("\n===== TEST produit =====")
+A = [[1,2],[3,4]]
+B = [[10,20],[30,40]]
+print(produit(A, B))
+
+
+print("\n===== TEST vandermonde =====")
+print(vandermonde([1,2,3]))
+
+
+print("\n===== TEST permute_colonnes =====")
+A = [[1,2,3],[4,5,6]]
+print(permute_colonnes(A))
+
+
+print("\n===== TEST permute_lignes =====")
+A = [[1,2],[3,4],[5,6]]
+print(permute_lignes(A))
+
+
+print("\n===== TEST minimum =====")
+A = [[3,5,9],[8,-2,7],[4,1,0]]
+print(minimum(A))

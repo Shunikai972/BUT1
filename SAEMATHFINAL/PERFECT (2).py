@@ -378,8 +378,6 @@ test('essai3_progress_simpl_for_dpll : ',progress_simpl_for_dpll(formule,list_va
 '''  
 
 def retour(list_var,list_chgmts):
-    if not list_chgmts: 
-        return list_var, list_chgmts
     i = len(list_chgmts) - 1
     while i >= 0:
         idx, val = list_chgmts[i]
