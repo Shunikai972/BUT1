@@ -310,7 +310,7 @@ list_chgmts=[(2, False)]
 l1=[True, False, False, True, None]
 l2=[(2, False), (3, True)]
 test("essai cas 6 progress : ",progress(list_var,list_chgmts),(l1,l2))
-    
+
 
 def progress_simpl_for(formule,list_var,list_chgmts):
     list_var, list_chgmts = progress(list_var, list_chgmts)
@@ -507,20 +507,22 @@ test('essai3_retour_simpl_for_dpll : ',retour_simpl_for_dpll(formule_init,list_v
 
 
 def resol_parcours_arbre(formule_init,list_var,list_chgmts):
-    bool, val = resol_sat_force_brute(formule_init, list_var)
-    if bool :
-        return True, val
-    nv, nc = progress(list_var, list_chgmts)
-    if nc == list_chgmts:
-        rv, rc = retour(list_var, list_chgmts)
-        if rc == [] :
-            return (False, [])
-        return resol_parcours_arbre(formule_init, rv, rc) 
-    return resol_parcours_arbre(formule_init, nv, nc)
-
-    '''Renvoie : SAT,l1
-    avec SAT : booléen indiquant la satisfiabilité de la formule
-          l1 : une liste de valuations rendant la formule vraie ou une liste vide'''
+    if evaluer_cnf(formule_init, list_var):
+        return True, list_var
+    if evaluer_cnf(formule_init, list_var) is False:
+        return False, []
+    if None not in list_var: return False, []
+    idx = list_var.index(None)
+    l_true = list(list_var)
+    l_true[idx] = True
+    res, val = resol_parcours_arbre(formule_init, l_true, list_chgmts + [(idx, True)])
+    if res: return True, val
+    l_false = list(list_var)
+    l_false[idx] = False
+    res, val = resol_parcours_arbre(formule_init, l_false, list_chgmts + [(idx, False)])
+    if res: return True, val
+    
+    return False, []
     
 
 formule_init= [[1, 4, -5], [-1, -5], [2, -3, 5], [2, -4], [2, 4, 5], [-1, -2], [-1, 2, -3], [-2, 4, -5], [1, -2]] 
