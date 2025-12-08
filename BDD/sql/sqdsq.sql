@@ -143,3 +143,103 @@ LEFT JOIN Projet p ON t.NUPROJ = p.NUPROJ
 ORDER BY e.nomempl;
 --exercice 2--
 --EXERCICE 2.1.1--
+SELECT nomempl
+FROM Employe
+WHERE affect = (SELECT NUSERV FROM Service WHERE NOMSERV = 'achat');
+--EXERCICE 2.1.2
+SELECT nomproj
+FROM Projet
+WHERE NUPROJ = (SELECT nuproj FROM Travail WHERE NUEMPL = 20);
+--EXERCICE 2.2.1
+SELECT nomempl
+FROM Employe
+WHERE NUEMPL IN (SELECT NUEMPL FROM Travail WHERE duree = 5);
+--EXERCICE 2.2.2
+SELECT nomempl
+FROM Employe
+WHERE NUEMPL NOT IN (SELECT NUEMPL FROM Travail);
+--EXERCICE 2.3.1
+SELECT DISTINCT e.nomempl
+FROM Employe e
+WHERE EXISTS (
+    SELECT 1
+    FROM Travail t
+    JOIN Projet p ON t.NUPROJ = p.NUPROJ
+    WHERE t.NUEMPL = e.NUEMPL AND p.resp = 30
+);
+--EXERCICE 2.3.2
+SELECT e.nomempl
+FROM Employe e
+WHERE EXISTS (
+    SELECT 1
+    FROM Travail t
+    WHERE t.NUEMPL = e.NUEMPL
+);
+--EXERCICE 2.3.3
+SELECT e.nomempl
+FROM Employe e
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM Travail t
+    WHERE t.NUEMPL = e.NUEMPL
+);
+--EXERCICE 2.4.1
+SELECT e.nomempl
+FROM Employe e
+WHERE EXISTS (
+    SELECT 1
+    FROM Service s
+    WHERE s.chef = e.NUEMPL
+);
+
+--EXERCICE 2.4.2
+SELECT e.nomempl, p.nomproj
+FROM Employe e
+JOIN Travail t ON e.NUEMPL = t.NUEMPL
+JOIN Projet p ON t.NUPROJ = p.NUPROJ
+ORDER BY e.nomempl;
+--EXERCICE 2.5.1.1
+SELECT COUNT(*) AS nb_employes
+FROM Employe;
+--EXERCICE 2.5.1.2
+SELECT AVG(hebdo) AS moyenne_hebdo
+FROM Employe
+WHERE affect = 2;
+--EXERCICE 2.5.2.1
+SELECT s.nomserv, COUNT(e.NUEMPL) AS nb_employes
+FROM Service s
+LEFT JOIN Employe e ON e.affect = s.nuserv
+GROUP BY s.nomserv;
+--EXERCICE 2.5.2.2
+SELECT e.nomempl, COUNT(p.NUPROJ) AS nb_projets
+FROM Employe e
+LEFT JOIN Projet p ON p.resp = e.NUEMPL
+GROUP BY e.nomempl;
+
+--EXERCICE 2.5.3.1
+SELECT s.nomserv
+FROM Service s
+JOIN Employe e ON e.affect = s.nuserv
+GROUP BY s.nomserv
+HAVING COUNT(e.NUEMPL) >= 4;
+--EXERCICE 2.5.3.2
+SELECT e.nomempl
+FROM Employe e
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM Projet p
+    WHERE NOT EXISTS (
+        SELECT 1
+        FROM Travail t
+        WHERE t.NUEMPL = e.NUEMPL AND t.NUPROJ = p.NUPROJ
+    )
+);
+--VERSION ALL
+SELECT e.nomempl
+FROM Employe e
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM Projet p
+    WHERE p.NUPROJ NOT IN (SELECT NUPROJ FROM Travail WHERE NUEMPL = e.NUEMPL)
+);
+
