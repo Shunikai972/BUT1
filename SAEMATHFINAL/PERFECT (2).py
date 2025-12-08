@@ -310,7 +310,7 @@ list_chgmts=[(2, False)]
 l1=[True, False, False, True, None]
 l2=[(2, False), (3, True)]
 test("essai cas 6 progress : ",progress(list_var,list_chgmts),(l1,l2))
-
+    
 
 def progress_simpl_for(formule,list_var,list_chgmts):
     list_var, list_chgmts = progress(list_var, list_chgmts)

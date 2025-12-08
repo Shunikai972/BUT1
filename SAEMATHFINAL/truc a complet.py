@@ -59,7 +59,7 @@ def evaluer_clause(clause,list_var):
         if val == None:
             none = True
             continue
-        if i < 0:
+        if i < 0: 
             val = not val
         if val == True:
             return True
@@ -89,16 +89,15 @@ clause7=[1,-2,3,4]
 list_var7=[None,True,False,True]
 test("essai cas 7 evaluer_clause : ",evaluer_clause(clause7,list_var7),True)
 
-
 def evaluer_cnf(formule,list_var):
-    none = False
     for clause in formule:
-        if evaluer_clause(clause,list_var) == False:
+        if evaluer_clause(clause, list_var) == False:
             return False
-        else:
+        else: 
             if evaluer_clause(clause, list_var) == None:
                 return None
     return True
+    
 for1=[[1,2],[2,-3,4],[-1,-2],[-1,-2,-3],[1]]
 list_var_for1_test1=[True,False,False,None]
 test('test1 evaluer_cnf : ',evaluer_cnf(for1,list_var_for1_test1),True)
@@ -106,9 +105,10 @@ list_var_for1_test2=[None,False,False,None]
 test('test2 evaluer_cnf : ',evaluer_cnf(for1,list_var_for1_test2),None)
 list_var_for1_test3=[True,False,True,False]
 test('test3 evaluer_cnf : ',evaluer_cnf(for1,list_var_for1_test3),False)
+
 def determine_valuations(list_var):
     if None not in list_var:
-        return [list_var]
+        return[list_var]
     true = list_var.copy()
     false = list_var.copy()
     for i in range(len(list_var)):
@@ -118,6 +118,7 @@ def determine_valuations(list_var):
             break
     return determine_valuations(true) + determine_valuations(false)
     
+
 list_var1=[True,None,False,None]
 print(test_determine_valuations('res_test_determine_valuations cas 1 : ',list_var1,[[True, True, False, True], [True, False, False, True], [True, True, False, False], [True, False, False, False]]))
 list_var2=[None,False,True,None,True,False]
@@ -130,10 +131,9 @@ print(test_determine_valuations('res_test_determine_valuations cas 4 : ',list_va
 
 def resol_sat_force_brute(formule,list_var):
     for val in determine_valuations(list_var):
-        if evaluer_cnf(formulen, val) == True:
-            return(True, val)
+        if evaluer_cnf(formule, val) == True:
+            return (True,val)
     return False, []
-'''
 for1=[[1,2],[2,-3,4],[-1,-2],[-1,-2,-3],[1],[-1,2,3]]
 list_var_for1=[None,None,None,None]
 test('test1 resol_sat_force_brute : ',resol_sat_force_brute(for1,list_var_for1),(True,[True, False, True, True]))
@@ -151,9 +151,6 @@ list_var_for4=[None,None,None,True]
 test('test4 resol_sat_force_brute : ',resol_sat_force_brute(for4,list_var_for4),(False,[]))
 
 
-'''
-
-
 
 def enlever_litt_for(formule,litteral):
     nouvelle_formule = []
@@ -163,7 +160,7 @@ def enlever_litt_for(formule,litteral):
         for e in clause:
             if e == litteral:
                 supprimer_clause = True
-            if e != -litteral:
+            elif e != -litteral:
                 clause_simplifiee.append(e)
         if not supprimer_clause:
             nouvelle_formule.append(clause_simplifiee)
@@ -179,7 +176,7 @@ def init_formule_simpl_for(formule_init,list_var):
             formule_init = enlever_litt_for(formule_init, -(i+1))
         if list_var[i] is True:
             formule_init = enlever_litt_for(formule_init, i+1)
-    return formule_init
+    return formule_init 
 
 
 list_var_for1=[False, None, None, False, None]
@@ -199,14 +196,13 @@ test_for('test3_init_formule_simpl_for : ',init_formule_simpl_for(for3,list_var_
 
 
 def retablir_for(formule_init,list_chgmts):
-   for i, bool in list_chgmts:
+    for i, bool in list_chgmts:
         i = i+1
         if bool is False:
             i = -i
-        formule_init = enlever_litt_for(formule_init, i)
-   return formule_init
-
-
+        formule_init = enlever_litt_for(formule_init,i)
+    return formule_init
+    
 
 formule_init=[[1, 2, 4, -5], [-1, 2, 3, -4], [-1, -2, -5], [-3, 4, 5], [-2, 3, 4, 5], [-4, 5]]
 list_chgmts1=[(0, True), (1, True), (2, False)]
@@ -266,10 +262,10 @@ l2=[(2, False), (3, True)]
 test("essai cas 6 progress : ",progress(list_var,list_chgmts),(l1,l2))
 
 
+
 def progress_simpl_for(formule,list_var,list_chgmts):
-    list_var, list_chgmt = progress(list_var, list_chgmts)
+    list_var, list_chgmts = progress(list_var, list_chgmts)
     return retablir_for(formule, list_chgmts), list_var, list_chgmts
-    
 
 formule= [[1, 2, 4, -5], [-1, 2, 3, -4], [-1, -2, -5], [-3, 4, 5], [-2, 3, 4, 5], [-4, 5]] 
 list_var= [None, None, None, None, None] 
@@ -324,20 +320,13 @@ test('essai3_progress_simpl_for_dpll : ',progress_simpl_for_dpll(formule,list_va
 '''  
 
 def retour(list_var,list_chgmts):
-    i = len(list_chgmts) -1
-    while i >= 0:
-        idx, val = list_chgmts[i]
-        if val:
-            list_chgmts[i] = (idx, False)
-            list_var[idx] = False
-            return list_var, list_chgmts
-        list_chgmts.pop(i)
-        list_var[idx] = None
-        i -= 1
-    return list_var, list_chgmts
-
-
-
+    '''
+    renvoie :l1,l2 avec :
+    l1 : la liste actualisée des valeurs attribuées aux variables 
+    l2 : la liste actualisée de l'ensemble des changements effectués depuis une formule initiale
+    
+    '''
+'''
 list_var= [True, True, None, None, None]
 list_chgmts= [(0, True), (1, True)]
 l1= [True, False, None, None, None]
@@ -373,11 +362,15 @@ list_chgmts= [(1, False)]
 l1= [True, None, False, True, None]
 l2= []
 test("essai cas 6 retour : ",retour(list_var,list_chgmts),(l1,l2))
-
+'''
 
 def retour_simpl_for(formule_init,list_var,list_chgmts):
-    list_var, list_chgmts = retour(list_var, list_chgmts)
-    formule init = retablir_for()
+    '''
+Renvoie : form,l1,l2
+    form : nouvelle formule
+    l1 : nouvelle list_var 
+    l2 : nouvelle list_chgmts 
+'''
 
 '''
 formule_init= [[1, -5,], [-1], [-5], [1]] 
