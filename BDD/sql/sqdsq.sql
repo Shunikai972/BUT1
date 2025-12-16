@@ -22,6 +22,7 @@ ALTER TABLE Employe ADD CONSTRAINT thebdo CHECK (hebdo <= 35);
 ALTER TABLE Employe ADD CONSTRAINT refService FOREIGN KEY (affect) REFERENCES Service(NUSERV);
 ALTER TABLE Projet ADD CONSTRAINT refEmploye FOREIGN KEY (resp) REFERENCES Employe(NUEMPL);
 ALTER TABLE Travail ADD CONSTRAINT refTravProjet FOREIGN KEY (nuproj) REFERENCES Projet(nuproj);
+
 ALTER TABLE Travail ADD CONSTRAINT refTravEmploye FOREIGN KEY (NUEMPL) REFERENCES Employe(NUEMPL);
 
 ---Ex1---
@@ -241,5 +242,98 @@ WHERE NOT EXISTS (
     SELECT 1
     FROM Projet p
     WHERE p.NUPROJ NOT IN (SELECT NUPROJ FROM Travail WHERE NUEMPL = e.NUEMPL)
+);
+
+
+-----------------------------------------------
+-- 2.2 Exercice
+-----------------------------------------------
+
+-----------------------------------------------
+-- 1 ▶ Liste des noms de projets avec le nom du responsable 
+--     et le nombre d’employés qui y travaillent
+-----------------------------------------------
+SELECT p.nomproj,
+       r.nomempl AS responsable,
+       COUNT(t.nuempl) AS nb_employes
+FROM Projet p
+JOIN Employe r ON p.resp = r.nuempl
+LEFT JOIN Travail t ON p.nuproj = t.nuproj
+GROUP BY p.nomproj, r.nomempl;
+
+-----------------------------------------------
+-- 2 ▶ Liste des noms de projets avec la totalisation 
+--     du nombre d’heures passées
+-----------------------------------------------
+SELECT p.nomproj,
+       SUM(t.duree) AS total_heures
+FROM Projet p
+LEFT JOIN Travail t ON p.nuproj = t.nuproj
+GROUP BY p.nomproj;
+
+-----------------------------------------------
+-- 3 ▶ Liste des noms de projets avec pour chaque service concerné,
+--     le nom du service et le nombre d’employés de ce service
+--     qui travaillent sur ce projet
+-----------------------------------------------
+SELECT p.nomproj,
+       s.nomserv,
+       COUNT(e.nuempl) AS nb_employes_service
+FROM Projet p
+JOIN Travail t ON p.nuproj = t.nuproj
+JOIN Employe e ON t.nuempl = e.nuempl
+JOIN Service s ON e.affect = s.nuserv
+GROUP BY p.nomproj, s.nomserv
+ORDER BY p.nomproj, s.nomserv;
+
+-----------------------------------------------
+-- 4 ▶ Liste des employés qui travaillent sur tous les projets
+-----------------------------------------------
+SELECT e.nomempl
+FROM Employe e
+JOIN Travail t ON e.nuempl = t.nuempl       
+GROUP BY e.nuempl, e.nomempl
+HAVING COUNT(DISTINCT t.nuproj) =
+       (SELECT COUNT(*) FROM Projet);
+--4; V2 :
+SELECT e.nomempl
+FROM Employe e
+WHERE NOT EXISTS (
+    SELECT *
+    FROM Projet p
+    WHERE NOT EXISTS (
+        SELECT *
+        FROM Travail t
+        WHERE t.nuempl = e.nuempl
+          AND t.nuproj = p.nuproj
+    )
+);
+
+
+-----------------------------------------------
+-- 5 ▶ Pour le service Achat, trouver le nom du chef de service 
+--     et le nombre d’employés affectés
+-----------------------------------------------
+SELECT s.nomserv,
+       c.nomempl AS chef_service,
+       COUNT(e.nuempl) AS nb_employes
+FROM Service s
+JOIN Employe c ON s.chef = c.nuempl
+LEFT JOIN Employe e ON e.affect = s.nuserv
+WHERE s.nomserv = 'achat'
+GROUP BY s.nomserv, c.nomempl;
+
+-----------------------------------------------
+-- 6 ▶ Liste des employés qui travaillent sur au moins un 
+--     des projets sur lesquels 'Sophie' travaille
+-----------------------------------------------
+SELECT DISTINCT e2.nomempl
+FROM Employe e2
+JOIN Travail t2 ON e2.nuempl = t2.nuempl
+WHERE t2.nuproj IN (
+    SELECT t.nuproj
+    FROM Employe e
+    JOIN Travail t ON e.nuempl = t.nuempl
+    WHERE e.nomempl = 'Sophie'
 );
 
