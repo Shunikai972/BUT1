@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Energy Hub</title>
+    <style>
+        :root {
+            --primary-glow: #00d4ff;
+            --secondary-glow: #0051ff;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at center, #0a0a12 0%, #020205 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+            color: white;
+        }
+
+        /* Container Principal Glassmorphism */
+        .glass-container {
+            position: relative;
+            width: 80%;
+            height: 80vh;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            flex-direction: row;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+            z-index: 1;
+        }
+
+        /* Section de la Boule d'Énergie */
+        .visualizer-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .energy-sphere {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            box-shadow: 0 0 50px var(--primary-glow), 
+                        inset 0 0 50px var(--secondary-glow);
+            filter: blur(5px);
+            animation: vibrate 0.2s infinite ease-in-out, pulse 2s infinite alternate;
+            position: relative;
+        }
+
+        .energy-sphere::after {
+            content: '';
+            position: absolute;
+            top: -10%; left: -10%; right: -10%; bottom: -10%;
+            border-radius: 50%;
+            border: 2px solid var(--primary-glow);
+            opacity: 0.3;
+            animation: rotate 4s linear infinite;
+        }
+
+        /* Section YouTube Music */
+        .music-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-left: 1px solid var(--glass-border);
+        }
+
+        .yt-player {
+            width: 100%;
+            max-width: 400px;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            font-weight: 200;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes vibrate {
+            0% { transform: translate(0,0) scale(1); }
+            25% { transform: translate(2px, -2px) scale(1.02); }
+            50% { transform: translate(-2px, 2px) scale(0.98); }
+            75% { transform: translate(2px, 2px) scale(1.01); }
+            100% { transform: translate(0,0) scale(1); }
+        }
+
+        @keyframes pulse {
+            from { box-shadow: 0 0 40px var(--primary-glow); }
+            to { box-shadow: 0 0 100px var(--secondary-glow), 0 0 20px white; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Effet de particules en arrière-plan */
+        .bg-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: var(--secondary-glow);
+            filter: blur(150px);
+            border-radius: 50%;
+            opacity: 0.2;
+            z-index: 0;
+            top: 10%;
+            left: 10%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <div class="glass-container">
+        <div class="visualizer-section">
+            <h1>Energy Core</h1>
+            <div class="energy-sphere" id="sphere"></div>
+        </div>
+
+        <div class="music-section">
+            <h1>Music Playlist</h1>
+            <div class="yt-player">
+                <iframe 
+                    width="100%" 
+                    height="100%" 
+                    src="https://www.youtube.com/embed/videoseries?list=PL4fGSI1pDJn6jWjX67UuAYL2XmFf0eKz9" 
+                    title="YouTube Music Player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Petite interaction JS pour accentuer la vibration au clic
+        const sphere = document.getElementById('sphere');
+        
+        document.addEventListener('mousedown', () => {
+            sphere.style.animationDuration = '0.05s';
+        });
+
+        document.addEventListener('mouseup', () => {
+            sphere.style.animationDuration = '0.2s';
+        });
+    </script>
+</body>
+</html>
