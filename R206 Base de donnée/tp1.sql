@@ -1,0 +1,82 @@
+
+
+--- Q1 : Opérateurs de votre ville (ex: NANTES) ---
+SELECT 
+    c.NOM_COMMUNE,
+    c.CODE_INSEE,
+    o.NOMFO,
+    o.GENERATION,
+    o.TECHNOLOGIE,
+    d.NOMDEP,
+    d.CODE_DEPARTEMENT,
+    di.ADRESSE
+FROM basetd.DISTRIBUTION di
+JOIN basetd.OPERATEUR o ON di.NUMFO = o.NUMFO
+JOIN basetd.COMMUNE c ON di.CODE_INSEE = c.CODE_INSEE
+JOIN basetd.DEPARTEMENT d ON c.NOMDEP = d.NOMDEP
+WHERE c.NOM_COMMUNE = 'NANTES';
+--- Q2 : Opérateurs 5G à Nantes ---
+SELECT
+    c.NOM_COMMUNE,
+    c.CODE_INSEE,
+    o.NOMFO,
+    o.GENERATION,
+    o.TECHNOLOGIE,
+    d.NOMDEP,
+    d.CODE_DEPARTEMENT,
+    di.ADRESSE
+FROM basetd.DISTRIBUTION di
+JOIN basetd.OPERATEUR o ON di.NUMFO = o.NUMFO
+JOIN basetd.COMMUNE c ON di.CODE_INSEE = c.CODE_INSEE
+JOIN basetd.DEPARTEMENT d ON c.NOMDEP = d.NOMDEP
+WHERE c.NOM_COMMUNE = 'Nantes'
+  AND o.GENERATION = '5G';
+--Q3
+SELECT dist.ADRESSE, o.NOMFO
+FROM basetd.distribution dist
+JOIN basetd.operateur o ON dist.NUMFO = o.NUMFO
+JOIN basetd.commune c ON dist.CODE_INSEE = c.CODE_INSEE
+WHERE c.NOM_COMMUNE = 'Nantes' 
+  AND o.TECHNOLOGIE = '5G NR 3500'
+ORDER BY dist.ADRESSE ASC;
+--Q4
+SELECT c.NOM_COMMUNE, o.NOMFO, o.GENERATION
+FROM basetd.distribution dist
+JOIN basetd.operateur o ON dist.NUMFO = o.NUMFO
+JOIN basetd.commune c ON dist.CODE_INSEE = c.CODE_INSEE
+WHERE o.GENERATION = '5G';
+--Q5
+SELECT c.NOM_COMMUNE, o.NOMFO, COUNT(*) AS NB_ANTENNES
+FROM basetd.distribution dist
+JOIN basetd.operateur o ON dist.NUMFO = o.NUMFO
+JOIN basetd.commune c ON dist.CODE_INSEE = c.CODE_INSEE
+WHERE o.GENERATION = '5G'
+GROUP BY c.NOM_COMMUNE, o.NOMFO
+ORDER BY NB_ANTENNES DESC, c.NOM_COMMUNE ASC;
+--Q6
+SELECT c.NOM_COMMUNE, COUNT(*) AS NB_ANTENNES
+FROM basetd.distribution dist
+JOIN basetd.operateur o ON dist.NUMFO = o.NUMFO
+JOIN basetd.commune c ON dist.CODE_INSEE = c.CODE_INSEE
+WHERE o.GENERATION = '5G'
+GROUP BY c.NOM_COMMUNE
+ORDER BY NB_ANTENNES DESC
+FETCH NEXT 10 ROWS ONLY;
+--Q7
+SELECT c.NOM_COMMUNE, o.NOMFO, COUNT(*) AS NB_ANTENNES
+FROM basetd.distribution dist
+JOIN basetd.operateur o ON dist.NUMFO = o.NUMFO
+JOIN basetd.commune c ON dist.CODE_INSEE = c.CODE_INSEE
+WHERE o.GENERATION = '5G'
+GROUP BY c.NOM_COMMUNE, o.NOMFO
+HAVING COUNT(*) > 50
+ORDER BY NB_ANTENNES DESC, c.NOM_COMMUNE ASC;
+--Q8
+SELECT d.NOMDEP, o.NOMFO, COUNT(*) AS NB_ANTENNES_4G
+FROM basetd.distribution dist
+JOIN basetd.operateur o ON dist.NUMFO = o.NUMFO
+JOIN basetd.commune c ON dist.CODE_INSEE = c.CODE_INSEE
+JOIN basetd.departement d ON c.NOMDEP = d.NOMDEP
+WHERE o.GENERATION = '4G'
+GROUP BY d.NOMDEP, o.NOMFO
+ORDER BY d.NOMDEP ASC, NB_ANTENNES_4G DESC;

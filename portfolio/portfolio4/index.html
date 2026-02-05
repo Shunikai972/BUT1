@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astro Portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="cursor"></div>
+
+    <canvas id="matrix-canvas"></canvas>
+
+    <div id="intro-overlay">
+        <div class="loader-circle"></div>
+        <h2 style="font-family: var(--font-mono); letter-spacing: 5px;">SYSTEM INITIALIZATION</h2>
+        <div style="color: var(--text-muted); margin-top: 10px;">Loading assets...</div>
+        <button class="enter-btn" id="start-btn">ACCESS TERMINAL</button>
+    </div>
+
+    <nav>
+        <div class="logo">Astro<span style="color:var(--primary)">Portfolio</span></div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#current">Current Project</a>
+            <a href="#about">About</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section id="home">
+        <h1 class="hero-glitch" data-text="ASTRO PORTFOLIO">ASTRO PORTFOLIO</h1>
+        <div class="typewriter-box" id="typewriter"></div>
+        <div style="margin-top: 30px;">
+            <a href="#current" class="enter-btn" style="opacity:1; transform:none; display:inline-block; font-size:1rem; padding: 12px 30px;">
+                View Current Project
+            </a>
+        </div>
+    </section>
+
+    <section id="current">
+        <div class="section-title"><span>CURRENT</span> PROJECT</div>
+        <div class="glass-panel project-hero">
+            <div class="project-details">
+                <div style="display:flex; justify-content:space-between; align-items:start;">
+                    <h2 style="font-size: 2.2rem; margin-bottom: 15px;">Automated Event Logic Engine</h2>
+                </div>
+                <h4 style="color: var(--text-muted); margin-bottom: 20px; font-family:var(--font-mono);">
+                    Target: "Great Kraken Farm" // Environment: GPO
+                </h4>
+
+                <div style="margin-bottom: 25px;">
+                    <span class="tech-badge">Python 3.11</span>
+                    <span class="tech-badge">OpenCV</span>
+                    <span class="tech-badge">Win32 API</span>
+                    <span class="tech-badge">AsyncIO</span>
+                </div>
+
+                <p style="line-height: 1.6; color: #ddd; margin-bottom: 20px;">
+                    Currently engineering a high-performance automation script designed for complex event cycles within virtualized environments.
+                    Unlike standard macros, this system utilizes <strong style="color:var(--secondary)">computer vision</strong> to detect state changes (HP thresholds, cooldowns, visual cues) in real-time with sub-50ms latency.
+                </p>
+                <p style="line-height: 1.6; color: #ddd;">
+                    The architecture implements a finite state machine to handle exception flows (connection drops, player interference) ensuring 99.9% uptime without user intervention.
+                </p>
+            </div>
+
+            <div class="project-image-container">
+                <div class="status-indicator">
+                    <div class="blink"></div> SYSTEM ACTIVE
+                </div>
+                <div class="project-img-placeholder">
+                    <i class="fas fa-terminal" style="font-size: 4rem; color: #333; margin-bottom: 20px;"></i>
+                    <span>[VISUAL FEED OFFLINE]</span>
+                    <span style="font-size:0.8rem; color:#555">Hover to engage</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-title"><span>ABOUT</span> ME</div>
+        <div class="glass-panel">
+            <h2 style="font-size: 2rem;">Personal Information</h2>
+            <p style="font-size: 1.2rem;"><strong>Name:</strong> Noam M'Sakni</p>
+            <p style="font-size: 1.2rem;"><strong>Date of Birth:</strong> 9 March 2007</p>
+            <p style="font-size: 1.2rem;"><strong>Location:</strong> Châteauvilain, France</p>
+            <p style="font-size: 1.2rem;"><strong>Email:</strong> noammsakni@gmail.com</p>
+            <p style="font-size: 1.2rem;"><strong>Phone:</strong> 06 38 03 48 06</p>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="section-title"><span>EXPERIENCE</span> & ACTIVITIES</div>
+        <div class="glass-panel">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Theater & Performing Arts</h2>
+            <div class="experience-item">
+                <h3 style="font-size: 1.3rem;">Cie Castel Troupe (Since 2020)</h3>
+                <p style="font-size: 1.1rem;">Regular participant in theater performances, developing strong public speaking skills, stage presence, and team cohesion. Learned to work collaboratively with directors, fellow actors, and production teams to deliver compelling performances.</p>
+            </div>
+            <div class="experience-item">
+                <h3 style="font-size: 1.3rem;">Circus Arts (Since 2020)</h3>
+                <p style="font-size: 1.1rem;">Trained in various circus disciplines including acrobatics and juggling. Developed physical coordination, discipline, and the ability to perform under pressure.</p>
+            </div>
+        </div>
+
+        <div class="glass-panel">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Music & Personal Development</h2>
+            <div class="experience-item">
+                <h3 style="font-size: 1.3rem;">Bagpipe Musician (Since 2021)</h3>
+                <p style="font-size: 1.1rem;">Self-taught bagpipe player with regular practice and performance experience. Developed perseverance, personal discipline, and the ability to focus on long-term goals through consistent practice.</p>
+            </div>
+        </div>
+
+        <div class="glass-panel">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Academic & Community Engagement</h2>
+            <div class="experience-item">
+                <h3 style="font-size: 1.3rem;">Fundraising Campaign Organizer (2021-2022)</h3>
+                <p style="font-size: 1.1rem;">Led a successful fundraising campaign in 5th grade to finance a trip for people with disabilities. Managed a team of classmates, coordinated events, and handled communications with donors and beneficiaries.</p>
+            </div>
+            <div class="experience-item">
+                <h3 style="font-size: 1.3rem;">Eloquence Contest (2022)</h3>
+                <p style="font-size: 1.1rem;">Awarded 3rd place at the departmental level for reading and public speaking skills. Prepared and delivered compelling oral presentations on various topics, demonstrating strong communication and persuasive skills.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="section-title"><span>MY</span> PROJECTS</div>
+
+        <div class="glass-panel">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Professional Projects</h2>
+            <div class="project-item">
+                <h3 style="font-size: 1.3rem;">Automated Event Logic Engine</h3>
+                <p style="font-size: 1.1rem;">Developed a high-performance automation script using Python that utilizes computer vision to detect state changes in real-time with sub-50ms latency. Implemented a finite state machine architecture to handle exception flows and ensure 99.9% uptime without user intervention.</p>
+                <div style="margin-top: 15px;">
+                    <span class="tech-badge">Python 3.11</span>
+                    <span class="tech-badge">OpenCV</span>
+                    <span class="tech-badge">Win32 API</span>
+                    <span class="tech-badge">AsyncIO</span>
+                </div>
+            </div>
+            <div class="project-item">
+                <h3 style="font-size: 1.3rem;">Discord Bot Development</h3>
+                <p style="font-size: 1.1rem;">Created a moderation and utility bot using Python and discord.py that handles over 10,000 requests daily. Implemented features such as automated moderation, message filtering, and user management.</p>
+                <div style="margin-top: 15px;">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">discord.py</span>
+                    <span class="tech-badge">SQLite</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-panel">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Personal Projects</h2>
+            <div class="project-item">
+                <h3 style="font-size: 1.3rem;">Self-Hosted Home Lab</h3>
+                <p style="font-size: 1.1rem;">Designed and implemented a complete home server setup running on Raspberry Pi with Docker containerization. Configured services including Nginx Proxy Manager, Pi-Hole DNS, and Portainer for container management.</p>
+                <div style="margin-top: 15px;">
+                    <span class="tech-badge">Raspberry Pi</span>
+                    <span class="tech-badge">Docker</span>
+                    <span class="tech-badge">Nginx</span>
+                </div>
+            </div>
+            <div class="project-item">
+                <h3 style="font-size: 1.3rem;">Portfolio Development</h3>
+                <p style="font-size: 1.1rem;">Developed multiple versions of personal portfolio websites using HTML5, CSS3, and JavaScript. Experimented with different design approaches and interactive elements to create engaging user experiences.</p>
+                <div style="margin-top: 15px;">
+                    <span class="tech-badge">HTML5</span>
+                    <span class="tech-badge">CSS3</span>
+                    <span class="tech-badge">JavaScript</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-panel">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Academic Projects</h2>
+            <div class="project-item">
+                <h3 style="font-size: 1.3rem;">Computer Science Studies</h3>
+                <p style="font-size: 1.1rem;">Currently pursuing a Bachelor's degree in Computer Science at Nantes University with a focus on software engineering and system architecture. Coursework includes programming, algorithms, data structures, and system design.</p>
+            </div>
+            <div class="project-item">
+                <h3 style="font-size: 1.3rem;">High School Projects</h3>
+                <p style="font-size: 1.1rem;">Completed various technical projects during high school studies in STI2D, including electronics prototyping, programming assignments, and system design projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="python-projects">
+        <div class="section-title"><span>PYTHON</span> PROJECTS</div>
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-item" style="background-image: url('https://source.unsplash.com/random/300x200/?python');">Python Project 1</div>
+                <div class="carousel-item" style="background-image: url('https://source.unsplash.com/random/300x200/?code');">Python Project 2</div>
+                <div class="carousel-item" style="background-image: url('https://source.unsplash.com/random/300x200/?programming');">Python Project 3</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="go-projects">
+        <div class="section-title"><span>GO</span> PROJECTS</div>
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-item" style="background-image: url('https://source.unsplash.com/random/300x200/?go');">Go Project 1</div>
+                <div class="carousel-item" style="background-image: url('https://source.unsplash.com/random/300x200/?golang');">Go Project 2</div>
+                <div class="carousel-item" style="background-image: url('https://source.unsplash.com/random/300x200/?development');">Go Project 3</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="html-css-projects">
+        <div class="section-title"><span>HTML/CSS</span> PROJECTS</div>
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-item" style="background-image: url('https://source.unsplash.com/random/300x200/?html');">HTML/CSS Project 1</div>
+                <div class="carousel-item" style="background-image: url('https://source.unsplash.com/random/300x200/?css');">HTML/CSS Project 2</div>
+                <div class="carousel-item" style="background-image: url('https://source.unsplash.com/random/300x200/?web');">HTML/CSS Project 3</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="section-title"><span>TECHNICAL</span> SKILLS</div>
+
+        <div class="glass-panel">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Programming Languages</h2>
+            <div class="grid-3">
+                <div class="glass-panel skill-card">
+                    <h3 style="font-size: 1.5rem;"><i class="fab fa-python"></i> Python</h3>
+                    <p style="font-size:0.9rem; color:#ccc;">Advanced scripting, automation, and backend development with Python 3.11</p>
+                    <div class="progress-container">
+                        <div class="progress-label"><span>Proficiency</span><span>95%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div>
+                    </div>
+                </div>
+                <div class="glass-panel skill-card">
+                    <h3 style="font-size: 1.5rem;"><i class="fab fa-html5"></i> Web Technologies</h3>
+                    <p style="font-size:0.9rem; color:#ccc;">HTML5, CSS3, JavaScript, and responsive design principles</p>
+                    <div class="progress-container">
+                        <div class="progress-label"><span>Proficiency</span><span>85%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+                    </div>
+                </div>
+                <div class="glass-panel skill-card">
+                    <h3 style="font-size: 1.5rem;"><i class="fas fa-code"></i> C/C++</h3>
+                    <p style="font-size:0.9rem; color:#ccc;">System programming and performance optimization with C and C++</p>
+                    <div class="progress-container">
+                        <div class="progress-label"><span>Proficiency</span><span>80%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-panel">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">System & DevOps</h2>
+            <div class="grid-3">
+                <div class="glass-panel skill-card">
+                    <h3 style="font-size: 1.5rem;"><i class="fas fa-server"></i> Linux Administration</h3>
+                    <p style="font-size:0.9rem; color:#ccc;">Server management, shell scripting, and system configuration</p>
+                    <div class="progress-container">
+                        <div class="progress-label"><span>Proficiency</span><span>80%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
+                    </div>
+                </div>
+                <div class="glass-panel skill-card">
+                    <h3 style="font-size: 1.5rem;"><i class="fas fa-docker"></i> Docker</h3>
+                    <p style="font-size:0.9rem; color:#ccc;">Containerization, image creation, and orchestration</p>
+                    <div class="progress-container">
+                        <div class="progress-label"><span>Proficiency</span><span>75%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-panel">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Languages</h2>
+            <div class="language-item">
+                <h3 style="font-size: 1.3rem;">French <span style="float: right; color: var(--text-muted);">Native</span></h3>
+                <p style="font-size: 1.1rem;">Fluent in both written and spoken French with excellent orthographic skills</p>
+            </div>
+            <div class="language-item">
+                <h3 style="font-size: 1.3rem;">English <span style="float: right; color: var(--text-muted);">Fluent</span></h3>
+                <p style="font-size: 1.1rem;">Proficient in technical and conversational English, with strong writing skills</p>
+            </div>
+        </div>
+
+        <div class="glass-panel">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Soft Skills</h2>
+            <div class="skills-list">
+                <div class="skill-item">
+                    <h4 style="font-size: 1.2rem;">Problem Solving</h4>
+                    <p style="font-size: 1rem;">Analytical thinking and creative problem-solving approach developed through programming challenges and real-world projects</p>
+                </div>
+                <div class="skill-item">
+                    <h4 style="font-size: 1.2rem;">Team Collaboration</h4>
+                    <p style="font-size: 1rem;">Effective team player with strong communication skills, honed through theater performances and group projects</p>
+                </div>
+                <div class="skill-item">
+                    <h4 style="font-size: 1.2rem;">Adaptability</h4>
+                    <p style="font-size: 1rem;">Quick learner with ability to adapt to new technologies and challenges, demonstrated through self-taught programming skills</p>
+                </div>
+                <div class="skill-item">
+                    <h4 style="font-size: 1.2rem;">Leadership</h4>
+                    <p style="font-size: 1rem;">Proven leadership skills through organizing fundraising campaigns and managing team projects</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="socials">
+            <a href="https://github.com/Shunikai972" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+        <p style="color:var(--text-muted)">© 2026 Astro Portfolio | All rights reserved</p>
+    </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
