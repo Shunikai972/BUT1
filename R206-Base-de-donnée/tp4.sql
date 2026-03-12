@@ -232,6 +232,8 @@ GRANT SELECT ON DistributionVE TO USER2_LoginMon_Ami;
 GRANT UPDATE (adresse) ON DistributionVE TO USER2_LoginMon_Ami;
 GRANT INSERT ON DistributionVE TO USER2_LoginMon_Ami;
 
+select * from s2a01b.communela;
+
 -- 3) Activez et affectez ce rôle à votre binôme (s2a01b). NOTE : s2a01b devra se déconnecter/reconnecter pour voir le rôle actif.
 GRANT USER2_LoginMon_Ami TO s2a01b;
 
