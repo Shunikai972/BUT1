@@ -1,6 +1,4 @@
-/* =========================================
-   1. CORE VARIABLES & RESET
-   ========================================= */
+
 :root {
     --bg-deep: #050505;
     --bg-panel: rgba(20, 20, 35, 0.4);
@@ -35,9 +33,7 @@ body { background-color: var(--bg-deep); color: var(--text-main); font-family: v
 ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--secondary); }
 
-/* =========================================
-   2. BACKGROUND & LOADERS
-   ========================================= */
+
 #matrix-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
 
 #intro-overlay {
@@ -64,9 +60,7 @@ body { background-color: var(--bg-deep); color: var(--text-main); font-family: v
 @keyframes spin { 100% { transform: rotate(360deg); } }
 @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
-/* =========================================
-   3. NAVIGATION
-   ========================================= */
+
 nav {
     position: fixed; top: 0; width: 100%; padding: 20px 4%;
     display: flex; justify-content: space-between; align-items: center;
@@ -95,9 +89,7 @@ body.switching * { pointer-events: none; }
 body.switching section, body.switching nav { animation: fadeOutContent 0.4s ease forwards; }
 body.switched section, body.switched nav { animation: fadeInContent 0.4s ease forwards; }
 
-/* =========================================
-   4. LAYOUT & SECTIONS
-   ========================================= */
+
 section { min-height: 100vh; padding: 60px 10% 40px; display: flex; flex-direction: column; justify-content: center; position: relative; }
 .section-title { font-size: 3rem; margin-bottom: 40px; position: relative; display: inline-block; z-index: 2; }
 .section-title span { color: var(--primary); text-shadow: 0 0 15px var(--primary-dim); }
@@ -114,9 +106,7 @@ section { min-height: 100vh; padding: 60px 10% 40px; display: flex; flex-directi
 .glass-panel::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); transition: 0.5s; }
 .glass-panel:hover::before { left: 100%; }
 
-/* =========================================
-   5. HERO SECTION
-   ========================================= */
+
 #home { text-align: center; }
 .hero-glitch { font-size: 5rem; font-weight: 900; line-height: 1.1; margin-bottom: 20px; position: relative; }
 .hero-glitch::before, .hero-glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-deep); }
@@ -126,9 +116,7 @@ section { min-height: 100vh; padding: 60px 10% 40px; display: flex; flex-directi
 @keyframes glitch-anim-2 { 0% { clip: rect(60px, 9999px, 90px, 0); } 20% { clip: rect(10px, 9999px, 40px, 0); } 40% { clip: rect(100px, 9999px, 120px, 0); } 100% { clip: rect(30px, 9999px, 70px, 0); } }
 .typewriter-box { font-family: var(--font-mono); color: var(--secondary); font-size: 1.5rem; margin-bottom: 40px; min-height: 1.6em; }
 
-/* =========================================
-   6. CURRENT PROJECT
-   ========================================= */
+
 .project-hero { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; align-items: center; }
 .tech-badge { display: inline-block; padding: 5px 12px; background: rgba(138, 43, 226, 0.1); border: 1px solid var(--primary); color: var(--primary); font-size: 0.8rem; margin-right: 10px; margin-bottom: 10px; border-radius: 4px; font-family: var(--font-mono); }
 .project-image-container { position: relative; height: 350px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
@@ -139,12 +127,10 @@ section { min-height: 100vh; padding: 60px 10% 40px; display: flex; flex-directi
 .blink { width: 8px; height: 8px; background: var(--secondary); border-radius: 50%; animation: pulse 1s infinite; }
 @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
-/* =========================================
-   7. PROJECTS CAROUSEL — SPECTACULAR
-   ========================================= */
+
 #projects { overflow: hidden; }
 
-/* ---- CATEGORY TABS ---- */
+
 .proj-tabs {
     display: flex;
     gap: 12px;
@@ -192,13 +178,13 @@ section { min-height: 100vh; padding: 60px 10% 40px; display: flex; flex-directi
     box-shadow: 0 0 8px var(--secondary);
 }
 
-/* ---- CAROUSEL WRAPPER ---- */
+
 .carousel-outer {
     position: relative;
     padding: 0 80px 60px;
 }
 
-/* Navigation arrows */
+
 .carousel-arrow {
     position: absolute;
     top: 50%;
@@ -226,7 +212,7 @@ section { min-height: 100vh; padding: 60px 10% 40px; display: flex; flex-directi
 .carousel-arrow.next { right: 0; }
 .carousel-arrow:disabled { opacity: 0.15; pointer-events: none; }
 
-/* Arrow inner pulse ring */
+
 .carousel-arrow::after {
     content: '';
     position: absolute; inset: -4px;
@@ -239,7 +225,7 @@ section { min-height: 100vh; padding: 60px 10% 40px; display: flex; flex-directi
     inset: -8px;
 }
 
-/* ---- CAROUSEL TRACK ---- */
+
 .carousel-track-wrapper {
     overflow: hidden;
     border-radius: 16px;
@@ -250,7 +236,7 @@ section { min-height: 100vh; padding: 60px 10% 40px; display: flex; flex-directi
     will-change: transform;
 }
 
-/* ---- PROJECT CARD ---- */
+
 .proj-card {
     flex: 0 0 100%;
     min-width: 100%;
@@ -267,7 +253,7 @@ section { min-height: 100vh; padding: 60px 10% 40px; display: flex; flex-directi
     box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(0,247,255,0.08);
 }
 
-/* Top gradient accent bar */
+
 .proj-card::before {
     content: '';
     position: absolute; top: 0; left: 0; right: 0; height: 2px;
@@ -280,7 +266,7 @@ section { min-height: 100vh; padding: 60px 10% 40px; display: flex; flex-directi
 .proj-card:hover::before { opacity: 1; }
 @keyframes shimmer-bar { 0% { background-position: 0% 0; } 100% { background-position: 200% 0; } }
 
-/* Card Header with icon/number */
+
 .proj-card-header {
     padding: 28px 28px 0;
     display: flex;
@@ -313,7 +299,7 @@ section { min-height: 100vh; padding: 60px 10% 40px; display: flex; flex-directi
     transform: rotate(-5deg) scale(1.1);
 }
 
-/* Card body */
+
 .proj-card-body { padding: 16px 28px 28px; }
 .proj-card-title {
     font-size: 1.3rem;
@@ -329,7 +315,7 @@ section { min-height: 100vh; padding: 60px 10% 40px; display: flex; flex-directi
     margin-bottom: 20px;
 }
 
-/* Feature list */
+
 .proj-features {
     list-style: none;
     margin-bottom: 22px;
@@ -352,7 +338,7 @@ section { min-height: 100vh; padding: 60px 10% 40px; display: flex; flex-directi
     line-height: 1.3;
 }
 
-/* Tech badges in card */
+
 .proj-card-badges {
     display: flex;
     flex-wrap: wrap;
@@ -374,7 +360,7 @@ section { min-height: 100vh; padding: 60px 10% 40px; display: flex; flex-directi
     border-color: rgba(188,19,254,0.5);
 }
 
-/* ---- PAGINATION DOTS ---- */
+
 .carousel-pagination {
     position: absolute;
     bottom: 0; left: 50%;
@@ -397,7 +383,7 @@ section { min-height: 100vh; padding: 60px 10% 40px; display: flex; flex-directi
     box-shadow: 0 0 10px var(--secondary);
 }
 
-/* ---- PROGRESS BAR ---- */
+
 .carousel-progress {
     height: 1px;
     background: rgba(255,255,255,0.06);
@@ -413,7 +399,7 @@ section { min-height: 100vh; padding: 60px 10% 40px; display: flex; flex-directi
     box-shadow: 0 0 8px var(--secondary);
 }
 
-/* ---- COUNTER ---- */
+
 .carousel-counter {
     display: flex;
     align-items: center;
@@ -440,9 +426,7 @@ section { min-height: 100vh; padding: 60px 10% 40px; display: flex; flex-directi
     margin: 0 4px;
 }
 
-/* =========================================
-   8. OTHER SECTIONS
-   ========================================= */
+
 .project-item { margin-bottom: 30px; }
 .project-item ul { list-style-type: none; padding-left: 20px; }
 .project-item li { list-style-type: disc; color: #ddd; padding-left: 5px; margin-bottom: 6px; font-size: 0.95rem; }
@@ -505,3 +489,5 @@ footer { border-top: 1px solid var(--glass-border); padding: 50px; text-align: c
     h2 { font-size: 1.3rem !important; }
     p { font-size: 0.95rem !important; }
 }
+
+

@@ -1,6 +1,6 @@
-// =========================================
-// TRANSLATIONS
-// =========================================
+
+
+
 const translations = {
     fr: {
         "nav-home": "Accueil", "nav-current": "Projet Actuel", "nav-about": "À Propos",
@@ -86,9 +86,9 @@ const translations = {
     }
 };
 
-// =========================================
-// PROJECT DATA
-// =========================================
+
+
+
 const projectData = {
     professional: [
         {
@@ -330,9 +330,9 @@ const projectData = {
     ]
 };
 
-// =========================================
-// CAROUSEL ENGINE — 1 card per slide
-// =========================================
+
+
+
 let currentCat = 'professional';
 let currentIndex = 0;
 
@@ -381,23 +381,23 @@ function updateUI() {
     const total = projectData[currentCat].length;
     const cardWidth = track.parentElement.offsetWidth;
 
-    // Slide by full card width (no gap needed since 1 per view)
+    
     track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
 
-    // Dots
+    
     document.querySelectorAll('.carousel-dot').forEach((d, i) => {
         d.classList.toggle('active', i === currentIndex);
     });
 
-    // Arrows
+    
     prevBtn.disabled = currentIndex === 0;
     nextBtn.disabled = currentIndex >= total - 1;
 
-    // Progress
+    
     const pct = total <= 1 ? 100 : (currentIndex / (total - 1)) * 100;
     progressFill.style.width = pct + '%';
 
-    // Counter with bounce animation
+    
     counterCurrent.textContent = String(currentIndex + 1).padStart(2, '0');
     counterTotal.textContent = `/ ${String(total).padStart(2, '0')}`;
     counterCurrent.style.transform = 'scale(1.25)';
@@ -418,14 +418,14 @@ function initCarousel(cat, lang) {
     currentIndex = 0;
     buildCards(cat, lang);
     buildDots(projectData[cat].length);
-    // Small delay to let DOM render card widths
+    
     setTimeout(() => updateUI(), 20);
 }
 
 prevBtn.addEventListener('click', () => goTo(currentIndex - 1));
 nextBtn.addEventListener('click', () => goTo(currentIndex + 1));
 
-// Keyboard navigation
+
 document.addEventListener('keydown', e => {
     const section = document.getElementById('projects');
     const rect = section.getBoundingClientRect();
@@ -435,7 +435,7 @@ document.addEventListener('keydown', e => {
     }
 });
 
-// Touch swipe
+
 let touchStartX = 0;
 track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
 track.addEventListener('touchend', e => {
@@ -443,7 +443,7 @@ track.addEventListener('touchend', e => {
     if (Math.abs(diff) > 50) diff > 0 ? goTo(currentIndex + 1) : goTo(currentIndex - 1);
 });
 
-// Tab switching
+
 document.querySelectorAll('.proj-tab').forEach(tab => {
     tab.addEventListener('click', () => {
         document.querySelectorAll('.proj-tab').forEach(t => t.classList.remove('active'));
@@ -466,9 +466,9 @@ window.addEventListener('resize', () => {
     setTimeout(() => updateUI(), 50);
 });
 
-// =========================================
-// LANGUAGE SYSTEM
-// =========================================
+
+
+
 let currentLanguage = localStorage.getItem('portfolio-language') || 'fr';
 
 function updateLanguage(lang) {
@@ -489,7 +489,7 @@ function updateLanguage(lang) {
             translations[lang]['typewriter-1'], translations[lang]['typewriter-2'],
             translations[lang]['typewriter-3'], translations[lang]['typewriter-4']
         ];
-        // Rebuild carousel with new language
+        
         const activeCat = document.querySelector('.proj-tab.active')?.dataset.cat || 'professional';
         initCarousel(activeCat, lang);
         document.body.classList.remove('switching');
@@ -506,9 +506,9 @@ window.addEventListener('DOMContentLoaded', () => {
     initCarousel('professional', currentLanguage);
 });
 
-// =========================================
-// CURSOR
-// =========================================
+
+
+
 const cursor = document.getElementById('cursor');
 document.addEventListener('mousemove', e => {
     cursor.style.left = e.clientX + 'px';
@@ -519,16 +519,16 @@ document.querySelectorAll('a, button, .glass-panel, .proj-card, i').forEach(el =
     el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
 });
 
-// Start button
+
 document.getElementById('start-btn').addEventListener('click', () => {
     const overlay = document.getElementById('intro-overlay');
     overlay.style.opacity = '0';
     setTimeout(() => { overlay.style.visibility = 'hidden'; }, 1000);
 });
 
-// =========================================
-// TYPEWRITER
-// =========================================
+
+
+
 let words = [translations.fr['typewriter-1'], translations.fr['typewriter-2'], translations.fr['typewriter-3'], translations.fr['typewriter-4']];
 let i = 0;
 function typeWriter(text, n) {
@@ -550,9 +550,9 @@ function eraseWriter(text, n) {
 }
 setTimeout(() => typeWriter(words[0], 0), 2000);
 
-// =========================================
-// MATRIX CANVAS
-// =========================================
+
+
+
 const canvas = document.getElementById('matrix-canvas');
 const ctx = canvas.getContext('2d');
 let width, height;
@@ -603,3 +603,5 @@ function animateMatrix() {
     requestAnimationFrame(animateMatrix);
 }
 animateMatrix();
+
+
