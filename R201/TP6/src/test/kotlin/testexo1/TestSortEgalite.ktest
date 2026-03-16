@@ -1,0 +1,61 @@
+package testexo1
+
+import exo1.Sort
+import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
+
+class TestSortEgalite {
+
+    @Test
+    fun memeSortEgal() {
+        val sort1 = Sort("Lumos", "Illuminer le bout de la baguette")
+        assert(sort1 == sort1)
+    }
+
+    @Test
+    fun memeSortEquals() {
+        val sort1 = Sort("Lumos", "Illuminer le bout de la baguette")
+        assertTrue(sort1.equals(sort1))
+    }
+
+    @Test
+    fun sortDiff() {
+        val sort1 = Sort("Lumos", "Illuminer le bout de la baguette")
+        val sort2 = Sort("Enervatum", "Réanimer quelqu’un")
+        assert(sort1 != sort2)
+    }
+
+    @Test
+    fun sortDiffEquals() {
+        val sort1 = Sort("Lumos", "Illuminer le bout de la baguette")
+        val sort2 = Sort("Enervatum", "Réanimer quelqu’un")
+        assertFalse(sort1.equals(sort2))
+    }
+
+    @Test
+    fun memeSortsEgaux() {
+        val sort1 = Sort("Lumos", "Illuminer le bout de la baguette")
+        val sort2 = Sort("Lumos", "Illuminer le bout de la baguette")
+        assert(sort1 == sort2)
+    }
+
+    @Test
+    fun memeSortsDescDiffEgaux() {
+        val sort1 = Sort("Lumos", "Illuminer le bout de la baguette")
+        val sort2 = Sort("Lumos", "Faire de la lumière")
+        assert(sort1 == sort2)
+    }
+
+    @Test
+    fun pasEgalNull() {
+        val sort1 = Sort("Lumos", "Illuminer le bout de la baguette")
+        assertFalse(sort1.equals(null))
+    }
+
+    @Test
+    fun pasEgalChaine() {
+        val sort1 = Sort("Lumos", "Illuminer le bout de la baguette")
+        assertFalse(sort1.equals("Lumos"))
+    }
+}
