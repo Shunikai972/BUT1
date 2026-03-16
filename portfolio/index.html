@@ -5,687 +5,243 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Astro Portfolio</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<style>
-    /* =========================================
-       1. CORE VARIABLES & RESET
-       ========================================= */
-    :root {
-        --bg-deep: #050505;
-        --bg-panel: rgba(20, 20, 35, 0.4);
-        --primary: #bc13fe;   /* Neon Purple */
-        --primary-dim: #7a0b9e;
-        --secondary: #00f7ff; /* Cyan Cyberpunk */
-        --secondary-dim: #008c91;
-        --text-main: #ffffff;
-        --text-muted: #a0a0a0;
-        --glass-border: rgba(255, 255, 255, 0.1);
-        --glass-shine: rgba(255, 255, 255, 0.05);
-        --font-main: 'Segoe UI', 'Roboto', Helvetica, Arial, sans-serif;
-        --font-mono: 'Courier New', Courier, monospace;
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        cursor: auto !important;
-    }
-
-    html {
-        scroll-behavior: smooth;
-        overflow-x: hidden;
-    }
-
-    body {
-        background-color: var(--bg-deep);
-        color: var(--text-main);
-        font-family: var(--font-main);
-        overflow-x: hidden;
-        min-height: 100vh;
-        cursor: auto !important;
-    }
-
-    /* Custom Cursor */
-    #cursor {
-        position: fixed;
-        width: 20px;
-        height: 20px;
-        border: 2px solid var(--secondary);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-        transition: width 0.2s, height 0.2s, background 0.2s;
-        box-shadow: 0 0 10px var(--secondary);
-        visibility: visible !important;
-        display: block !important;
-    }
-    #cursor.active {
-        width: 50px;
-        height: 50px;
-        background: rgba(0, 247, 255, 0.1);
-        border-color: var(--primary);
-        box-shadow: 0 0 20px var(--primary);
-    }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg-deep); }
-    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--secondary); }
-
-    /* =========================================
-       2. BACKGROUND & LOADERS
-       ========================================= */
-    #matrix-canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-    }
-
-    /* Entry Overlay */
-    #intro-overlay {
-        position: fixed;
-        inset: 0;
-        background: #000;
-        z-index: 10000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        transition: opacity 1s ease, visibility 1s ease;
-    }
-
-    .loader-circle {
-        width: 80px;
-        height: 80px;
-        border: 4px solid transparent;
-        border-top: 4px solid var(--primary);
-        border-right: 4px solid var(--secondary);
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        box-shadow: 0 0 15px var(--primary);
-        margin-bottom: 20px;
-    }
-
-    .enter-btn {
-        margin-top: 30px;
-        padding: 15px 40px;
-        background: transparent;
-        border: 2px solid var(--secondary);
-        color: var(--secondary);
-        font-family: var(--font-mono);
-        font-size: 1.2rem;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-        transition: 0.3s;
-        opacity: 0;
-        transform: translateY(20px);
-        animation: fadeUp 1s forwards 0.5s;
-    }
-
-    .enter-btn:hover {
-        background: var(--secondary);
-        color: #000;
-        box-shadow: 0 0 30px var(--secondary);
-    }
-
-    @keyframes spin { 100% { transform: rotate(360deg); } }
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-
-    /* =========================================
-       3. NAVIGATION
-       ========================================= */
-    nav {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        padding: 20px 4%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: rgba(5, 5, 5, 0.6);
-        backdrop-filter: blur(15px);
-        border-bottom: 1px solid rgba(255,255,255,0.05);
-        z-index: 1000;
-        transform: translateY(-100%);
-        animation: slideDown 0.8s forwards 1.2s;
-    }
-
-    @keyframes slideDown { to { transform: translateY(0); } }
-
-    .logo {
-        font-size: 1.8rem;
-        font-weight: 800;
-        letter-spacing: 2px;
-        background: linear-gradient(90deg, var(--secondary), var(--text-main));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
-    }
-
-    .nav-links { display: flex; gap: 30px; }
-
-    .nav-links a {
-        color: var(--text-muted);
-        text-decoration: none;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        position: relative;
-        transition: 0.3s;
-    }
-
-    .nav-links a::before {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: var(--primary);
-        transition: 0.3s;
-        box-shadow: 0 0 10px var(--primary);
-    }
-
-    .nav-links a:hover { color: var(--text-main); }
-    .nav-links a:hover::before { width: 100%; }
-
-    /* =========================================
-       4. LAYOUT & SECTIONS
-       ========================================= */
-    section {
-        min-height: 100vh;
-        padding: 60px 10% 40px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        position: relative;
-    }
-
-    .section-title {
-        font-size: 3rem;
-        margin-bottom: 40px;
-        position: relative;
-        display: inline-block;
-        z-index: 2;
-    }
-
-    .section-title span {
-        color: var(--primary);
-        text-shadow: 0 0 15px var(--primary-dim);
-    }
-
-    .section-title::after {
-        content: 'SECTION_ID';
-        position: absolute;
-        top: -30px;
-        left: 0;
-        font-size: 5rem;
-        font-weight: 900;
-        color: rgba(255,255,255,0.02);
-        z-index: -1;
-        white-space: nowrap;
-    }
-
-    /* Glass Card Style */
-    .glass-panel {
-        background: var(--bg-panel);
-        border: 1px solid var(--glass-border);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(8px);
-        border-radius: 12px;
-        padding: 30px;
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.27), border-color 0.3s;
-        position: relative;
-        overflow: hidden;
-        margin-bottom: 30px;
-    }
-
-    .glass-panel:hover {
-        transform: translateY(-5px) scale(1.01);
-        border-color: var(--secondary);
-        box-shadow: 0 10px 40px rgba(0, 247, 255, 0.1);
-    }
-
-    .glass-panel::before {
-        content: '';
-        position: absolute;
-        top: 0; left: -100%;
-        width: 100%; height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-        transition: 0.5s;
-    }
-
-    .glass-panel:hover::before { left: 100%; }
-
-    /* =========================================
-       5. HERO SECTION
-       ========================================= */
-    #home { text-align: center; }
-
-    .hero-glitch {
-        font-size: 5rem;
-        font-weight: 900;
-        line-height: 1.1;
-        margin-bottom: 20px;
-        position: relative;
-    }
-
-    .hero-glitch::before, .hero-glitch::after {
-        content: attr(data-text);
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: var(--bg-deep);
-    }
-
-    .hero-glitch::before {
-        left: 2px;
-        text-shadow: -1px 0 var(--primary);
-        clip: rect(24px, 550px, 90px, 0);
-        animation: glitch-anim-2 3s infinite linear alternate-reverse;
-    }
-    .hero-glitch::after {
-        left: -2px;
-        text-shadow: -1px 0 var(--secondary);
-        clip: rect(85px, 550px, 140px, 0);
-        animation: glitch-anim 2.5s infinite linear alternate-reverse;
-    }
-
-    @keyframes glitch-anim {
-        0% { clip: rect(10px, 9999px, 30px, 0); }
-        20% { clip: rect(80px, 9999px, 100px, 0); }
-        40% { clip: rect(40px, 9999px, 60px, 0); }
-        60% { clip: rect(120px, 9999px, 140px, 0); }
-        100% { clip: rect(20px, 9999px, 80px, 0); }
-    }
-    @keyframes glitch-anim-2 {
-        0% { clip: rect(60px, 9999px, 90px, 0); }
-        20% { clip: rect(10px, 9999px, 40px, 0); }
-        40% { clip: rect(100px, 9999px, 120px, 0); }
-        100% { clip: rect(30px, 9999px, 70px, 0); }
-    }
-
-    .typewriter-box {
-        font-family: var(--font-mono);
-        color: var(--secondary);
-        font-size: 1.5rem;
-        margin-bottom: 40px;
-        min-height: 1.6em;
-    }
-
-    /* =========================================
-       6. CURRENT PROJECT (MACRO)
-       ========================================= */
-    .project-hero {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 50px;
-        align-items: center;
-    }
-
-    .tech-badge {
-        display: inline-block;
-        padding: 5px 12px;
-        background: rgba(138, 43, 226, 0.1);
-        border: 1px solid var(--primary);
-        color: var(--primary);
-        font-size: 0.8rem;
-        margin-right: 10px;
-        margin-bottom: 10px;
-        border-radius: 4px;
-        font-family: var(--font-mono);
-    }
-
-    .project-image-container {
-        position: relative;
-        height: 350px;
-        border-radius: 12px;
-        overflow: hidden;
-        border: 1px solid var(--border);
-    }
-
-    .project-img-placeholder {
-        width: 100%;
-        height: 100%;
-        background: #111;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #333;
-        flex-direction: column;
-    }
-
-    /* Real image override */
-    .project-img-real {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0.7;
-        transition: 0.5s;
-    }
-    .project-image-container:hover .project-img-real { opacity: 1; transform: scale(1.05); }
-
-    .status-indicator {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        padding: 5px 15px;
-        background: rgba(0,0,0,0.8);
-        border: 1px solid var(--secondary);
-        color: var(--secondary);
-        border-radius: 20px;
-        font-size: 0.8rem;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        box-shadow: 0 0 10px var(--secondary-dim);
-    }
-
-    .blink { width: 8px; height: 8px; background: var(--secondary); border-radius: 50%; animation: pulse 1s infinite; }
-    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-
-    /* =========================================
-       9. FOOTER
-       ========================================= */
-    footer {
-        border-top: 1px solid var(--glass-border);
-        padding: 50px;
-        text-align: center;
-        background: #000;
-        margin-top: 100px;
-    }
-
-    .socials { font-size: 2rem; margin-bottom: 20px; }
-    .socials i { margin: 0 15px; color: var(--text-muted); transition: 0.3s; }
-    .socials i:hover { color: var(--primary); transform: translateY(-5px); }
-
-    /* =========================================
-       10. RESPONSIVE
-       ========================================= */
-    @media (max-width: 900px) {
-        .project-hero { grid-template-columns: 1fr; }
-        .hero-glitch { font-size: 3rem; }
-    }
-</style>
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
     <div id="cursor"></div>
-
     <canvas id="matrix-canvas"></canvas>
 
     <div id="intro-overlay">
         <div class="loader-circle"></div>
-        <h2 style="font-family: var(--font-mono); letter-spacing: 5px;">SYSTEM INITIALIZATION</h2>
-        <div style="color: var(--text-muted); margin-top: 10px;">Loading assets...</div>
-        <button class="enter-btn" id="start-btn">ACCESS TERMINAL</button>
+        <h2 style="font-family: var(--font-mono); letter-spacing: 5px;" data-text-key="system-init">SYSTEM INITIALIZATION</h2>
+        <div style="color: var(--text-muted); margin-top: 10px;" data-text-key="loading-assets">Loading assets...</div>
+        <button class="enter-btn" id="start-btn" data-text-key="access-terminal">ACCESS TERMINAL</button>
     </div>
 
     <nav>
         <div class="logo">Astro<span style="color:var(--primary)">Portfolio</span></div>
         <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#current">Current Project</a>
-            <a href="#about">About</a>
-            <a href="#experience">Experience</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
+            <a href="#home" data-text-key="nav-home">Home</a>
+            <a href="#current" data-text-key="nav-current">Current Project</a>
+            <a href="#about" data-text-key="nav-about">About</a>
+            <a href="#experience" data-text-key="nav-experience">Experience</a>
+            <a href="#projects" data-text-key="nav-projects">Projects</a>
+            <a href="#skills" data-text-key="nav-skills">Skills</a>
+            <a href="#contact" data-text-key="nav-contact">Contact</a>
+        </div>
+        <div class="language-toggle">
+            <button class="lang-btn active" data-lang="fr" id="lang-fr">FR</button>
+            <button class="lang-btn" data-lang="en" id="lang-en">EN</button>
         </div>
     </nav>
 
     <section id="home">
-        <h1 class="hero-glitch" data-text="ASTRO PORTFOLIO">ASTRO PORTFOLIO</h1>
+        <h1 class="hero-glitch" data-text="ASTRO PORTFOLIO" data-text-key="home-title">ASTRO PORTFOLIO</h1>
         <div class="typewriter-box" id="typewriter"></div>
         <div style="margin-top: 30px;">
-            <a href="#current" class="enter-btn" style="opacity:1; transform:none; display:inline-block; font-size:1rem; padding: 12px 30px;">
+            <a href="#current" class="enter-btn" style="opacity:1; transform:none; display:inline-block; font-size:1rem; padding: 12px 30px;" data-text-key="view-project-btn">
                 View Current Project
             </a>
         </div>
     </section>
 
     <section id="current">
-        <div class="section-title"><span>CURRENT</span> PROJECT</div>
+        <div class="section-title"><span data-text-key="current-section">CURRENT PROJECT</span></div>
         <div class="glass-panel project-hero">
             <div class="project-details">
                 <div style="display:flex; justify-content:space-between; align-items:start;">
-                    <h2 style="font-size: 2.2rem; margin-bottom: 15px;">Automated Event Logic Engine</h2>
+                    <h2 style="font-size: 2.2rem; margin-bottom: 15px;" data-text-key="current-title">Automated Event Logic Engine</h2>
                 </div>
-                <h4 style="color: var(--text-muted); margin-bottom: 20px; font-family:var(--font-mono);">
+                <h4 style="color: var(--text-muted); margin-bottom: 20px; font-family:var(--font-mono);" data-text-key="current-subtitle">
                     Target: "Great Kraken Farm" // Environment: GPO
                 </h4>
-
                 <div style="margin-bottom: 25px;">
                     <span class="tech-badge">Python 3.11</span>
                     <span class="tech-badge">OpenCV</span>
                     <span class="tech-badge">Win32 API</span>
                     <span class="tech-badge">AsyncIO</span>
                 </div>
-
-                <p style="line-height: 1.6; color: #ddd; margin-bottom: 20px;">
+                <p style="line-height: 1.6; color: #ddd; margin-bottom: 20px;" data-text-key="current-desc-1">
                     Currently engineering a high-performance automation script designed for complex event cycles within virtualized environments.
                     Unlike standard macros, this system utilizes <strong style="color:var(--secondary)">computer vision</strong> to detect state changes (HP thresholds, cooldowns, visual cues) in real-time with sub-50ms latency.
                 </p>
-                <p style="line-height: 1.6; color: #ddd;">
+                <p style="line-height: 1.6; color: #ddd;" data-text-key="current-desc-2">
                     The architecture implements a finite state machine to handle exception flows (connection drops, player interference) ensuring 99.9% uptime without user intervention.
                 </p>
             </div>
-
             <div class="project-image-container">
                 <div class="status-indicator">
-                    <div class="blink"></div> SYSTEM ACTIVE
+                    <div class="blink"></div> <span data-text-key="system-active">SYSTEM ACTIVE</span>
                 </div>
-                <div class="project-img-placeholder">
-                    <i class="fas fa-terminal" style="font-size: 4rem; color: #333; margin-bottom: 20px;"></i>
-                    <span>[VISUAL FEED OFFLINE]</span>
-                    <span style="font-size:0.8rem; color:#555">Hover to engage</span>
+                <div class="project-img-placeholder" style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px;">
+                    <i class="fas fa-video" style="font-size: 4rem; color: #bc13fe;"></i>
+                    <a href="https://youtu.be/lWATH6w4l3g" target="_blank" style="color: var(--secondary); font-size: 1.1rem; text-decoration: none; padding: 12px 20px; border: 2px solid var(--secondary); border-radius: 6px; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.backgroundColor='rgba(0, 247, 255, 0.1)'" onmouseout="this.style.backgroundColor='transparent'">Cliquer sur le lien pour voir la vidéo</a>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="about">
-        <div class="section-title"><span>ABOUT</span> ME</div>
+        <div class="section-title"><span data-text-key="about-section">ABOUT</span></div>
         <div class="glass-panel">
-            <h2 style="font-size: 2rem;">Personal Information</h2>
-            <p style="font-size: 1.2rem;"><strong>Name:</strong> Noam M'Sakni</p>
-            <p style="font-size: 1.2rem;"><strong>Date of Birth:</strong> 9 March 2007</p>
-            <p style="font-size: 1.2rem;"><strong>Location:</strong> Châteauvilain, France</p>
-            <p style="font-size: 1.2rem;"><strong>Email:</strong> noammsakni@gmail.com</p>
-            <p style="font-size: 1.2rem;"><strong>Phone:</strong> 06 38 03 48 06</p>
+            <h2 style="font-size: 2rem;" data-text-key="about-title">Personal Information</h2>
+            <p style="font-size: 1.2rem;"><strong data-text-key="personal-info-name">Name:</strong> Noam M'Sakni</p>
+            <p style="font-size: 1.2rem;"><strong data-text-key="personal-info-dob">Date of Birth:</strong> 9 March 2007</p>
+            <p style="font-size: 1.2rem;"><strong data-text-key="personal-info-location">Location:</strong> Châteauvilain, France</p>
+            <p style="font-size: 1.2rem;"><strong data-text-key="personal-info-email">Email:</strong> <a href="mailto:noammsakni@gmail.com">noammsakni@gmail.com</a></p>
+            <p style="font-size: 1.2rem;"><strong data-text-key="personal-info-phone">Phone:</strong> 06 38 03 48 06</p>
         </div>
     </section>
 
     <section id="experience">
-        <div class="section-title"><span>EXPERIENCE</span> & ACTIVITIES</div>
+        <div class="section-title"><span data-text-key="experience-section">EXPERIENCE & ACTIVITIES</span></div>
         <div class="glass-panel">
-            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Theater & Performing Arts</h2>
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;" data-text-key="theater-title">Theater & Performing Arts</h2>
             <div class="experience-item">
-                <h3 style="font-size: 1.3rem;">Cie Castel Troupe (Since 2020)</h3>
-                <p style="font-size: 1.1rem;">Regular participant in theater performances, developing strong public speaking skills, stage presence, and team cohesion. Learned to work collaboratively with directors, fellow actors, and production teams to deliver compelling performances.</p>
+                <h3 style="font-size: 1.3rem;" data-text-key="cie-castel">Cie Castel Troupe (Since 2020)</h3>
+                <p style="font-size: 1.1rem;" data-text-key="cie-castel-desc">Regular participant in theater performances, developing strong public speaking skills, stage presence, and team cohesion.</p>
             </div>
             <div class="experience-item">
-                <h3 style="font-size: 1.3rem;">Circus Arts (Since 2020)</h3>
-                <p style="font-size: 1.1rem;">Trained in various circus disciplines including acrobatics and juggling. Developed physical coordination, discipline, and the ability to perform under pressure.</p>
+                <h3 style="font-size: 1.3rem;" data-text-key="circus-arts">Circus Arts (Since 2020)</h3>
+                <p style="font-size: 1.1rem;" data-text-key="circus-arts-desc">Trained in various circus disciplines including acrobatics and juggling. Developed physical coordination, discipline, and the ability to perform under pressure.</p>
             </div>
         </div>
-
         <div class="glass-panel">
-            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Music & Personal Development</h2>
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;" data-text-key="music-dev">Music & Personal Development</h2>
             <div class="experience-item">
-                <h3 style="font-size: 1.3rem;">Bagpipe Musician (Since 2021)</h3>
-                <p style="font-size: 1.1rem;">Self-taught bagpipe player with regular practice and performance experience. Developed perseverance, personal discipline, and the ability to focus on long-term goals through consistent practice.</p>
+                <h3 style="font-size: 1.3rem;" data-text-key="bagpipe">Bagpipe Musician (Since 2021)</h3>
+                <p style="font-size: 1.1rem;" data-text-key="bagpipe-desc">Self-taught bagpipe player with regular practice and performance experience.</p>
             </div>
         </div>
-
         <div class="glass-panel">
-            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Academic & Community Engagement</h2>
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;" data-text-key="academic-title">Academic & Community Engagement</h2>
             <div class="experience-item">
-                <h3 style="font-size: 1.3rem;">Fundraising Campaign Organizer (2021-2022)</h3>
-                <p style="font-size: 1.1rem;">Led a successful fundraising campaign in 5th grade to finance a trip for people with disabilities. Managed a team of classmates, coordinated events, and handled communications with donors and beneficiaries.</p>
+                <h3 style="font-size: 1.3rem;" data-text-key="fundraising">Fundraising Campaign Organizer (2021-2022)</h3>
+                <p style="font-size: 1.1rem;" data-text-key="fundraising-desc">Led a successful fundraising campaign in 5th grade to finance a trip for people with disabilities.</p>
             </div>
             <div class="experience-item">
-                <h3 style="font-size: 1.3rem;">Eloquence Contest (2022)</h3>
-                <p style="font-size: 1.1rem;">Awarded 3rd place at the departmental level for reading and public speaking skills. Prepared and delivered compelling oral presentations on various topics, demonstrating strong communication and persuasive skills.</p>
+                <h3 style="font-size: 1.3rem;" data-text-key="eloquence">Eloquence Contest (2022)</h3>
+                <p style="font-size: 1.1rem;" data-text-key="eloquence-desc">Awarded 3rd place at the departmental level for reading and public speaking skills.</p>
             </div>
         </div>
     </section>
 
+    <!-- =============================================
+         PROJECTS — SPECTACULAR CAROUSEL
+         ============================================= -->
     <section id="projects">
-        <div class="section-title"><span>MY</span> PROJECTS</div>
+        <div class="section-title"><span data-text-key="projects-section">MY PROJECTS</span></div>
 
-        <div class="glass-panel">
-            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Professional Projects</h2>
-            <div class="project-item">
-                <h3 style="font-size: 1.3rem;">Automated Event Logic Engine</h3>
-                <p style="font-size: 1.1rem;">Developed a high-performance automation script using Python that utilizes computer vision to detect state changes in real-time with sub-50ms latency. Implemented a finite state machine architecture to handle exception flows and ensure 99.9% uptime without user intervention.</p>
-                <div style="margin-top: 15px;">
-                    <span class="tech-badge">Python 3.11</span>
-                    <span class="tech-badge">OpenCV</span>
-                    <span class="tech-badge">Win32 API</span>
-                    <span class="tech-badge">AsyncIO</span>
-                </div>
-            </div>
-            <div class="project-item">
-                <h3 style="font-size: 1.3rem;">Discord Bot Development</h3>
-                <p style="font-size: 1.1rem;">Created a moderation and utility bot using Python and discord.py that handles over 10,000 requests daily. Implemented features such as automated moderation, message filtering, and user management.</p>
-                <div style="margin-top: 15px;">
-                    <span class="tech-badge">Python</span>
-                    <span class="tech-badge">discord.py</span>
-                    <span class="tech-badge">SQLite</span>
-                </div>
-            </div>
+        <!-- Category tabs -->
+        <div class="proj-tabs" id="proj-tabs">
+            <button class="proj-tab active" data-cat="professional" data-text-key="tab-professional">Professional</button>
+            <button class="proj-tab" data-cat="personal" data-text-key="tab-personal">Personal</button>
+            <button class="proj-tab" data-cat="academic" data-text-key="tab-academic">Academic</button>
+            <button class="proj-tab" data-cat="school" data-text-key="tab-school">School</button>
         </div>
 
-        <div class="glass-panel">
-            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Personal Projects</h2>
-            <div class="project-item">
-                <h3 style="font-size: 1.3rem;">Self-Hosted Home Lab</h3>
-                <p style="font-size: 1.1rem;">Designed and implemented a complete home server setup running on Raspberry Pi with Docker containerization. Configured services including Nginx Proxy Manager, Pi-Hole DNS, and Portainer for container management.</p>
-                <div style="margin-top: 15px;">
-                    <span class="tech-badge">Raspberry Pi</span>
-                    <span class="tech-badge">Docker</span>
-                    <span class="tech-badge">Nginx</span>
-                </div>
-            </div>
-            <div class="project-item">
-                <h3 style="font-size: 1.3rem;">Portfolio Development</h3>
-                <p style="font-size: 1.1rem;">Developed multiple versions of personal portfolio websites using HTML5, CSS3, and JavaScript. Experimented with different design approaches and interactive elements to create engaging user experiences.</p>
-                <div style="margin-top: 15px;">
-                    <span class="tech-badge">HTML5</span>
-                    <span class="tech-badge">CSS3</span>
-                    <span class="tech-badge">JavaScript</span>
-                </div>
-            </div>
+        <!-- Counter -->
+        <div class="carousel-counter" id="carousel-counter">
+            <span class="current-num" id="counter-current">01</span>
+            <div class="carousel-counter-sep"></div>
+            <span class="total-num" id="counter-total">/ 06</span>
+            <span style="margin-left:12px; font-size:0.75rem; letter-spacing:2px;" id="counter-label" data-text-key="counter-label">PROJECTS</span>
         </div>
 
-        <div class="glass-panel">
-            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Academic Projects</h2>
-            <div class="project-item">
-                <h3 style="font-size: 1.3rem;">Computer Science Studies</h3>
-                <p style="font-size: 1.1rem;">Currently pursuing a Bachelor's degree in Computer Science at Nantes University with a focus on software engineering and system architecture. Coursework includes programming, algorithms, data structures, and system design.</p>
+        <!-- Carousel -->
+        <div class="carousel-outer" id="carousel-outer">
+            <button class="carousel-arrow prev" id="arrow-prev" aria-label="Previous">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-arrow next" id="arrow-next" aria-label="Next">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <div class="carousel-track-wrapper">
+                <div class="carousel-track" id="carousel-track"></div>
             </div>
-            <div class="project-item">
-                <h3 style="font-size: 1.3rem;">High School Projects</h3>
-                <p style="font-size: 1.1rem;">Completed various technical projects during high school studies in STI2D, including electronics prototyping, programming assignments, and system design projects.</p>
+
+            <!-- Progress bar -->
+            <div class="carousel-progress">
+                <div class="carousel-progress-fill" id="progress-fill"></div>
             </div>
+
+            <!-- Pagination dots -->
+            <div class="carousel-pagination" id="carousel-pagination"></div>
         </div>
     </section>
 
     <section id="skills">
-        <div class="section-title"><span>TECHNICAL</span> SKILLS</div>
-
+        <div class="section-title"><span data-text-key="skills-section">TECHNICAL SKILLS</span></div>
         <div class="glass-panel">
-            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Programming Languages</h2>
-            <div class="grid-3">
-                <div class="glass-panel skill-card">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;" data-text-key="programming-langs">Programming Languages</h2>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap:20px;">
+                <div class="glass-panel" style="margin-bottom:0">
                     <h3 style="font-size: 1.5rem;"><i class="fab fa-python"></i> Python</h3>
-                    <p style="font-size:0.9rem; color:#ccc;">Advanced scripting, automation, and backend development with Python 3.11</p>
-                    <div class="progress-container">
-                        <div class="progress-label"><span>Proficiency</span><span>95%</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div>
+                    <p style="font-size:0.9rem; color:#ccc;" data-text-key="python-desc">Advanced scripting, automation, and backend development with Python 3.11</p>
+                    <div style="margin-top:12px;">
+                        <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:var(--text-muted);margin-bottom:6px"><span data-text-key="proficiency">Proficiency</span><span>60%</span></div>
+                        <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px"><div style="height:100%;width:60%;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:2px"></div></div>
                     </div>
                 </div>
-                <div class="glass-panel skill-card">
+                <div class="glass-panel" style="margin-bottom:0">
                     <h3 style="font-size: 1.5rem;"><i class="fab fa-html5"></i> Web Technologies</h3>
-                    <p style="font-size:0.9rem; color:#ccc;">HTML5, CSS3, JavaScript, and responsive design principles</p>
-                    <div class="progress-container">
-                        <div class="progress-label"><span>Proficiency</span><span>85%</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+                    <p style="font-size:0.9rem; color:#ccc;" data-text-key="web-tech-desc">HTML5, CSS3, JavaScript, and responsive design principles</p>
+                    <div style="margin-top:12px;">
+                        <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:var(--text-muted);margin-bottom:6px"><span data-text-key="proficiency">Proficiency</span><span>40%</span></div>
+                        <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px"><div style="height:100%;width:40%;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:2px"></div></div>
                     </div>
                 </div>
-                <div class="glass-panel skill-card">
+                <div class="glass-panel" style="margin-bottom:0">
                     <h3 style="font-size: 1.5rem;"><i class="fas fa-code"></i> C/C++</h3>
-                    <p style="font-size:0.9rem; color:#ccc;">System programming and performance optimization with C and C++</p>
-                    <div class="progress-container">
-                        <div class="progress-label"><span>Proficiency</span><span>80%</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
+                    <p style="font-size:0.9rem; color:#ccc;" data-text-key="cpp-desc">System programming and performance optimization with C and C++</p>
+                    <div style="margin-top:12px;">
+                        <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:var(--text-muted);margin-bottom:6px"><span data-text-key="proficiency">Proficiency</span><span>20%</span></div>
+                        <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px"><div style="height:100%;width:20%;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:2px"></div></div>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="glass-panel">
-            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">System & DevOps</h2>
-            <div class="grid-3">
-                <div class="glass-panel skill-card">
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;" data-text-key="system-devops">System & DevOps</h2>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap:20px;">
+                <div class="glass-panel" style="margin-bottom:0">
                     <h3 style="font-size: 1.5rem;"><i class="fas fa-server"></i> Linux Administration</h3>
-                    <p style="font-size:0.9rem; color:#ccc;">Server management, shell scripting, and system configuration</p>
-                    <div class="progress-container">
-                        <div class="progress-label"><span>Proficiency</span><span>80%</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
+                    <p style="font-size:0.9rem; color:#ccc;" data-text-key="linux-admin-desc">Server management, shell scripting, and system configuration</p>
+                    <div style="margin-top:12px;">
+                        <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:var(--text-muted);margin-bottom:6px"><span data-text-key="proficiency">Proficiency</span><span>70%</span></div>
+                        <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px"><div style="height:100%;width:70%;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:2px"></div></div>
                     </div>
                 </div>
-                <div class="glass-panel skill-card">
-                    <h3 style="font-size: 1.5rem;"><i class="fas fa-docker"></i> Docker</h3>
-                    <p style="font-size:0.9rem; color:#ccc;">Containerization, image creation, and orchestration</p>
-                    <div class="progress-container">
-                        <div class="progress-label"><span>Proficiency</span><span>75%</span></div>
-                        <div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div>
+                <div class="glass-panel" style="margin-bottom:0">
+                    <h3 style="font-size: 1.5rem;"><i class="fas fa-cube"></i> Docker</h3>
+                    <p style="font-size:0.9rem; color:#ccc;" data-text-key="docker-desc">Containerization, image creation, and orchestration</p>
+                    <div style="margin-top:12px;">
+                        <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:var(--text-muted);margin-bottom:6px"><span data-text-key="proficiency">Proficiency</span><span>15%</span></div>
+                        <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px"><div style="height:100%;width:15%;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:2px"></div></div>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="glass-panel">
-            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Languages</h2>
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;" data-text-key="languages">Languages</h2>
             <div class="language-item">
-                <h3 style="font-size: 1.3rem;">French <span style="float: right; color: var(--text-muted);">Native</span></h3>
-                <p style="font-size: 1.1rem;">Fluent in both written and spoken French with excellent orthographic skills</p>
+                <h3 style="font-size: 1.3rem;"><span data-text-key="french">French</span> <span style="float: right; color: var(--text-muted);" data-text-key="french-level">Native</span></h3>
+                <p style="font-size: 1.1rem;" data-text-key="french-desc">Fluent in both written and spoken French with excellent orthographic skills</p>
             </div>
-            <div class="language-item">
-                <h3 style="font-size: 1.3rem;">English <span style="float: right; color: var(--text-muted);">Fluent</span></h3>
-                <p style="font-size: 1.1rem;">Proficient in technical and conversational English, with strong writing skills</p>
+            <div class="language-item" style="margin-top:16px">
+                <h3 style="font-size: 1.3rem;"><span data-text-key="english">English</span> <span style="float: right; color: var(--text-muted);" data-text-key="english-level">Fluent</span></h3>
+                <p style="font-size: 1.1rem;" data-text-key="english-desc">Proficient in technical and conversational English, with strong writing skills</p>
             </div>
         </div>
-
         <div class="glass-panel">
-            <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Soft Skills</h2>
-            <div class="skills-list">
-                <div class="skill-item">
-                    <h4 style="font-size: 1.2rem;">Problem Solving</h4>
-                    <p style="font-size: 1rem;">Analytical thinking and creative problem-solving approach developed through programming challenges and real-world projects</p>
-                </div>
-                <div class="skill-item">
-                    <h4 style="font-size: 1.2rem;">Team Collaboration</h4>
-                    <p style="font-size: 1rem;">Effective team player with strong communication skills, honed through theater performances and group projects</p>
-                </div>
-                <div class="skill-item">
-                    <h4 style="font-size: 1.2rem;">Adaptability</h4>
-                    <p style="font-size: 1rem;">Quick learner with ability to adapt to new technologies and challenges, demonstrated through self-taught programming skills</p>
-                </div>
-                <div class="skill-item">
-                    <h4 style="font-size: 1.2rem;">Leadership</h4>
-                    <p style="font-size: 1rem;">Proven leadership skills through organizing fundraising campaigns and managing team projects</p>
-                </div>
+            <h2 style="font-size: 1.5rem; margin-bottom: 20px;" data-text-key="soft-skills">Soft Skills</h2>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:16px;">
+                <div><h4 style="font-size: 1.2rem;" data-text-key="problem-solving">Problem Solving</h4><p style="font-size: 1rem; color:var(--text-muted)" data-text-key="problem-solving-desc">Analytical thinking and creative problem-solving approach</p></div>
+                <div><h4 style="font-size: 1.2rem;" data-text-key="team-collab">Team Collaboration</h4><p style="font-size: 1rem; color:var(--text-muted)" data-text-key="team-collab-desc">Effective team player with strong communication skills</p></div>
+                <div><h4 style="font-size: 1.2rem;" data-text-key="adaptability">Adaptability</h4><p style="font-size: 1rem; color:var(--text-muted)" data-text-key="adaptability-desc">Quick learner with ability to adapt to new technologies</p></div>
+                <div><h4 style="font-size: 1.2rem;" data-text-key="leadership">Leadership</h4><p style="font-size: 1rem; color:var(--text-muted)" data-text-key="leadership-desc">Proven leadership skills through organizing campaigns</p></div>
             </div>
         </div>
     </section>
@@ -694,173 +250,10 @@
         <div class="socials">
             <a href="https://github.com/Shunikai972" target="_blank"><i class="fab fa-github"></i></a>
         </div>
-        <p style="color:var(--text-muted)">© 2026 Astro Portfolio | All rights reserved</p>
+        <p style="color:var(--text-muted);" data-text-key="footer">© 2026 Astro Portfolio | All rights reserved</p>
     </footer>
 
-<script>
-    /* =========================================
-       1. SYSTEM INITIALIZATION & CURSOR
-       ========================================= */
-    const cursor = document.getElementById('cursor');
-    const introOverlay = document.getElementById('intro-overlay');
-    const startBtn = document.getElementById('start-btn');
-
-    // Mouse Movement for Custom Cursor
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
-
-    // Hover effects on clickable elements
-    const clickables = document.querySelectorAll('a, button, .glass-panel, i');
-    clickables.forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('active'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-    });
-
-    // Start Button Logic
-    startBtn.addEventListener('click', () => {
-        introOverlay.style.opacity = '0';
-        setTimeout(() => {
-            introOverlay.style.visibility = 'hidden';
-        }, 1000);
-    });
-
-    /* =========================================
-       2. TYPEWRITER EFFECT
-       ========================================= */
-    const words = [
-        "PYTHON DEVELOPER",
-        "SYSTEM ARCHITECT",
-        "AUTOMATION SPECIALIST",
-        "WEB DEVELOPER"
-    ];
-    let i = 0, timer;
-
-    function typeWriter(text, n) {
-        if (n < (text.length)) {
-            document.getElementById("typewriter").innerHTML = text.substring(0, n+1) + '<span aria-hidden="true">|</span>';
-            setTimeout(() => typeWriter(text, n + 1), 100);
-        } else {
-            setTimeout(() => eraseWriter(text, n), 2000);
-        }
-    }
-
-    function eraseWriter(text, n) {
-        if (n >= 0) {
-            document.getElementById("typewriter").innerHTML = text.substring(0, n) + '<span aria-hidden="true">|</span>';
-            setTimeout(() => eraseWriter(text, n - 1), 50);
-        } else {
-            i = (i + 1) % words.length;
-            setTimeout(() => typeWriter(words[i], 0), 500);
-        }
-    }
-
-    // Start typewriter after load
-    setTimeout(() => typeWriter(words[0], 0), 2000);
-
-    /* =========================================
-       4. MATRIX "BLACK HOLE" PHYSICS ENGINE
-       ========================================= */
-    const canvas = document.getElementById('matrix-canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height;
-    let particles = [];
-
-    // Configuration
-    const particleCount = 150;
-    const mouse = { x: -1000, y: -1000 };
-
-    function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    window.addEventListener('mousemove', e => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-    });
-
-    class Particle {
-        constructor() {
-            this.reset();
-        }
-
-        reset() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            this.val = Math.random() > 0.5 ? '1' : '0';
-            this.size = Math.random() * 10 + 8;
-            this.vx = (Math.random() - 0.5) * 0.5;
-            this.vy = (Math.random() - 0.5) * 0.5;
-            this.baseColor = '#0f3';
-        }
-
-        update() {
-            const dx = mouse.x - this.x;
-            const dy = mouse.y - this.y;
-            const distSq = dx*dx + dy*dy;
-            const forceRadius = 25000;
-
-            if (distSq < forceRadius) {
-                const dist = Math.sqrt(distSq);
-                const force = (forceRadius - distSq) / forceRadius;
-                const angle = Math.atan2(dy, dx);
-
-                this.vx += Math.cos(angle) * force * 0.8;
-                this.vy += Math.sin(angle) * force * 0.8;
-            } else {
-                if (this.vx > 1) this.vx *= 0.95;
-                if (this.vx < -1) this.vx *= 0.95;
-                if (this.vy > 1) this.vy *= 0.95;
-                if (this.vy < -1) this.vy *= 0.95;
-            }
-
-            this.x += this.vx;
-            this.y += this.vy;
-
-            if (this.x < 0) this.x = width;
-            if (this.x > width) this.x = 0;
-            if (this.y < 0) this.y = height;
-            if (this.y > height) this.y = 0;
-
-            if (Math.random() < 0.02) this.val = Math.random() > 0.5 ? '1' : '0';
-        }
-
-        draw() {
-            ctx.font = `${this.size}px monospace`;
-
-            const dx = mouse.x - this.x;
-            const dy = mouse.y - this.y;
-            const dist = Math.sqrt(dx*dx + dy*dy);
-
-            if (dist < 150) {
-                ctx.fillStyle = `rgba(255, 255, 255, ${1 - dist/150})`;
-            } else {
-                ctx.fillStyle = Math.random() > 0.9 ? '#fff' : 'rgba(0, 247, 255, 0.3)';
-            }
-
-            ctx.fillText(this.val, this.x, this.y);
-        }
-    }
-
-    for(let i=0; i<particleCount; i++) {
-        particles.push(new Particle());
-    }
-
-    function animateMatrix() {
-        ctx.fillStyle = 'rgba(5, 5, 5, 0.2)';
-        ctx.fillRect(0, 0, width, height);
-
-        particles.forEach(p => {
-            p.update();
-            p.draw();
-        });
-        requestAnimationFrame(animateMatrix);
-    }
-    animateMatrix();
-</script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="assets/script.js"></script>
 </body>
 </html>
