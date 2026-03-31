@@ -1,0 +1,1 @@
+class Cercle(x : Int, y : Int, diametre: Int): Ellipse(x,y,diametre, diametre)

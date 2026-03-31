@@ -1,0 +1,1 @@
+class Carre(x : Int,y : Int, cote : Int) : Rectangle(x,y , cote, cote)

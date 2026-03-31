@@ -1,0 +1,217 @@
+-- ============================================================
+-- TD/TP5 - Dictionnaire de données Oracle
+-- IUT de Nantes - Ressource R2.06
+-- ============================================================
+
+
+-- ============================================================
+-- EXERCICE 1.1 - USER_OBJECTS
+-- ============================================================
+
+-- Tous les objets du schéma courant (toutes colonnes)
+SELECT * FROM USER_OBJECTS;
+
+-- Seulement les colonnes demandées
+SELECT OBJECT_NAME, OBJECT_TYPE, CREATED
+FROM USER_OBJECTS;
+
+-- Seulement les objets de type TABLE
+SELECT OBJECT_NAME, OBJECT_TYPE, CREATED
+FROM USER_OBJECTS
+WHERE OBJECT_TYPE = 'TABLE';
+
+
+-- ============================================================
+-- EXERCICE 1.2 - USER_TABLES
+-- ============================================================
+
+-- Tables avec le nom du tablespace
+SELECT TABLE_NAME, TABLESPACE_NAME
+FROM USER_TABLES;
+
+
+-- ============================================================
+-- EXERCICE 1.3 - USER_TAB_COLUMNS
+-- ============================================================
+
+-- Pour chaque table : nom de colonne, type, longueur, précision
+SELECT TABLE_NAME, COLUMN_NAME, DATA_TYPE, DATA_LENGTH, DATA_PRECISION
+FROM USER_TAB_COLUMNS
+ORDER BY TABLE_NAME, COLUMN_ID;
+
+
+-- ============================================================
+-- EXERCICE 1.4 - USER_CONSTRAINTS
+-- ============================================================
+
+-- Toutes les contraintes de vos tables
+SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE, TABLE_NAME, R_CONSTRAINT_NAME, STATUS
+FROM USER_CONSTRAINTS
+ORDER BY TABLE_NAME;
+
+/*
+  EXPLICATION DES COLONNES :
+
+  CONSTRAINT_NAME : Nom de la contrainte.
+    - Si vous l'avez nommée explicitement (ex: PK_CLIENT), ce nom apparaît.
+    - Sinon Oracle génère un nom automatique du type SYS_Cxxxxxx.
+
+  CONSTRAINT_TYPE : Type de la contrainte, codé sur une lettre :
+    - 'P' = PRIMARY KEY       (clé primaire)
+    - 'U' = UNIQUE            (unicité)
+    - 'C' = CHECK             (vérification, inclut aussi NOT NULL)
+    - 'R' = REFERENTIAL       (clé étrangère / intégrité référentielle)
+    - 'V' = WITH CHECK OPTION (sur une vue)
+    - 'O' = WITH READ ONLY    (sur une vue)
+
+  R_CONSTRAINT_NAME : Renseigné uniquement pour les contraintes de type 'R' (clé étrangère).
+    Contient le nom de la contrainte PRIMARY KEY ou UNIQUE référencée dans la table parente.
+*/
+
+
+-- ============================================================
+-- EXERCICE 1.5 - USER_CONS_COLUMNS
+-- ============================================================
+
+-- Contraintes avec les colonnes associées, pour chaque table
+SELECT ucc.TABLE_NAME, ucc.CONSTRAINT_NAME, uc.CONSTRAINT_TYPE,
+       ucc.COLUMN_NAME, ucc.POSITION
+FROM USER_CONS_COLUMNS ucc
+JOIN USER_CONSTRAINTS uc
+  ON ucc.CONSTRAINT_NAME = uc.CONSTRAINT_NAME
+ORDER BY ucc.TABLE_NAME, ucc.CONSTRAINT_NAME, ucc.POSITION;
+
+
+-- ============================================================
+-- EXERCICE 1.6 - USER_VIEWS
+-- ============================================================
+
+-- Code source (texte) de toutes vos vues
+SELECT VIEW_NAME, TEXT
+FROM USER_VIEWS;
+
+
+-- ============================================================
+-- EXERCICE 1.7 - USER_USERS et ALL_USERS
+-- ============================================================
+
+-- Informations sur votre propre compte utilisateur
+SELECT * FROM USER_USERS;
+
+-- Informations sur tous les utilisateurs de la base
+SELECT * FROM ALL_USERS;
+
+/*
+  USER_USERS contient (pour l'utilisateur courant) :
+    - USERNAME         : nom de l'utilisateur
+    - USER_ID          : identifiant interne
+    - ACCOUNT_STATUS   : état du compte (OPEN, LOCKED, EXPIRED...)
+    - LOCK_DATE        : date de verrouillage éventuel
+    - EXPIRY_DATE      : date d'expiration du mot de passe
+    - DEFAULT_TABLESPACE : tablespace par défaut pour les objets
+    - TEMPORARY_TABLESPACE : tablespace temporaire
+    - CREATED          : date de création du compte
+    - PROFILE          : profil de sécurité associé
+
+  ALL_USERS contient pour tous les utilisateurs :
+    USERNAME, USER_ID, CREATED (moins d'informations que USER_USERS)
+*/
+
+
+-- ============================================================
+-- EXERCICE 1.8 - USER_ROLE_PRIVS
+-- ============================================================
+
+-- Exemple : créer une vue et l'accorder au binôme (remplacez NOM_BINOME)
+-- CREATE OR REPLACE VIEW MA_VUE_PARTAGEE AS
+--   SELECT * FROM MA_TABLE;
+-- GRANT SELECT ON MA_VUE_PARTAGEE TO NOM_BINOME;
+
+-- Afficher les rôles que vous possédez
+SELECT *
+FROM USER_ROLE_PRIVS;
+
+
+-- ============================================================
+-- EXERCICE 1.9 - ROLE_ROLE_PRIVS
+-- ============================================================
+
+-- Rôles accordés à d'autres rôles (hiérarchie de rôles)
+SELECT *
+FROM ROLE_ROLE_PRIVS;
+
+
+-- ============================================================
+-- EXERCICE 1.10 - ROLE_TAB_PRIVS
+-- ============================================================
+
+-- Privilèges sur les tables accordés via des rôles
+SELECT *
+FROM ROLE_TAB_PRIVS;
+
+-- Privilèges reçus de votre binôme sur ses tables (remplacez NOM_BINOME)
+-- SELECT ROLE, TABLE_NAME, PRIVILEGE, GRANTABLE
+-- FROM ROLE_TAB_PRIVS
+-- WHERE OWNER = 'NOM_BINOME';
+
+-- Privilèges reçus de l'utilisateur BASETD
+SELECT ROLE, TABLE_NAME, PRIVILEGE, GRANTABLE
+FROM ROLE_TAB_PRIVS
+WHERE OWNER = 'BASETD';
+
+
+-- ============================================================
+-- EXERCICE 1.11 - SESSION_ROLES
+-- ============================================================
+
+-- Rôles actifs dans la session courante
+SELECT * FROM SESSION_ROLES;
+
+/*
+  DÉFINITION DES RÔLES ORACLE STANDARDS :
+
+  CONNECT  : Rôle historique (Oracle 9i et avant). Permettait de se connecter
+             à la base et contenait des privilèges comme CREATE SESSION,
+             CREATE TABLE, CREATE VIEW, etc.
+             Depuis Oracle 10g, il ne contient plus que CREATE SESSION.
+
+  RESOURCE : Permet de créer des objets dans son propre schéma :
+             CREATE TABLE, CREATE SEQUENCE, CREATE PROCEDURE,
+             CREATE TRIGGER, CREATE TYPE, CREATE CLUSTER, CREATE OPERATOR.
+             Attribue aussi implicitement UNLIMITED TABLESPACE.
+
+  DBA      : Rôle d'administration avec (presque) tous les privilèges système.
+             Réservé aux administrateurs de la base de données.
+
+  Note : SESSION n'est pas un rôle Oracle standard. CONNECT et RESOURCE
+  sont les deux rôles classiques attribués aux utilisateurs développeurs.
+*/
+
+
+-- ============================================================
+-- EXERCICE 1.12 - USER_SYS_PRIVS
+-- ============================================================
+
+-- Privilèges système accordés directement à votre utilisateur
+SELECT *
+FROM USER_SYS_PRIVS;
+
+/*
+  EXPLICATION DE LA COLONNE PRIVILEGE :
+
+  Elle contient le nom du privilège système accordé. Exemples courants :
+
+  - CREATE SESSION       : droit de se connecter à la base
+  - CREATE TABLE         : droit de créer des tables dans son schéma
+  - CREATE VIEW          : droit de créer des vues
+  - CREATE SEQUENCE      : droit de créer des séquences
+  - CREATE PROCEDURE     : droit de créer des procédures/fonctions/packages
+  - CREATE TRIGGER       : droit de créer des déclencheurs
+  - CREATE SYNONYM       : droit de créer des synonymes
+  - UNLIMITED TABLESPACE : espace disque illimité dans tous les tablespaces
+  - CREATE ANY TABLE     : droit de créer des tables dans N'IMPORTE QUEL schéma
+                           (privilège ANY = plus puissant, réservé aux DBA)
+
+  La colonne ADMIN_OPTION indique si l'utilisateur peut transmettre
+  ce privilège à d'autres (WITH ADMIN OPTION).
+*/
