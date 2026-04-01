@@ -1,0 +1,111 @@
+@startuml
+
+hide circle
+skinparam monochrome true
+skinparam classAttributeIconSize 0
+skinparam backgroundcolor transparent
+'skinparam groupInheritance 2
+
+
+class Dessinable <<interface>> {
+    + dessiner(g : GraphicsContext)
+}
+
+class FormeGeometrique <<abstract>>{
+   # couleur : Color
+    + <<create>> FormeGeometrique(couleur: Color)
+   + colorer(couleur: Color)
+}
+
+class Point {
+    + x : Double {readOnly}
+    + y: Double {readOnly}
+    + <<create>> Point(x: Double, y: Double, couleur: Color=Color.BLACK)
+    + dessiner(g: GraphicsContext)
+    + toString(): String
+   }
+
+note bottom of Point
+toString() retourne
+"[" + this.x + "," + this.y + "]"
+end note
+
+
+class Figure <<abstract>>{
+   # centre : Point
+    + <<create>> Figure(centre: Point, couleur: Color)
+   + dessiner(g: GraphicsContext)
+   + <<abstract>> perimetre(): Double
+   + <<abstract>> etiquette(): String
+   + toString(): String
+}
+
+
+
+
+class Groupe{
+- nbElements: Int
++ <<create>> Groupe(couleur: Color)
++ taille(): Int
++ ajouter(forme: FormeGeometrique)
++ consulter(index: Int): FormeGeometrique?
++ dessiner(g: GraphicsContext)
+}
+
+class Cercle{
+- rayon: Double
++ <<create>> Cercle(centre: Point, rayon: Double, couleur: Color=Color.RED)
++ perimetre(): Double
++ etiquette(): String
++ dessiner(g: GraphicsContext)
+}
+
+
+class Rectangle{
+- largeur: Double
+- longueur: Double   
++ <<create>> Rectangle(centre: Point, largeur: Double, longueur: Double, couleur: Color=Color.BLUE)
++ perimetre(): Double
++ etiquette(): String
++ dessiner(g: GraphicsContext)
+}
+
+note top of Figure
+dans les sous-classes
+etiquette() retourne
+le nom de la classe
+end note
+
+note top of Figure
+toString() retourne
+etiquette()+"(" + perimetre() + ")"
+end note
+
+
+
+
+class Carre{
++ <<create>> Carre(centre: Point, cote: Double, couleur: Color)
++ etiquette():String
+}
+
+class Segment{
+   - depart: Point
+   - arrivee: Point
+   + <<create>> Segment(depart: Point, arrivee: Point, couleur: Color)
+   + dessiner(g: GraphicsContext)
+
+}
+
+FormeGeometrique .up.|> Dessinable
+Figure -up-|> FormeGeometrique
+Point -up-|> FormeGeometrique
+Groupe "1" --up--> "0..10\n -formes" FormeGeometrique : contient >
+Groupe -up-|> FormeGeometrique
+Cercle -up-|> Figure
+Rectangle -up-|> Figure
+Carre -up-|> Rectangle
+Segment -up-|> FormeGeometrique
+
+
+@enduml
