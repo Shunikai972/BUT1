@@ -204,13 +204,16 @@ WHERE NOT EXISTS (
 SELECT c.NOM_COMMUNE
 FROM basetd.COMMUNE c
 WHERE NOT EXISTS (
-    SELECT * FROM basetd.OPERATEUR o
-    WHERE NOT EXISTS (
-        SELECT * FROM basetd.DISTRIBUTION di
-        WHERE di.CODE_INSEE = c.CODE_INSEE 
-        AND di.NUMFO = o.NUMFO
+    SELECT o.NUMFO
+    FROM basetd.OPERATEUR o
+    WHERE o.NUMFO NOT IN (
+        SELECT di.NUMFO
+        FROM basetd.DISTRIBUTION di
+        WHERE di.CODE_INSEE = c.CODE_INSEE
     )
 );
+
+
 --13
 SELECT c.NOM_COMMUNE
 FROM basetd.COMMUNE c
@@ -227,7 +230,17 @@ WHERE NOT EXISTS (
 
 
 
-
+SELECT c.NOM_COMMUNE
+FROM basetd.COMMUNE c
+WHERE NOT EXISTS (
+    SELECT * FROM basetd.OPERATEUR o
+    WHERE o.GENERATION = '4G' AND  o.nomfo = 'ORANGE'
+    AND NOT EXISTS (
+        SELECT * FROM basetd.DISTRIBUTION di
+        WHERE di.CODE_INSEE = c.CODE_INSEE 
+        AND di.NUMFO = o.NUMFO
+    )
+);
 
 
 

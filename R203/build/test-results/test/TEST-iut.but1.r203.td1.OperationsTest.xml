@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="iut.but1.r203.td1.OperationsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-04-01T15:16:04.146Z" hostname="u-inf-j-f104-14" time="0.05">
+  <properties/>
+  <testcase name="testMultiplier8()" classname="iut.but1.r203.td1.OperationsTest" time="0.032"/>
+  <system-out><![CDATA[Le résultat est 0
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
