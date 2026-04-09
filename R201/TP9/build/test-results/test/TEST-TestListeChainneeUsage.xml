@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestListeChainneeUsage" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-04-09T15:08:33" hostname="u-inf-j-e113-15" time="0.017">
+  <properties/>
+  <testcase name="liste remplie ok()" classname="TestListeChainneeUsage" time="0.017"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
