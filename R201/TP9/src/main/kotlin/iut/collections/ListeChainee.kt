@@ -19,7 +19,7 @@ class ListeChainee : PileChainee(), iFile, iListe {
         if(next!!.suivant() == null){
             throw IndexOutOfBoundsException("outofbound")
         }
-        while()
+        while(  )
     }
 
     override fun inserer(index: Int, element: Int) {
