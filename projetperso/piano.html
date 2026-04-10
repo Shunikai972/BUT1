@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Piano 72 touches</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #2b2b2b 0%, #111 45%, #050505 100%);
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .app {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .title {
+      color: #fff;
+      font-size: clamp(14px, 2vw, 24px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+      flex: 0 0 auto;
+    }
+
+    .stage {
+      width: 100%;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .piano-shell {
+      background: linear-gradient(to bottom, #2d2d2d, #121212);
+      border-radius: 18px;
+      padding: 24px 16px 20px;
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.45),
+        inset 0 2px 2px rgba(255,255,255,0.08),
+        inset 0 -3px 8px rgba(0,0,0,0.7);
+      transform-origin: center center;
+      will-change: transform;
+    }
+
+    .piano {
+      position: relative;
+      display: flex;
+      height: 300px;
+      user-select: none;
+    }
+
+    .white-key {
+      position: relative;
+      width: 48px;
+      height: 300px;
+      border: 1px solid #222;
+      border-radius: 0 0 10px 10px;
+      background: linear-gradient(to bottom, #fff 0%, #f4f4f4 55%, #dddddd 100%);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.8),
+        inset 0 -10px 14px rgba(0,0,0,0.12),
+        0 2px 0 rgba(0,0,0,0.28);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .white-key .label {
+      margin-bottom: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #222;
+      background: rgba(255,255,255,0.85);
+      padding: 4px 6px;
+      border-radius: 6px;
+      white-space: nowrap;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    }
+
+    .black-key {
+      position: absolute;
+      top: 0;
+      width: 30px;
+      height: 185px;
+      z-index: 5;
+      border-radius: 0 0 8px 8px;
+      background: linear-gradient(to bottom, #3a3a3a 0%, #111 50%, #000 100%);
+      border: 1px solid #000;
+      box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.14),
+        0 4px 10px rgba(0,0,0,0.55);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .black-key .label {
+      margin-bottom: 10px;
+      font-size: 9px;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+      padding: 3px 5px;
+      border-radius: 5px;
+      white-space: nowrap;
+    }
+
+    .legend {
+      color: #ddd;
+      font-size: clamp(11px, 1.3vw, 14px);
+      text-align: center;
+      opacity: 0.92;
+      flex: 0 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="title">Piano 72 touches</div>
+
+    <div class="stage" id="stage">
+      <div class="piano-shell" id="pianoShell">
+        <div class="piano" id="piano"></div>
+      </div>
+    </div>
+
+    <div class="legend">Fa1 → Mi7</div>
+  </div>
+
+  <script>
+    const piano = document.getElementById("piano");
+    const pianoShell = document.getElementById("pianoShell");
+    const stage = document.getElementById("stage");
+
+    // Convention scientifique :
+    // C4 = do central
+    // Donc après Si1 vient Do2
+
+    const NOTES_FR = ["Do", "Do#", "Ré", "Ré#", "Mi", "Fa", "Fa#", "Sol", "Sol#", "La", "La#", "Si"];
+    const WHITE_NOTES = new Set(["Do", "Ré", "Mi", "Fa", "Sol", "La", "Si"]);
+
+    // Fa1 = MIDI 29 en notation scientifique
+    // 72 touches => Fa1 -> Mi7
+    const startMidi = 29;
+    const totalKeys = 72;
+
+    const whiteKeyWidth = 48;
+    const blackKeyWidth = 30;
+    let whiteIndex = 0;
+
+    for (let i = 0; i < totalKeys; i++) {
+      const midi = startMidi + i;
+      const noteIndex = midi % 12;
+      const octave = Math.floor(midi / 12) - 1;
+      const noteName = NOTES_FR[noteIndex];
+      const isWhite = WHITE_NOTES.has(noteName);
+
+      if (isWhite) {
+        const key = document.createElement("div");
+        key.className = "white-key";
+
+        const label = document.createElement("div");
+        label.className = "label";
+        label.textContent = `${noteName}${octave}`;
+
+        key.appendChild(label);
+        piano.appendChild(key);
+        whiteIndex++;
+      } else {
+        const key = document.createElement("div");
+        key.className = "black-key";
+
+        const label = document.createElement("div");
+        label.className = "label";
+        label.textContent = `${noteName}${octave}`;
+
+        key.appendChild(label);
+
+        // entre la blanche précédente et la suivante
+        key.style.left = `${(whiteIndex * whiteKeyWidth) - (blackKeyWidth / 2)}px`;
+
+        piano.appendChild(key);
+      }
+    }
+
+    function fitPiano() {
+      pianoShell.style.transform = "scale(1)";
+      const stageRect = stage.getBoundingClientRect();
+      const pianoRect = pianoShell.getBoundingClientRect();
+
+      const scaleX = stageRect.width / pianoRect.width;
+      const scaleY = stageRect.height / pianoRect.height;
+      const scale = Math.min(scaleX, scaleY, 1);
+
+      pianoShell.style.transform = `scale(${scale})`;
+    }
+
+    window.addEventListener("load", fitPiano);
+    window.addEventListener("resize", fitPiano);
+  </script>
+</body>
+</html>

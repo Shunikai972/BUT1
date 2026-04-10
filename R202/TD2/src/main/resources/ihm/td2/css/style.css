@@ -1,0 +1,12 @@
+.mygrid {
+    -fx-border-color: red;
+}
+
+.welcome-label {
+    -fx-font: bold 16;
+}
+
+.section-label {
+    -fx-font: bold;
+}
+
