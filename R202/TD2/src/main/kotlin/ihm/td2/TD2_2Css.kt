@@ -52,7 +52,7 @@ class TD2_2Css: Application() {
         formGrid.add(loginField, 1, 1)
         
         // Password
-        val passwordLabel = Label("Password:")
+        val passwordLabel = Label("Password:"        )
         val passwordField = PasswordField()
         formGrid.add(passwordLabel, 0, 2)
         formGrid.add(passwordField, 1, 2)
