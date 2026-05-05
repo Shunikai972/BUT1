@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Tests de la classe Chien avec injection de dépendance</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Tests de la classe Chien avec injection de dépendance</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/but1.iut.r203.chenil.html">but1.iut.r203.chenil</a> &gt; ChienTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">24</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.067s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="tab-container">
+<ul class="tabLinks">
+<li>
+<a href="#">Tests</a>
+</li>
+<li>
+<a href="#">Standard output</a>
+</li>
+</ul>
+<div class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Method name</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">age aujourd’hui</td>
+<td class="success">CT_age1()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.4 - Cas limite: nouveau-né (0 mois)</td>
+<td class="success">ct1()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.5 - ageMoisDate avec une date fixe</td>
+<td class="success">ct1point2()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.4 - Cas limite: un jour avant le mois complet</td>
+<td class="success">ct2()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.5 - Comparer ageMois et ageMoisDate avec même date</td>
+<td class="success">ct2point2()</td>
+<td class="success">0.026s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.4 - Cas limite: le jour exact du mois</td>
+<td class="success">ct3()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.4 - Cas limite: année bissextile (29 février)</td>
+<td class="success">ct4()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.4 - Cas limite: année bissextile (anniversaire 29 février)</td>
+<td class="success">ct5()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.3 - Calcul d'âge: exactement 1 mois</td>
+<td class="success">testAgeMoisExactlyOneMonth()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.3 - Calcul d'âge: exactement 1 an</td>
+<td class="success">testAgeMoisExactlyOneYear()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.3 - Calcul d'âge: 1 an et 3 mois</td>
+<td class="success">testAgeMoisOneYearThreeMonths()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.3 - Calcul d'âge: 2 ans et 6 mois</td>
+<td class="success">testAgeMoisTwoYearsSixMonths()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.7.1 - Chien accepte une dépendance DateProvider</td>
+<td class="success">testChienAcceptesDateProvider()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Tests supplémentaires - Février année non-bissextile</td>
+<td class="success">testFebruaryNonLeapYear()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.6 - Le test ne dépend plus de la date actuelle</td>
+<td class="success">testIndependentFromSystemDate()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Tests supplémentaires - Grand écart de temps</td>
+<td class="success">testLargeTimeGap()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Tests supplémentaires - Plusieurs chiens avec âges différents</td>
+<td class="success">testMultipleDogsWithDifferentAges()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.7.4 - Les tests passent avec le stub</td>
+<td class="success">testPassWithStub()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.1.1 - setDateNaissance avec date invalide (jour 32)</td>
+<td class="success">testSetDateNaissanceInvalidDay()</td>
+<td class="success">0.003s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.1.1 - setDateNaissance avec date invalide (mois 13)</td>
+<td class="success">testSetDateNaissanceInvalidMonth()</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.1.1 - setDateNaissance avec une date valide</td>
+<td class="success">testSetDateNaissanceValid()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.1.1 - toString contient la race du chien</td>
+<td class="success">testToStringContainsBreed()</td>
+<td class="success">0.009s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.1.1 - toString contient le nom du chien</td>
+<td class="success">testToStringContainsName()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">3.7.3 - Stub qui retourne toujours (2025, 5, 12)</td>
+<td class="success">testWithFixedDateStub()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre id="class-stdout">Date du jour : 2023-08-15
+Date du jour : 2023-06-15
+Date du jour : 2023-06-15
+Date du jour : 2023-06-15
+Date du jour : 2022-05-15
+Date du jour : 2023-08-15
+Date du jour : 2025-05-12
+Date du jour : 2023-05-15
+Date du jour : 2023-06-14
+Date du jour : 2023-06-15
+Date du jour : 2024-02-29
+Date du jour : 2025-02-28
+Date du jour : 2024-11-15
+Date du jour : 2025-05-12
+Date du jour : 2023-05-15
+Date du jour : 2023-03-28
+Date du jour : 2050-12-31
+Date du jour : 2026-02-28
+Date du jour : 2023-06-15
+Date du jour : 2023-05-15
+</pre>
+<button class="clipboard-copy-btn" aria-label="Copy to clipboard" data-copy-element-id="class-stdout">Copy</button>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="https://www.gradle.org">Gradle 9.2.1</a> at 5 mai 2026, 17:01:04</p>
+</div>
+</div>
+</body>
+</html>

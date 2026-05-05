@@ -1,0 +1,21 @@
+@startuml
+
+hide circle
+skinparam monochrome true
+skinparam classAttributeIconSize 0
+skinparam backgroundcolor transparent
+'skinparam groupInheritance 2
+
+
+class Modele {
+    + operande1: Int
+    + operande2: Int
+    + <<create>> Model()
+    + additionner(): Int
+    + soustraire(): Int
+    + multiplier(): Int
+    + diviser(): Double
+   }
+
+
+@enduml

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Tests de la classe Chien avec injection de dépendance" tests="24" skipped="0" failures="0" errors="0" timestamp="2026-05-05T15:01:04.580Z" hostname="u-inf-j-c002-06" time="0.084">
+  <properties/>
+  <testcase name="3.5 - Comparer ageMois et ageMoisDate avec même date" classname="but1.iut.r203.chenil.ChienTest" time="0.026"/>
+  <testcase name="3.1.1 - toString contient la race du chien" classname="but1.iut.r203.chenil.ChienTest" time="0.009"/>
+  <testcase name="Tests supplémentaires - Plusieurs chiens avec âges différents" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.1.1 - setDateNaissance avec une date valide" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.3 - Calcul d'âge: exactement 1 an" classname="but1.iut.r203.chenil.ChienTest" time="0.002"/>
+  <testcase name="3.3 - Calcul d'âge: 1 an et 3 mois" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.7.3 - Stub qui retourne toujours (2025, 5, 12)" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.1.1 - toString contient le nom du chien" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.1.1 - setDateNaissance avec date invalide (mois 13)" classname="but1.iut.r203.chenil.ChienTest" time="0.006"/>
+  <testcase name="3.4 - Cas limite: nouveau-né (0 mois)" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.4 - Cas limite: un jour avant le mois complet" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.4 - Cas limite: le jour exact du mois" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.4 - Cas limite: année bissextile (29 février)" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.4 - Cas limite: année bissextile (anniversaire 29 février)" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.3 - Calcul d'âge: 2 ans et 6 mois" classname="but1.iut.r203.chenil.ChienTest" time="0.002"/>
+  <testcase name="3.7.4 - Les tests passent avec le stub" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.6 - Le test ne dépend plus de la date actuelle" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.1.1 - setDateNaissance avec date invalide (jour 32)" classname="but1.iut.r203.chenil.ChienTest" time="0.003"/>
+  <testcase name="Tests supplémentaires - Février année non-bissextile" classname="but1.iut.r203.chenil.ChienTest" time="0.002"/>
+  <testcase name="3.5 - ageMoisDate avec une date fixe" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="Tests supplémentaires - Grand écart de temps" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="age aujourd’hui" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.3 - Calcul d'âge: exactement 1 mois" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.7.1 - Chien accepte une dépendance DateProvider" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <system-out><![CDATA[Date du jour : 2023-08-15
+Date du jour : 2023-06-15
+Date du jour : 2023-06-15
+Date du jour : 2023-06-15
+Date du jour : 2022-05-15
+Date du jour : 2023-08-15
+Date du jour : 2025-05-12
+Date du jour : 2023-05-15
+Date du jour : 2023-06-14
+Date du jour : 2023-06-15
+Date du jour : 2024-02-29
+Date du jour : 2025-02-28
+Date du jour : 2024-11-15
+Date du jour : 2025-05-12
+Date du jour : 2023-05-15
+Date du jour : 2023-03-28
+Date du jour : 2050-12-31
+Date du jour : 2026-02-28
+Date du jour : 2023-06-15
+Date du jour : 2023-05-15
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

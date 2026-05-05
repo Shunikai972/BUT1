@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Music Live 3D Visualizer",
+  "version": "2.1.0",
+  "description": "Visualiseur audio 3D en temps reel pour YouTube Music.",
+  "host_permissions": [
+    "https://music.youtube.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://music.youtube.com/*"],
+      "js": ["visualizer.js"],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["visualizer.js"],
+      "matches": ["https://music.youtube.com/*"]
+    }
+  ]
+}
