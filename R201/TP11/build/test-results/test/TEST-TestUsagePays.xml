@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestUsagePays" tests="14" skipped="0" failures="0" errors="0" timestamp="2026-05-06T12:45:03" hostname="u-inf-j-c003-21" time="0.085">
+  <properties/>
+  <testcase name="egalite()" classname="TestUsagePays" time="0.037"/>
+  <testcase name="nonDifference()" classname="TestUsagePays" time="0.005"/>
+  <testcase name="compareTo1()" classname="TestUsagePays" time="0.003"/>
+  <testcase name="compareTo2()" classname="TestUsagePays" time="0.009"/>
+  <testcase name="compareTo3()" classname="TestUsagePays" time="0.001"/>
+  <testcase name="nonEgalite()" classname="TestUsagePays" time="0.002"/>
+  <testcase name="comparaison1()" classname="TestUsagePays" time="0.001"/>
+  <testcase name="comparaison2()" classname="TestUsagePays" time="0.001"/>
+  <testcase name="comparaison3()" classname="TestUsagePays" time="0.001"/>
+  <testcase name="comparaison4()" classname="TestUsagePays" time="0.001"/>
+  <testcase name="testEquals()" classname="TestUsagePays" time="0.002"/>
+  <testcase name="testNotEquals()" classname="TestUsagePays" time="0.004"/>
+  <testcase name="difference()" classname="TestUsagePays" time="0.001"/>
+  <testcase name="egaliteRef()" classname="TestUsagePays" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

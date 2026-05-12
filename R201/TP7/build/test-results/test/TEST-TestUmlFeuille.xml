@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestUmlFeuille" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-05-06T06:30:31" hostname="u-inf-j-e114-21" time="0.019">
+  <properties/>
+  <testcase name="test5 - 'Feuille' has an attribute 'hauteur'()" classname="TestUmlFeuille" time="0.003"/>
+  <testcase name="test4 - 'Feuille' has attribute(s)()" classname="TestUmlFeuille" time="0.001"/>
+  <testcase name="test2 - 'Feuille' extends other classe(s)()" classname="TestUmlFeuille" time="0.0"/>
+  <testcase name="test3 - 'Feuille' has a constructor()" classname="TestUmlFeuille" time="0.001"/>
+  <testcase name="test10 - 'Feuille' has a method 'inserer'()" classname="TestUmlFeuille" time="0.001"/>
+  <testcase name="test7 - 'Feuille' has an attribute 'compteurObjets'()" classname="TestUmlFeuille" time="0.001"/>
+  <testcase name="test8 - 'Feuille' has an attribute 'objets'()" classname="TestUmlFeuille" time="0.0"/>
+  <testcase name="test9 - 'Feuille' has method(s)()" classname="TestUmlFeuille" time="0.002"/>
+  <testcase name="test1 - class Feuille is open or not()" classname="TestUmlFeuille" time="0.001"/>
+  <testcase name="test6 - 'Feuille' has an attribute 'largeur'()" classname="TestUmlFeuille" time="0.0"/>
+  <testcase name="test0 - class Feuille is abstract or not()" classname="TestUmlFeuille" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

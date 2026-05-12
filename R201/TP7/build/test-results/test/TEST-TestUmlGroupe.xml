@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestUmlGroupe" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-05-06T06:30:31" hostname="u-inf-j-e114-21" time="0.02">
+  <properties/>
+  <testcase name="test9 - 'Groupe' has a method 'selectionner'()" classname="TestUmlGroupe" time="0.004"/>
+  <testcase name="test8 - 'Groupe' has a method 'regrouper'()" classname="TestUmlGroupe" time="0.001"/>
+  <testcase name="test7 - 'Groupe' has method(s)()" classname="TestUmlGroupe" time="0.001"/>
+  <testcase name="test4 - 'Groupe' has attribute(s)()" classname="TestUmlGroupe" time="0.002"/>
+  <testcase name="test1 - class Groupe is open or not()" classname="TestUmlGroupe" time="0.001"/>
+  <testcase name="test2 - 'Groupe' extends other classe(s)()" classname="TestUmlGroupe" time="0.001"/>
+  <testcase name="test9 - 'Groupe' has a method 'deplacer'()" classname="TestUmlGroupe" time="0.001"/>
+  <testcase name="test6 - 'Groupe' has an attribute 'ObjetGraphiqueobjetsRegroupes'()" classname="TestUmlGroupe" time="0.001"/>
+  <testcase name="test3 - 'Groupe' has a constructor()" classname="TestUmlGroupe" time="0.002"/>
+  <testcase name="test0 - class Groupe is abstract or not()" classname="TestUmlGroupe" time="0.001"/>
+  <testcase name="test5 - 'Groupe' has an attribute 'nbObjetsRegroupes'()" classname="TestUmlGroupe" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestUmlIManipulable" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-05-06T06:30:31" hostname="u-inf-j-e114-21" time="0.007">
+  <properties/>
+  <testcase name="test5 - 'Manipulable' has a method 'deplacer'()" classname="TestUmlIManipulable" time="0.001"/>
+  <testcase name="test2 - 'Manipulable' extends other classe(s)()" classname="TestUmlIManipulable" time="0.001"/>
+  <testcase name="test0 - class Manipulable is abstract or not()" classname="TestUmlIManipulable" time="0.001"/>
+  <testcase name="test3 - 'Manipulable' has attribute(s)()" classname="TestUmlIManipulable" time="0.0"/>
+  <testcase name="test5 - 'Manipulable' has a method 'selectionner'()" classname="TestUmlIManipulable" time="0.001"/>
+  <testcase name="test4 - 'Manipulable' has method(s)()" classname="TestUmlIManipulable" time="0.0"/>
+  <testcase name="test1 - class Manipulable is open or not()" classname="TestUmlIManipulable" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

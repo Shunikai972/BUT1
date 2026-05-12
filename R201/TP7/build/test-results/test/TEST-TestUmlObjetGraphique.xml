@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestUmlObjetGraphique" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-05-06T06:30:31" hostname="u-inf-j-e114-21" time="0.007">
+  <properties/>
+  <testcase name="test2 - 'ObjetGraphique' extends other classe(s)()" classname="TestUmlObjetGraphique" time="0.001"/>
+  <testcase name="test1 - class ObjetGraphique is open or not()" classname="TestUmlObjetGraphique" time="0.001"/>
+  <testcase name="test3 - 'ObjetGraphique' has a constructor()" classname="TestUmlObjetGraphique" time="0.001"/>
+  <testcase name="test4 - 'ObjetGraphique' has attribute(s)()" classname="TestUmlObjetGraphique" time="0.001"/>
+  <testcase name="test0 - class ObjetGraphique is abstract or not()" classname="TestUmlObjetGraphique" time="0.001"/>
+  <testcase name="test5 - 'ObjetGraphique' has method(s)()" classname="TestUmlObjetGraphique" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

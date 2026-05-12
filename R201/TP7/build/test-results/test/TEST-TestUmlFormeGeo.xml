@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestUmlFormeGeo" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-05-06T06:30:31" hostname="u-inf-j-e114-21" time="0.016">
+  <properties/>
+  <testcase name="test1 - class FormeGeo is open or not()" classname="TestUmlFormeGeo" time="0.001"/>
+  <testcase name="test0 - class FormeGeo is abstract or not()" classname="TestUmlFormeGeo" time="0.001"/>
+  <testcase name="test3 - 'FormeGeo' has a constructor()" classname="TestUmlFormeGeo" time="0.001"/>
+  <testcase name="test9 - 'FormeGeo' has a method 'surface'()" classname="TestUmlFormeGeo" time="0.001"/>
+  <testcase name="test4 - 'FormeGeo' has attribute(s)()" classname="TestUmlFormeGeo" time="0.001"/>
+  <testcase name="test6 - 'FormeGeo' has an attribute 'dimension2'()" classname="TestUmlFormeGeo" time="0.001"/>
+  <testcase name="test7 - 'FormeGeo' has method(s)()" classname="TestUmlFormeGeo" time="0.001"/>
+  <testcase name="test5 - 'FormeGeo' has an attribute 'dimension1'()" classname="TestUmlFormeGeo" time="0.001"/>
+  <testcase name="test2 - 'FormeGeo' extends other classe(s)()" classname="TestUmlFormeGeo" time="0.002"/>
+  <testcase name="test8 - 'FormeGeo' has a method 'perimetre'()" classname="TestUmlFormeGeo" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

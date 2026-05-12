@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestUsageMonde" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-05-06T12:45:03" hostname="u-inf-j-c003-21" time="0.154">
+  <properties/>
+  <testcase name="mondeVide()" classname="TestUsageMonde" time="0.042"/>
+  <testcase name="monde1Pays2fois()" classname="TestUsageMonde" time="0.01"/>
+  <testcase name="mondeRempliFichierNonPresent()" classname="TestUsageMonde" time="0.014"/>
+  <testcase name="monde1Pays()" classname="TestUsageMonde" time="0.002"/>
+  <testcase name="monde2Pays()" classname="TestUsageMonde" time="0.001"/>
+  <testcase name="mondeRempliPays()" classname="TestUsageMonde" time="0.042"/>
+  <testcase name="mondeRempliVide()" classname="TestUsageMonde" time="0.01"/>
+  <testcase name="mondeRempliFichierMauvaisFormat()" classname="TestUsageMonde" time="0.016"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

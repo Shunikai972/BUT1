@@ -2,12 +2,16 @@ package but1.iut.r203.chenil
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.BeforeEach
+
 import java.time.LocalDate
 import java.time.DateTimeException
 import kotlin.test.assertEquals
-import kotlin.test.assertThrows
+import kotlin.Throws
 import kotlin.test.assertTrue
+import io.mockk.mockk
+import io.mockk.every
+import io.mockk.verify
+import org.junit.jupiter.api.assertThrows
 
 /**
  * Stub pour tester avec une date fixe
@@ -42,7 +46,7 @@ class ChienTest {
     fun testSetDateNaissanceInvalidMonth() {
         val fixedDate = LocalDate.of(2023, 5, 15)
         val chien = Chien("Lassie", "Collie", FixedDateProvider(fixedDate))
-        
+
         assertThrows<DateTimeException> {
             chien.setDateNaissance(2023, 13, 32)
         }
@@ -321,5 +325,154 @@ class ChienTest {
         
         val age = chien.ageMois()
         assertEquals(611, age, "De 2000-01-01 à 2050-12-31 ≈ 51 ans = 612 mois")
+    }
+
+    // ===== EXERCICE 4.2.1: Stub (même implémentation pour tous les cas) =====
+    @Test
+    @DisplayName("4.2.1 - CT_age2: 10 mois entre (2021, 2, 28) et (2022, 1, 1)")
+    fun testAgeMois_CT_age2() {
+        val ch1 = Chien("Dog1", "Collie", DateProvider20220101())
+        ch1.setDateNaissance(2021, 2, 28)
+        
+        val age = ch1.ageMois()
+        assertEquals(10, age, "10 mois entre le (2021, 2, 28) et le (2022, 1, 1)")
+    }
+
+    @Test
+    @DisplayName("4.2.1 - CT_age3: 0 mois entre (2021, 12, 31) et (2022, 1, 1)")
+    fun testAgeMois_CT_age3() {
+        val ch2 = Chien("Dog2", "Collie", DateProvider20220101())
+        ch2.setDateNaissance(2021, 12, 31)
+        
+        val age = ch2.ageMois()
+        assertEquals(0, age, "0 mois entre le (2021, 12, 31) et le (2022, 1, 1)")
+    }
+
+    @Test
+    @DisplayName("4.2.1 - CT_age4: 1 mois entre (2021, 12, 1) et (2022, 1, 1)")
+    fun testAgeMois_CT_age4() {
+        val ch3 = Chien("Dog3", "Collie", DateProvider20220101())
+        ch3.setDateNaissance(2021, 12, 1)
+        
+        val age = ch3.ageMois()
+        assertEquals(1, age, "1 mois entre le (2021, 12, 1) et le (2022, 1, 1)")
+    }
+
+    // ===== EXERCICE 4.2.2: Mock avec mockk (dates différentes pour chaque cas) =====
+    @Test
+    @DisplayName("4.2.2 - CT_age5: 12 mois entre (2021, 2, 15) et (2022, 2, 28) avec mock")
+    fun testAgeMois_CT_age5_withMock() {
+        // given: un mock qui retourne 2022-02-28
+        val mockDateProvider = mockk<DateProvider>()
+        every { mockDateProvider.getDate() } returns LocalDate.of(2022, 2, 28)
+        
+        val ch1 = Chien("Dog4", "Collie", mockDateProvider)
+        ch1.setDateNaissance(2021, 2, 15)
+        
+        // when
+        val age = ch1.ageMois()
+        
+        // then
+        assertEquals(12, age, "12 mois entre le (2021, 2, 15) et le (2022, 2, 28)")
+    }
+
+    @Test
+    @DisplayName("4.2.2 - CT_age6: 12 mois entre (2021, 2, 15) et (2022, 2, 15) avec mock")
+    fun testAgeMois_CT_age6_withMock() {
+        // given: un mock qui retourne 2022-02-15
+        val mockDateProvider = mockk<DateProvider>()
+        every { mockDateProvider.getDate() } returns LocalDate.of(2022, 2, 15)
+        
+        val ch2 = Chien("Dog5", "Collie", mockDateProvider)
+        ch2.setDateNaissance(2021, 2, 15)
+        
+        // when
+        val age = ch2.ageMois()
+        
+        // then
+        assertEquals(12, age, "12 mois entre le (2021, 2, 15) et le (2022, 2, 15)")
+    }
+
+    @Test
+    @DisplayName("4.2.2 - CT_age7: 11 mois entre (2021, 2, 15) et (2022, 2, 1) avec mock")
+    fun testAgeMois_CT_age7_withMock() {
+        // given: un mock qui retourne 2022-02-01
+        val mockDateProvider = mockk<DateProvider>()
+        every { mockDateProvider.getDate() } returns LocalDate.of(2022, 2, 1)
+        
+        val ch3 = Chien("Dog6", "Collie", mockDateProvider)
+        ch3.setDateNaissance(2021, 2, 15)
+        
+        // when
+        val age = ch3.ageMois()
+        
+        // then
+        assertEquals(11, age, "11 mois entre le (2021, 2, 15) et le (2022, 2, 1)")
+    }
+    @Test
+    @DisplayName("4.2.2 - CT_age7: 11 mois entre (2021, 2, 15) et (2022, 2, 1) avec mock")
+    fun testAgeMois_CT_age8_withMock() {
+        // given: un mock qui retourne 2022-02-01
+        val mockDateProvider = mockk<DateProvider>()
+        every { mockDateProvider.getDate() } returns LocalDate.of(2024, 2, 1)
+
+        val ch3 = Chien("Dog7", "Golden", mockDateProvider)
+        ch3.setDateNaissance(2021, 2, 15)
+
+        // when
+        val age = ch3.ageMois()
+
+        // then
+        assertEquals(35, age, "11 mois entre le (2021, 2, 15) et le (2022, 2, 1)")
+    }
+
+    // ===== EXERCICE 4.3: Espion (Spy) avec mock et verify =====
+    @Test
+    @DisplayName("4.3.1 - testAgeMois_CT_age7bis: 1 mois entre (2022, 1, 1) et (2022, 2, 1)")
+    fun testAgeMois_CT_age7bis() {
+        val mockDateProvider = mockk<DateProvider>()
+        every { mockDateProvider.getDate() } returns LocalDate.of(2022, 2, 1)
+        
+        val ch3 = Chien("Dog7", "Collie", mockDateProvider)
+        ch3.setDateNaissance(2022, 1, 1)
+        
+        // when & then
+        assertEquals(1, ch3.ageMois(),
+            "1 mois entre le (2022, 1, 1) et le (2022, 2, 1)")
+    }
+    @Test
+    @DisplayName("4.2.2 - CT_age7: 11 mois entre (2021, 2, 15) et (2022, 2, 1) avec mock")
+    fun  testAgeMois_CT_age7bis2() {
+        val mockDateProvider = mockk<DateProvider>()
+        every { mockDateProvider.getDate() } returns LocalDate.of(2022, 2, 1)
+        val ch3 = Chien("Dog7", "Golden", mockDateProvider)
+        ch3.setDateNaissance(2022, 1, 1)
+        val age = ch3.ageMois()
+        assertEquals(1, age, "11 mois entre le (2021, 2, 15) et le (2022, 2, 1)")
+    }
+    @Test
+    @DisplayName("4.2.2 - CT_age7: 11 mois entre (2021, 2, 15) et (2022, 2, 1) avec mock")
+    fun  test7() {
+        val mockDateProvider = mockk<DateProvider>()
+        every { mockDateProvider.getDate() } returns LocalDate.of(2022, 2, 1)
+        val ch3 = Chien("Dog7", "Golden", mockDateProvider)
+        ch3.setDateNaissance(2022, 1, 1)
+        val age = ch3.ageMois()
+        assertEquals(1, age, "11 mois entre le (2021, 2, 15) et le (2022, 2, 1)")
+        verify(exactly = 1){mockDateProvider.getDate()}
+    }
+
+    @Test
+    @DisplayName("4.3.3 - Vérifier que getDate() est bien appelé une fois sur le mock")
+    fun testAgeMois_VerifyGetDateCalled() {
+        val mockDateProvider = mockk<DateProvider>()
+        every { mockDateProvider.getDate() } returns LocalDate.of(2022, 2, 1)
+        
+        val ch3 = Chien("Dog8", "Collie", mockDateProvider)
+        ch3.setDateNaissance(2022, 1, 1)
+        val age = ch3.ageMois()
+
+        assertEquals(1, age, "1 mois attendu")
+        verify(exactly = 1) { mockDateProvider.getDate() }
     }
 }

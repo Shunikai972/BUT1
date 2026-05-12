@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
+<testsuite name="but1.iut.r203.calcul.OperationsDependantesTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-05-11T09:32:48.957Z" hostname="u-inf-j-e114-20" time="0.751">
+  <properties/>
+  <testcase name="CT_Factorielle2()" classname="but1.iut.r203.calcul.OperationsDependantesTest" time="0.751"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/var/home/E256152B/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.18.2/62f38a6faf7f069d661b79a07d566f504b0b20c4/byte-buddy-agent-1.18.2.jar)
+=======
+<testsuite name="but1.iut.r203.calcul.OperationsDependantesTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-05-11T09:47:27.583Z" hostname="u-inf-j-e114-21" time="0.936">
+  <properties/>
+  <testcase name="CT_Division1()" classname="but1.iut.r203.calcul.OperationsDependantesTest" time="0.915"/>
+  <testcase name="CT_Factorielle1()" classname="but1.iut.r203.calcul.OperationsDependantesTest" time="0.001"/>
+  <testcase name="CT_Factorielle2()" classname="but1.iut.r203.calcul.OperationsDependantesTest" time="0.006"/>
+  <testcase name="CT_DivisionNegatif()" classname="but1.iut.r203.calcul.OperationsDependantesTest" time="0.004"/>
+  <testcase name="CT_DivisionParZero()" classname="but1.iut.r203.calcul.OperationsDependantesTest" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/var/home/E256190S/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.18.2/62f38a6faf7f069d661b79a07d566f504b0b20c4/byte-buddy-agent-1.18.2.jar)
+>>>>>>> refs/remotes/origin/main
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestUmlTexte" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-05-06T06:30:31" hostname="u-inf-j-e114-21" time="0.018">
+  <properties/>
+  <testcase name="test9 - 'Texte' has a method 'editer'()" classname="TestUmlTexte" time="0.006"/>
+  <testcase name="test1 - class Texte is open or not()" classname="TestUmlTexte" time="0.001"/>
+  <testcase name="test2 - 'Texte' extends other classe(s)()" classname="TestUmlTexte" time="0.001"/>
+  <testcase name="test7 - 'Texte' has an attribute 'taille'()" classname="TestUmlTexte" time="0.0"/>
+  <testcase name="test3 - 'Texte' has a constructor()" classname="TestUmlTexte" time="0.001"/>
+  <testcase name="test0 - class Texte is abstract or not()" classname="TestUmlTexte" time="0.0"/>
+  <testcase name="test6 - 'Texte' has an attribute 'police'()" classname="TestUmlTexte" time="0.0"/>
+  <testcase name="test5 - 'Texte' has an attribute 'valeur'()" classname="TestUmlTexte" time="0.0"/>
+  <testcase name="test8 - 'Texte' has method(s)()" classname="TestUmlTexte" time="0.0"/>
+  <testcase name="test10 - 'Texte' has a method 'dessiner'()" classname="TestUmlTexte" time="0.0"/>
+  <testcase name="test4 - 'Texte' has attribute(s)()" classname="TestUmlTexte" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

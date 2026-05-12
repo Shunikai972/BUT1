@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestTabAlea" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-05-06T12:45:03" hostname="u-inf-j-c003-21" time="0.119">
+  <properties/>
+  <testcase name="testTabAlea1000()" classname="TestTabAlea" time="0.113"/>
+  <testcase name="testTabAlea10()" classname="TestTabAlea" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

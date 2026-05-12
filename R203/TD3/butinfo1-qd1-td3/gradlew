@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# Gradle wrapper script for Unix
+# Helps in running gradle without installing it globally
+
+# Locate the current script directory
+PRG="$0"
+while [ -h "$PRG" ]; do
+    ls=$(ls -ld "$PRG")
+    link=$(expr "$ls" : '.*-> \(.*\)$')
+    if expr "$link" : '/.*' > /dev/null; then
+        PRG="$link"
+    else
+        PRG=$(dirname "$PRG")/$link
+    fi
+done
+
+SCRIPT_DIR=$(dirname "$PRG")
+GRADLE_HOME="$SCRIPT_DIR"
+GRADLE_WRAPPER_JAR="$GRADLE_HOME/gradle/wrapper/gradle-wrapper.jar"
+GRADLE_WRAPPER_PROPS="$GRADLE_HOME/gradle/wrapper/gradle-wrapper.properties"
+
+# Use the gradle provided by the system
+if command -v gradle &> /dev/null; then
+    GRADLE_CMD=$(which gradle)
+else
+    # fallback
+    GRADLE_CMD="/var/cache/bubblewrap/flatpak/gradle"
+fi
+
+# Execute gradle with the provided arguments
+"$GRADLE_CMD" "$@"

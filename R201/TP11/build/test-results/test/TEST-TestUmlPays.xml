@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestUmlPays" tests="19" skipped="0" failures="0" errors="0" timestamp="2026-05-06T12:45:03" hostname="u-inf-j-c003-21" time="0.532">
+  <properties/>
+  <testcase name="test5 - 'Pays' has an attribute 'nom'()" classname="TestUmlPays" time="0.492"/>
+  <testcase name="test0 - class Pays is abstract or not()" classname="TestUmlPays" time="0.001"/>
+  <testcase name="test4 - 'Pays' has attribute(s)()" classname="TestUmlPays" time="0.001"/>
+  <testcase name="test9 - 'Pays' has an attribute 'superficie'()" classname="TestUmlPays" time="0.001"/>
+  <testcase name="test12 - 'Pays' has a method 'donneCapitale'()" classname="TestUmlPays" time="0.003"/>
+  <testcase name="test13 - 'Pays' has a method 'donneContinent'()" classname="TestUmlPays" time="0.001"/>
+  <testcase name="test2 - 'Pays' extends other classe(s)()" classname="TestUmlPays" time="0.003"/>
+  <testcase name="test10 - 'Pays' has method(s)()" classname="TestUmlPays" time="0.0"/>
+  <testcase name="test15 - 'Pays' has a method 'donneSuperficie'()" classname="TestUmlPays" time="0.001"/>
+  <testcase name="test6 - 'Pays' has an attribute 'capitale'()" classname="TestUmlPays" time="0.0"/>
+  <testcase name="test18 - 'Pays' has a method 'compareTo'()" classname="TestUmlPays" time="0.002"/>
+  <testcase name="test16 - 'Pays' has a method 'toString'()" classname="TestUmlPays" time="0.001"/>
+  <testcase name="test14 - 'Pays' has a method 'donnePopulation'()" classname="TestUmlPays" time="0.001"/>
+  <testcase name="test17 - 'Pays' has a method 'equals'()" classname="TestUmlPays" time="0.001"/>
+  <testcase name="test8 - 'Pays' has an attribute 'population'()" classname="TestUmlPays" time="0.001"/>
+  <testcase name="test11 - 'Pays' has a method 'donneNom'()" classname="TestUmlPays" time="0.001"/>
+  <testcase name="test3 - 'Pays' has a constructor()" classname="TestUmlPays" time="0.003"/>
+  <testcase name="test1 - class Pays is open or not()" classname="TestUmlPays" time="0.0"/>
+  <testcase name="test7 - 'Pays' has an attribute 'continent'()" classname="TestUmlPays" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

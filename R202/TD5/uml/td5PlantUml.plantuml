@@ -1,0 +1,77 @@
+@startuml
+
+hide circle
+skinparam monochrome true
+skinparam classAttributeIconSize 0
+skinparam backgroundcolor transparent
+'skinparam groupInheritance 2
+
+
+class Bibliotheque {
+    + courant : Int
+    - nbLivres: Int
+ 
+
+    + <<create>> Bibliotheque()
++ donneNbLivres(): Int
++donneLivre(index: Int): Livre
++ajoutLivre(livre: Livre)
++ suppressionLivre()
++modifierLivre(livre: Livre) 
++estVide(): Boolean
++donneLivre(): Livre
++passeAuLivreSuivant()
++passeAuLivrePrecedent()
++ilYaLivrePrecedent(): Boolean
++ilYaLivreSuivant(): Boolean
++donneTousLesLivres(): ArrayList<Livre>
++ajoutAuteur(auteur: Auteur): Boolean
++donneTousLesAuteurs(): ArrayList<Auteur>
++donneAuteur(str: String): Auteur
++preremplir()
+   }
+
+
+class NoSuchElementException {}
+
+
+Bibliotheque ..> NoSuchElementException
+
+
+class Auteur{
+   +nom: String
+   +prenom: String
+   + <<create>> Auteur(nom: String, prenom:String)
+   +equals(other: Any?): Boolean
+   + toString(): String
+}
+
+
+
+
+class Livre{
++ numero: String
++ titre: String
++ categorie: String
++ SF="SF" {static}
++ FANTASY = "Fantasy" {static}
++ HORROR = "Horror" {static}
++ compteur = 0 {static}
+
+
++ <<create>> Livre(titre:String, categorie: String, auteur: Auteur)
++toString()
+}
+
+Bibliotheque "1" --> "-livres *" Livre : contient >
+
+
+Bibliotheque "1" --> "-auteurs *" Auteur : comprend >
+note left of Bibliotheque : les livres sont stockés dans une MutableList<Livre>
+note right of Bibliotheque : les auteurs sont stockés dans un MutableSet<Auteur>
+
+Livre "1..*" --> "-auteur 1" Auteur : a pour auteur >
+
+
+@enduml
+

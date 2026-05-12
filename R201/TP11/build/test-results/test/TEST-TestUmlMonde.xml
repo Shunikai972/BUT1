@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestUmlMonde" tests="19" skipped="0" failures="0" errors="0" timestamp="2026-05-06T12:45:03" hostname="u-inf-j-c003-21" time="0.523">
+  <properties/>
+  <testcase name="test10 - 'Monde' has a method 'remplir'()" classname="TestUmlMonde" time="0.479"/>
+  <testcase name="test12 - 'Monde' has a method 'getPays2'()" classname="TestUmlMonde" time="0.001"/>
+  <testcase name="test8 - 'Monde' has a method 'ajouter'()" classname="TestUmlMonde" time="0.002"/>
+  <testcase name="test9 - 'Monde' has a method 'toString'()" classname="TestUmlMonde" time="0.001"/>
+  <testcase name="test4 - 'Monde' has attribute(s)()" classname="TestUmlMonde" time="0.001"/>
+  <testcase name="test1 - class Monde is open or not()" classname="TestUmlMonde" time="0.001"/>
+  <testcase name="test13 - 'Monde' has a method 'plusPeuple'()" classname="TestUmlMonde" time="0.001"/>
+  <testcase name="test16 - 'Monde' has a method 'mondeTrie'()" classname="TestUmlMonde" time="0.001"/>
+  <testcase name="test3 - 'Monde' has a constructor()" classname="TestUmlMonde" time="0.003"/>
+  <testcase name="test0 - class Monde is abstract or not()" classname="TestUmlMonde" time="0.001"/>
+  <testcase name="test14 - 'Monde' has a method 'populationSuperieureA'()" classname="TestUmlMonde" time="0.001"/>
+  <testcase name="test15 - 'Monde' has a method 'monde'()" classname="TestUmlMonde" time="0.002"/>
+  <testcase name="test7 - 'Monde' has a method 'taille'()" classname="TestUmlMonde" time="0.001"/>
+  <testcase name="test6 - 'Monde' has method(s)()" classname="TestUmlMonde" time="0.001"/>
+  <testcase name="test17 - 'Monde' has a method 'mondeTrieTab'()" classname="TestUmlMonde" time="0.003"/>
+  <testcase name="test11 - 'Monde' has a method 'getPays'()" classname="TestUmlMonde" time="0.002"/>
+  <testcase name="test18 - 'Monde' has a method 'mondeTrieSelonSuperficie'()" classname="TestUmlMonde" time="0.001"/>
+  <testcase name="test5 - 'Monde' has an attribute 'lesPays'()" classname="TestUmlMonde" time="0.002"/>
+  <testcase name="test2 - 'Monde' extends other classe(s)()" classname="TestUmlMonde" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

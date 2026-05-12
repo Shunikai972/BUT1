@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestUsageMondeRempliPays" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-05-06T12:45:03" hostname="u-inf-j-c003-21" time="0.115">
+  <properties/>
+  <testcase name="mondeTrie()" classname="TestUsageMondeRempliPays" time="0.073"/>
+  <testcase name="mondeTrieTab()" classname="TestUsageMondeRempliPays" time="0.017"/>
+  <testcase name="plusPeuple5()" classname="TestUsageMondeRempliPays" time="0.004"/>
+  <testcase name="getPays()" classname="TestUsageMondeRempliPays" time="0.005"/>
+  <testcase name="plusPeupleVatican()" classname="TestUsageMondeRempliPays" time="0.006"/>
+  <testcase name="getPays2()" classname="TestUsageMondeRempliPays" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

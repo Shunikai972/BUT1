@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestUmlCarre" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-05-06T06:30:31" hostname="u-inf-j-e114-21" time="0.341">
+  <properties/>
+  <testcase name="test3 - 'Carre' has a constructor()" classname="TestUmlCarre" time="0.278"/>
+  <testcase name="test5 - 'Carre' has method(s)()" classname="TestUmlCarre" time="0.052"/>
+  <testcase name="test0 - class Carre is abstract or not()" classname="TestUmlCarre" time="0.001"/>
+  <testcase name="test1 - class Carre is open or not()" classname="TestUmlCarre" time="0.001"/>
+  <testcase name="test2 - 'Carre' extends other classe(s)()" classname="TestUmlCarre" time="0.003"/>
+  <testcase name="test4 - 'Carre' has attribute(s)()" classname="TestUmlCarre" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

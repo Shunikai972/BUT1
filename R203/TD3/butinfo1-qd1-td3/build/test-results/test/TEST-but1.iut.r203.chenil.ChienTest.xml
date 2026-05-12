@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Tests de la classe Chien avec injection de dépendance" tests="33" skipped="0" failures="0" errors="0" timestamp="2026-05-11T08:32:40.045Z" hostname="u-inf-j-e114-21" time="1.186">
+  <properties/>
+  <testcase name="3.1.1 - toString contient la race du chien" classname="but1.iut.r203.chenil.ChienTest" time="0.028"/>
+  <testcase name="Tests supplémentaires - Plusieurs chiens avec âges différents" classname="but1.iut.r203.chenil.ChienTest" time="0.004"/>
+  <testcase name="4.2.1 - CT_age2: 10 mois entre (2021, 2, 28) et (2022, 1, 1)" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="4.2.1 - CT_age3: 0 mois entre (2021, 12, 31) et (2022, 1, 1)" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="4.2.1 - CT_age4: 1 mois entre (2021, 12, 1) et (2022, 1, 1)" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.1.1 - setDateNaissance avec une date valide" classname="but1.iut.r203.chenil.ChienTest" time="0.0"/>
+  <testcase name="3.3 - Calcul d'âge: exactement 1 an" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.3 - Calcul d'âge: 1 an et 3 mois" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.7.3 - Stub qui retourne toujours (2025, 5, 12)" classname="but1.iut.r203.chenil.ChienTest" time="0.0"/>
+  <testcase name="4.3.1 - testAgeMois_CT_age7bis: 1 mois entre (2022, 1, 1) et (2022, 2, 1)" classname="but1.iut.r203.chenil.ChienTest" time="1.063"/>
+  <testcase name="3.1.1 - toString contient le nom du chien" classname="but1.iut.r203.chenil.ChienTest" time="0.002"/>
+  <testcase name="3.4 - Cas limite: année bissextile (anniversaire 29 février)" classname="but1.iut.r203.chenil.ChienTest" time="0.002"/>
+  <testcase name="4.2.2 - CT_age7: 11 mois entre (2021, 2, 15) et (2022, 2, 1) avec mock" classname="but1.iut.r203.chenil.ChienTest" time="0.005"/>
+  <testcase name="3.1.1 - setDateNaissance avec date invalide (mois 13)" classname="but1.iut.r203.chenil.ChienTest" time="0.006"/>
+  <testcase name="3.4 - Cas limite: le jour exact du mois" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="4.2.2 - CT_age7: 11 mois entre (2021, 2, 15) et (2022, 2, 1) avec mock" classname="but1.iut.r203.chenil.ChienTest" time="0.004"/>
+  <testcase name="4.2.2 - CT_age6: 12 mois entre (2021, 2, 15) et (2022, 2, 15) avec mock" classname="but1.iut.r203.chenil.ChienTest" time="0.004"/>
+  <testcase name="3.4 - Cas limite: année bissextile (29 février)" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="4.2.2 - CT_age5: 12 mois entre (2021, 2, 15) et (2022, 2, 28) avec mock" classname="but1.iut.r203.chenil.ChienTest" time="0.003"/>
+  <testcase name="3.3 - Calcul d'âge: 2 ans et 6 mois" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.7.4 - Les tests passent avec le stub" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.6 - Le test ne dépend plus de la date actuelle" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.1.1 - setDateNaissance avec date invalide (jour 32)" classname="but1.iut.r203.chenil.ChienTest" time="0.003"/>
+  <testcase name="3.4 - Cas limite: nouveau-né (0 mois)" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="Tests supplémentaires - Février année non-bissextile" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.4 - Cas limite: un jour avant le mois complet" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.5 - ageMoisDate avec une date fixe" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.5 - Comparer ageMois et ageMoisDate avec même date" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="4.2.2 - CT_age7: 11 mois entre (2021, 2, 15) et (2022, 2, 1) avec mock" classname="but1.iut.r203.chenil.ChienTest" time="0.003"/>
+  <testcase name="4.3.3 - Vérifier que getDate() est bien appelé une fois sur le mock" classname="but1.iut.r203.chenil.ChienTest" time="0.011"/>
+  <testcase name="Tests supplémentaires - Grand écart de temps" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.3 - Calcul d'âge: exactement 1 mois" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <testcase name="3.7.1 - Chien accepte une dépendance DateProvider" classname="but1.iut.r203.chenil.ChienTest" time="0.001"/>
+  <system-out><![CDATA[Date du jour : 2023-06-15
+Date du jour : 2023-06-15
+Date du jour : 2023-06-15
+Date du jour : 2022-01-01
+Date du jour : 2022-01-01
+Date du jour : 2022-01-01
+Date du jour : 2022-05-15
+Date du jour : 2023-08-15
+Date du jour : 2025-05-12
+Date du jour : 2022-02-01
+Date du jour : 2025-02-28
+Date du jour : 2024-02-01
+Date du jour : 2023-06-15
+Date du jour : 2022-02-01
+Date du jour : 2022-02-15
+Date du jour : 2024-02-29
+Date du jour : 2022-02-28
+Date du jour : 2024-11-15
+Date du jour : 2025-05-12
+Date du jour : 2023-05-15
+Date du jour : 2023-05-15
+Date du jour : 2023-03-28
+Date du jour : 2023-06-14
+Date du jour : 2023-08-15
+Date du jour : 2022-02-01
+Date du jour : 2022-02-01
+Date du jour : 2050-12-31
+Date du jour : 2023-06-15
+Date du jour : 2023-05-15
+]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/var/home/E256190S/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.18.2/62f38a6faf7f069d661b79a07d566f504b0b20c4/byte-buddy-agent-1.18.2.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>

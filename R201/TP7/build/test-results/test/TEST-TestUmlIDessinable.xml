@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestUmlIDessinable" tests="8" skipped="0" failures="0" errors="0" timestamp="2026-05-06T06:30:31" hostname="u-inf-j-e114-21" time="0.012">
+  <properties/>
+  <testcase name="test5 - 'Dessinable' has a method 'colorierPremier'()" classname="TestUmlIDessinable" time="0.001"/>
+  <testcase name="test2 - 'Dessinable' extends other classe(s)()" classname="TestUmlIDessinable" time="0.002"/>
+  <testcase name="test6 - 'Dessinable' has a method 'dessiner'()" classname="TestUmlIDessinable" time="0.001"/>
+  <testcase name="test1 - Dessinable is open or not()" classname="TestUmlIDessinable" time="0.0"/>
+  <testcase name="test0 - Dessinable is abstract or not()" classname="TestUmlIDessinable" time="0.0"/>
+  <testcase name="test6 - 'Dessinable' has a method 'colorierArriere'()" classname="TestUmlIDessinable" time="0.001"/>
+  <testcase name="test4 - 'Dessinable' has method(s)()" classname="TestUmlIDessinable" time="0.0"/>
+  <testcase name="test3 - 'Dessinable' has attribute(s)()" classname="TestUmlIDessinable" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

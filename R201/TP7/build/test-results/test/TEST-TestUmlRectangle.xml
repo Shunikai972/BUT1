@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestUmlRectangle" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-05-06T06:30:31" hostname="u-inf-j-e114-21" time="0.012">
+  <properties/>
+  <testcase name="test1 - class Rectangle is open or not()" classname="TestUmlRectangle" time="0.002"/>
+  <testcase name="test8 - 'Rectangle' has a method 'dessiner'()" classname="TestUmlRectangle" time="0.001"/>
+  <testcase name="test6 - 'Rectangle' has a method 'perimetre'()" classname="TestUmlRectangle" time="0.0"/>
+  <testcase name="test7 - 'Rectangle' has a method 'surface'()" classname="TestUmlRectangle" time="0.0"/>
+  <testcase name="test4 - 'Rectangle' has attribute(s)()" classname="TestUmlRectangle" time="0.0"/>
+  <testcase name="test3 - 'Rectangle' has a constructor()" classname="TestUmlRectangle" time="0.001"/>
+  <testcase name="test0 - class Rectangle is abstract or not()" classname="TestUmlRectangle" time="0.0"/>
+  <testcase name="test2 - 'Rectangle' extends other classe(s)()" classname="TestUmlRectangle" time="0.001"/>
+  <testcase name="test5 - 'Rectangle' has method(s)()" classname="TestUmlRectangle" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

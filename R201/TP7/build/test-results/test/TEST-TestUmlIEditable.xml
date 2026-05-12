@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestUmlIEditable" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-05-06T06:30:31" hostname="u-inf-j-e114-21" time="0.01">
+  <properties/>
+  <testcase name="test2 - 'Editable' extends other classe(s)()" classname="TestUmlIEditable" time="0.001"/>
+  <testcase name="test3 - 'Editable' has attribute(s)()" classname="TestUmlIEditable" time="0.001"/>
+  <testcase name="test0 - class Editable is abstract or not()" classname="TestUmlIEditable" time="0.001"/>
+  <testcase name="test4 - 'Editable' has method(s)()" classname="TestUmlIEditable" time="0.002"/>
+  <testcase name="test5 - 'Editable' has a method 'editer'()" classname="TestUmlIEditable" time="0.001"/>
+  <testcase name="test1 - class Editable is open or not()" classname="TestUmlIEditable" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

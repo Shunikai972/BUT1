@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestUmliMonde" tests="17" skipped="0" failures="0" errors="0" timestamp="2026-05-06T12:45:03" hostname="u-inf-j-c003-21" time="0.447">
+  <properties/>
+  <testcase name="test15 - 'iMonde' has a method 'mondeTrieTab'()" classname="TestUmliMonde" time="0.409"/>
+  <testcase name="test4 - 'iMonde' has method(s)()" classname="TestUmliMonde" time="0.001"/>
+  <testcase name="test1 - class iMonde is open or not()" classname="TestUmliMonde" time="0.002"/>
+  <testcase name="test9 - 'iMonde' has a method 'getPays'()" classname="TestUmliMonde" time="0.002"/>
+  <testcase name="test12 - 'iMonde' has a method 'populationSuperieureA'()" classname="TestUmliMonde" time="0.001"/>
+  <testcase name="test8 - 'iMonde' has a method 'remplir'()" classname="TestUmliMonde" time="0.001"/>
+  <testcase name="test7 - 'iMonde' has a method 'toString'()" classname="TestUmliMonde" time="0.001"/>
+  <testcase name="test13 - 'iMonde' has a method 'monde'()" classname="TestUmliMonde" time="0.002"/>
+  <testcase name="test14 - 'iMonde' has a method 'mondeTrie'()" classname="TestUmliMonde" time="0.001"/>
+  <testcase name="test3 - 'iMonde' has attribute(s)()" classname="TestUmliMonde" time="0.0"/>
+  <testcase name="test11 - 'iMonde' has a method 'plusPeuple'()" classname="TestUmliMonde" time="0.002"/>
+  <testcase name="test6 - 'iMonde' has a method 'ajouter'()" classname="TestUmliMonde" time="0.001"/>
+  <testcase name="test5 - 'iMonde' has a method 'taille'()" classname="TestUmliMonde" time="0.001"/>
+  <testcase name="test0 - class iMonde is abstract or not()" classname="TestUmliMonde" time="0.001"/>
+  <testcase name="test2 - 'iMonde' extends other classe(s)()" classname="TestUmliMonde" time="0.003"/>
+  <testcase name="test16 - 'iMonde' has a method 'mondeTrieSelonSuperficie'()" classname="TestUmliMonde" time="0.002"/>
+  <testcase name="test10 - 'iMonde' has a method 'getPays2'()" classname="TestUmliMonde" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

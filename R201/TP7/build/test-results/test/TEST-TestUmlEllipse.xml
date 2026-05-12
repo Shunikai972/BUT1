@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TestUmlEllipse" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-05-06T06:30:31" hostname="u-inf-j-e114-21" time="0.015">
+  <properties/>
+  <testcase name="test0 - class Ellipse is abstract or not()" classname="TestUmlEllipse" time="0.001"/>
+  <testcase name="test6 - 'Ellipse' has a method 'perimetre'()" classname="TestUmlEllipse" time="0.002"/>
+  <testcase name="test3 - 'Ellipse' has a constructor()" classname="TestUmlEllipse" time="0.002"/>
+  <testcase name="test4 - 'Ellipse' has attribute(s)()" classname="TestUmlEllipse" time="0.001"/>
+  <testcase name="test7 - 'Ellipse' has a method 'surface'()" classname="TestUmlEllipse" time="0.001"/>
+  <testcase name="test2 - 'Ellipse' extends other classe(s)()" classname="TestUmlEllipse" time="0.001"/>
+  <testcase name="test8 - 'Ellipse' has a method 'dessiner'()" classname="TestUmlEllipse" time="0.0"/>
+  <testcase name="test1 - class Ellipse is open or not()" classname="TestUmlEllipse" time="0.001"/>
+  <testcase name="test5 - 'Ellipse' has method(s)()" classname="TestUmlEllipse" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
