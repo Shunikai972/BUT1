@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="but1.iut.r203.OperationsUnairesTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-05-18T10:01:16.411Z" hostname="u-inf-j-e114-05" time="0.024">
+  <properties/>
+  <testcase name="factorielleCT4Trois()" classname="but1.iut.r203.OperationsUnairesTest" time="0.008"/>
+  <testcase name="factorielleCT1EntierNegatif()" classname="but1.iut.r203.OperationsUnairesTest" time="0.001"/>
+  <testcase name="factorielleCasSupplementaireBorneSuperieure()" classname="but1.iut.r203.OperationsUnairesTest" time="0.0"/>
+  <testcase name="factorielleCT2DepassementInt()" classname="but1.iut.r203.OperationsUnairesTest" time="0.001"/>
+  <testcase name="factorielleCT3Zero()" classname="but1.iut.r203.OperationsUnairesTest" time="0.001"/>
+  <testcase name="factorielleCasSupplementaireUn()" classname="but1.iut.r203.OperationsUnairesTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
